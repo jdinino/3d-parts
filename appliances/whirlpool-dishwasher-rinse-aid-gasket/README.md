@@ -9,8 +9,8 @@
 
 3D printable replacement gasket for the rinse aid compartment on Whirlpool/KitchenAid/Maytag dishwasher detergent dispensers.
 
-<h2 align="center"><a href="https://raw.githubusercontent.com/jdinino/3dparts/main/appliances/whirlpool-dishwasher-rinse-aid-gasket/gasket-r08.stl" download>Download the Gasket</a></h2>
-<h3 align="center"><a href="gasket-r08.stl">View 3D Model</a> | <a href="https://jdinino.github.io/3dparts/appliances/whirlpool-dishwasher-rinse-aid-gasket/render.html">Interactive Viewer</a></h3>
+<h2 align="center"><a href="https://raw.githubusercontent.com/jdinino/3d-parts/main/appliances/whirlpool-dishwasher-rinse-aid-gasket/gasket-r08.stl" download>Download the Gasket</a></h2>
+<h3 align="center"><a href="gasket-r08.stl">View 3D Model</a> | <a href="https://jdinino.github.io/3d-parts/appliances/whirlpool-dishwasher-rinse-aid-gasket/render.html">Interactive Viewer</a></h3>
 
 <p align="center">
   <img src="https://img.shields.io/badge/Material-PETG-brightgreen" alt="Material: PETG">
@@ -150,5 +150,5 @@ Issues and improvements welcome. Please include:
 ---
 
 <p align="center">
-  <img src="https://api.visitorbadge.io/api/visitors?path=https%3A%2F%2Fgithub.com%2Fjdinino%2F3dparts%2Ftree%2Fmain%2Fappliances%2Fwhirlpool-dishwasher-rinse-aid-gasket&label=Views&countColor=%23263759" alt="Views" />
+  <img src="https://api.visitorbadge.io/api/visitors?path=https%3A%2F%2Fgithub.com%2Fjdinino%2F3d-parts%2Ftree%2Fmain%2Fappliances%2Fwhirlpool-dishwasher-rinse-aid-gasket&label=Views&countColor=%23263759" alt="Views" />
 </p>
