@@ -13,7 +13,7 @@
 <h3 align="center"><a href="gasket-r08.stl">View 3D Model</a> | <a href="https://jdinino.github.io/3d-parts/appliances/whirlpool-dishwasher-rinse-aid-gasket/render.html">Interactive Viewer</a></h3>
 
 <p align="center">
-  <img src="https://img.shields.io/badge/Material-PETG-brightgreen" alt="Material: PETG">
+  <img src="https://img.shields.io/badge/Material-TPU-brightgreen" alt="Material: TPU">
   <img src="https://img.shields.io/badge/Revision-r08-blue" alt="Revision: r08">
   <img src="https://img.shields.io/badge/Size-46×34×4mm-orange" alt="Size: 46×34×4mm">
 </p>
@@ -86,27 +86,28 @@
 
 ## Print Settings
 
-### Recommended Material: PETG
+### Recommended Material: TPU
 
 | Setting | Value |
 |---------|-------|
 | Layer Height | 0.2 mm |
 | Wall Count | 3-4 |
 | Infill | 100% |
-| Print Speed | 40-50 mm/s |
-| Nozzle Temp | 230-250°C |
-| Bed Temp | 70-80°C |
-| Cooling | 50% |
+| Print Speed | 20-30 mm/s |
+| Nozzle Temp | 220-240°C |
+| Bed Temp | 50-60°C |
+| Cooling | 100% |
 | Orientation | Flat (floor on bed) |
 | Supports | None required |
+| Direct Drive | Recommended |
 
 ### Material Notes
 
 | Material | Status | Notes |
 |----------|--------|-------|
-| ✅ PETG | **Recommended** | Good flexibility, durability, sealing |
+| ✅ TPU | **Recommended** | Excellent flexibility, superior sealing |
+| ❌ PETG | Not recommended | Failed 3 tests, insufficient flexibility |
 | ❌ PLA | Not recommended | Too rigid, poor seal |
-| ⚠️ TPU | Untested | May work for enhanced flexibility |
 
 ## Files
 

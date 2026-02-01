@@ -6,4 +6,4 @@
 
 | Part | Brand | Part Numbers | Material | Status |
 |------|-------|--------------|----------|--------|
-| [Rinse Aid Gasket](whirlpool-dishwasher-rinse-aid-gasket/) | Whirlpool, KitchenAid, Maytag | W11412300, W11092649 | PETG | Tested |
+| [Rinse Aid Gasket](whirlpool-dishwasher-rinse-aid-gasket/) | Whirlpool, KitchenAid, Maytag | W11412300, W11092649 | TPU | Tested |

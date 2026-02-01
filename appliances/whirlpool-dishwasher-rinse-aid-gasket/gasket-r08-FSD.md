@@ -77,23 +77,26 @@ This specification covers:
 ### 5.1 Approved Material
 | Property | Specification |
 |----------|---------------|
-| Material | PETG (Polyethylene Terephthalate Glycol) |
+| Material | TPU (Thermoplastic Polyurethane) |
 | Form | 1.75 mm filament |
+| Shore Hardness | 95A |
 | Color | As required |
 
 ### 5.2 Material Properties
 | Property | Typical Value |
 |----------|---------------|
-| Tensile Strength | 50 MPa |
-| Flexural Modulus | 2,100 MPa |
-| Heat Deflection | 70°C |
+| Tensile Strength | 40 MPa |
+| Elongation at Break | 450% |
+| Flexural Modulus | 80 MPa |
+| Heat Deflection | 60°C |
 | Chemical Resistance | Good |
+| Flexibility | Excellent |
 
 ### 5.3 Non-Approved Materials
 | Material | Status | Reason |
 |----------|--------|--------|
 | PLA | ❌ Rejected | Too rigid, poor seal, brittle failure |
-| TPU | ⚠️ Not tested | May be suitable for enhanced flexibility |
+| PETG | ❌ Rejected | Failed 3 tests, insufficient flexibility for sealing |
 
 ---
 
@@ -112,11 +115,12 @@ This specification covers:
 | Layer Height | 0.2 mm |
 | Wall Count | 3-4 |
 | Infill | 100% |
-| Print Speed | 40-50 mm/s |
-| Nozzle Temperature | 230-250°C |
-| Bed Temperature | 70-80°C |
-| Cooling | 50% |
-| Retraction | 4-6 mm |
+| Print Speed | 20-30 mm/s |
+| Nozzle Temperature | 220-240°C |
+| Bed Temperature | 50-60°C |
+| Cooling | 100% |
+| Retraction | 0-2 mm |
+| Direct Drive | Recommended |
 
 ---
 
