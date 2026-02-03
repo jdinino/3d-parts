@@ -35,7 +35,7 @@ Copy and adapt this structure exactly:
 
 <p align="center">
   <b>If this part saved you money, consider buying me a thank you!</b><br><br>
-  <a href="https://paypal.me/jdinino"><img src="https://img.shields.io/badge/PayPal-Tip_Jar-00457C?style=for-the-badge&logo=paypal&logoColor=white" alt="PayPal Tip Jar"></a>
+  <a href="https://paypal.me/tipscup"><img src="https://img.shields.io/badge/PayPal-Tip_Jar-00457C?style=for-the-badge&logo=paypal&logoColor=white" alt="PayPal Tip Jar"></a>
 </p>
 
 ---
