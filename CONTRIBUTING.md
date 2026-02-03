@@ -1,44 +1,34 @@
-# Contributing New Parts
+# Adding New Parts
 
-This document describes how to add new 3D printable parts to this repository.
+Use this as your template and checklist when adding parts to this repository.
 
-## Directory Structure
+---
 
-```
-3d-parts/
-├── README.md                    # Main repo index
-├── LICENSE                      # CC BY 4.0
-├── CONTRIBUTING.md              # This file
-└── {category}/                  # appliances, automotive, electronics, furniture, tools
-    ├── README.md                # Category index
-    └── {brand}-{product}-{part}/    # Part folder
-        ├── README.md            # Part documentation
-        ├── {partname}-FSD.md    # Functional Specification Document
-        ├── {partname}.stl       # 3D printable model
-        ├── {partname}.scad      # OpenSCAD parametric source
-        └── render.html          # Interactive 3D preview
-```
+## Folder Structure
 
-## Naming Conventions
+Create: `{category}/{brand}-{product}-{part}/`
 
-### Folder Names
-- Format: `{brand}-{product}-{part}`
-- Use lowercase with hyphens
-- Examples:
-  - `whirlpool-dishwasher-rinse-aid-gasket`
-  - `whirlpool-refrigerator-pan-roller`
-  - `ikea-malm-drawer-slide`
+Example: `appliances/whirlpool-refrigerator-pan-roller/`
 
-### File Names
-- STL/SCAD: Use OEM part number if available (e.g., `W11578839.stl`)
-- If no part number: Use descriptive name with revision (e.g., `gasket-r08.stl`)
-- FSD: Match part name (e.g., `pan-roller-FSD.md` or `gasket-r08-FSD.md`)
+---
 
 ## Required Files
 
-### 1. README.md (Part Documentation)
+| File | Description |
+|------|-------------|
+| `README.md` | Part documentation (see template below) |
+| `{name}-FSD.md` | Specifications document |
+| `{name}.stl` | 3D printable model(s) |
+| `{name}.scad` | OpenSCAD source(s) |
+| `render.html` | Interactive 3D viewer |
 
-Must include these sections in order:
+Use OEM part numbers for filenames when available (e.g., `W11578839.stl`).
+
+---
+
+## README.md Template
+
+Copy and adapt this structure exactly:
 
 ```markdown
 # {Brand} {Product} {Part Name}
@@ -50,126 +40,175 @@ Must include these sections in order:
 
 ---
 
-{Brief description of the part and what it replaces.}
+{One sentence description.}
 
-<h2 align="center"><a href="{raw-stl-url}" download>Download the {Part}</a></h2>
-<h3 align="center"><a href="{local-stl}">View 3D Model</a> | <a href="{github-pages-url}">Interactive Viewer</a></h3>
+<h2 align="center"><a href="https://raw.githubusercontent.com/jdinino/3d-parts/main/{category}/{folder}/{file}.stl" download>Download the {Part}</a></h2>
+<h3 align="center"><a href="{file}.stl">View 3D Model</a> | <a href="https://jdinino.github.io/3d-parts/{category}/{folder}/render.html">Interactive Viewer</a></h3>
 
 <p align="center">
   <img src="https://img.shields.io/badge/Material-{MATERIAL}-brightgreen" alt="Material">
   <img src="https://img.shields.io/badge/Revision-{rXX}-blue" alt="Revision">
-  <img src="https://img.shields.io/badge/Size-{dimensions}-orange" alt="Size">
 </p>
 
 ## Compatible Part Numbers
-## Compatible {Product} Models (optional, if known)
+
+| Part Number | Type |
+|-------------|------|
+| **{PRIMARY}** | Current OEM |
+| {ALTERNATE} | Alternate |
+
+## Compatible {Product} Models
+
+### {Brand1}
+- Model numbers here
+
+### {Brand2}
+- Model numbers here
+
 ## Specifications
+
+| Parameter | Value |
+|-----------|-------|
+| **{Dimension}** | {value} mm |
+
 ## Print Settings
+
+### {Material Name}
+
+| Setting | Value |
+|---------|-------|
+| Layer Height | {X} mm |
+| Wall Count | {X} |
+| Infill | 100% |
+| Print Speed | {X} mm/s |
+| Nozzle Temp | {X}°C |
+| Bed Temp | {X}°C |
+| Cooling | {X}% |
+| Orientation | {description} |
+| Supports | None required |
+
 ### Material Notes
+
+| Material | Status | Notes |
+|----------|--------|-------|
+| {MATERIAL} | **Recommended** | {reason} |
+| {OTHER} | Not recommended | {reason} |
+
 ## Files
+
+| File | Description |
+|------|-------------|
+| `{name}.stl` | 3D printable model |
+| `{name}.scad` | OpenSCAD parametric source |
+| `{name}-FSD.md` | Functional Specification Document |
+| `render.html` | Interactive 3D preview |
+
 ## Installation
+
+1. Step one
+2. Step two
+3. Step three
+
 ## Revision History
+
+| Rev | Date | Changes |
+|-----|------|---------|
+| **{rXX}** | **{YYYY}** | **{Current version notes}** |
+
 ## License
+
+[CC BY 4.0](../../LICENSE)
+
 ## Contributing
+
+Issues and improvements welcome. Please include:
+- {Product} model number
+- Photo of fitment
+- Any dimensional adjustments needed
+
 ## Keywords
+
+`{part1}` `{part2}` `{brand}` `{product}` `{keywords}` `3d print` `replacement part`
 
 ---
 
 <p align="center">
-  <img src="https://api.visitorbadge.io/api/visitors?path={encoded-github-url}&label=Views&countColor=%23263759" alt="Views" />
+  <img src="https://api.visitorbadge.io/api/visitors?path=https%3A%2F%2Fgithub.com%2Fjdinino%2F3d-parts%2Ftree%2Fmain%2F{category}%2F{folder}&label=Views&countColor=%23263759" alt="Views" />
 </p>
 ```
 
-### 2. FSD.md (Functional Specification Document)
+---
 
-Must include:
+## FSD.md Template
 
 ```markdown
 # {Part Name} Full Specifications Document
 
 ## Overview
-## Specifications (with dimensions, tolerances)
+
+{Brief description of what this part does.}
+
+## Specifications
+
+| Parameter | Value |
+|-----------|-------|
+| {Dimension} | {value} mm |
+
 ## Material Requirements
-## Print Parameters
+
+| Part | Material | Reason |
+|------|----------|--------|
+| {Part} | {Material} | {Why} |
+
 ## Revision History
+
+| Rev | Date | Changes |
+|-----|------|---------|
+| {rXX} | {YYYY} | {Notes} |
 ```
 
-### 3. STL File(s)
-- Binary STL format preferred
-- Properly oriented for printing (no supports needed if possible)
-- Manifold/watertight mesh
+---
 
-### 4. SCAD File(s)
-- OpenSCAD parametric source
-- Include all dimensions as variables at top
-- Include revision marking in the model
+## render.html
 
-### 5. render.html
-- Interactive Three.js viewer
-- Follow template from existing parts
-- Include specifications display
-- Compatible brand badges
+Copy from an existing part (e.g., `whirlpool-refrigerator-pan-roller/render.html`) and modify:
+- Title
+- Part numbers
+- Specifications values
+- 3D geometry (Three.js scene)
+- Brand compatibility list
 
-## Updating Category Index
+---
 
-When adding a new part, update the category's README.md:
+## Update Category Index
+
+Add row to `{category}/README.md`:
 
 ```markdown
-| [Part Name](folder-name/) | Brand1, Brand2 | PartNum1, PartNum2 | Material | Status |
+| [Part Name](folder-name/) | Brand1, Brand2 | PartNum1, PartNum2 | Material | Tested |
 ```
 
-Status values:
-- `Tested` - Verified to work
-- `Beta` - Works but may need refinement
-- `WIP` - Work in progress
+---
 
-## Commit Message Format
+## Checklist
 
-```
-Add {product} {part} {part-numbers}
+Before committing, verify:
 
-Co-Authored-By: {contributor} <email>
-```
-
-Example:
-```
-Add refrigerator pan roller W11578839/W11573594
-
-Co-Authored-By: Claude Opus 4.5 <noreply@anthropic.com>
-```
-
-## Checklist Before Submitting
-
-- [ ] Folder follows naming convention: `{brand}-{product}-{part}`
-- [ ] README.md follows template structure
-- [ ] FSD.md with full specifications
-- [ ] STL file(s) - printable models
-- [ ] SCAD file(s) - parametric source
-- [ ] render.html - interactive viewer
-- [ ] Category README.md updated with new part
-- [ ] All file references in README match actual filenames
-- [ ] Download links use correct raw GitHub URLs
-- [ ] Interactive viewer link uses GitHub Pages URL
-- [ ] Keywords section includes all part numbers
+- [ ] Folder: `{category}/{brand}-{product}-{part}/`
+- [ ] README.md matches template structure exactly
+- [ ] FSD.md with specifications
+- [ ] STL file(s)
+- [ ] SCAD file(s)
+- [ ] render.html
+- [ ] Category README.md updated
+- [ ] All filenames in README match actual files
+- [ ] Download URLs point to correct raw GitHub paths
+- [ ] Interactive Viewer URL uses GitHub Pages path
+- [ ] Visitor badge URL is properly encoded
 - [ ] License links to `../../LICENSE`
 
-## URL Formats
+---
 
-### Raw file download:
-```
-https://raw.githubusercontent.com/jdinino/3d-parts/main/{category}/{folder}/{file}.stl
-```
+## Reference
 
-### GitHub Pages (render.html):
-```
-https://jdinino.github.io/3d-parts/{category}/{folder}/render.html
-```
-
-### Visitor badge path (URL encoded):
-```
-https%3A%2F%2Fgithub.com%2Fjdinino%2F3d-parts%2Ftree%2Fmain%2F{category}%2F{folder}
-```
-
-## Questions?
-
-Open an issue at https://github.com/jdinino/3d-parts/issues
+Working example: `appliances/whirlpool-refrigerator-pan-roller/`
