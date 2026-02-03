@@ -1,0 +1,283 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Pan Roller - W11578839/W11573594</title>
+    <style>
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+            background: linear-gradient(135deg, #1a1a2e 0%, #16213e 100%);
+            min-height: 100vh;
+            color: #fff;
+        }
+        .container { max-width: 900px; margin: 0 auto; padding: 20px; }
+        h1 { text-align: center; margin-bottom: 5px; font-size: 1.5rem; }
+        .subtitle { text-align: center; color: #888; margin-bottom: 20px; font-size: 0.9rem; }
+        .part-numbers {
+            display: flex;
+            justify-content: center;
+            gap: 10px;
+            flex-wrap: wrap;
+            margin-bottom: 20px;
+        }
+        .part-num {
+            background: rgba(78, 205, 196, 0.2);
+            border: 1px solid #4ecdc4;
+            padding: 5px 12px;
+            border-radius: 15px;
+            font-family: monospace;
+            font-size: 0.85rem;
+        }
+        #viewer {
+            width: 100%;
+            height: 450px;
+            background: #0a0a14;
+            border-radius: 12px;
+            overflow: hidden;
+        }
+        .controls {
+            text-align: center;
+            margin-top: 10px;
+            color: #666;
+            font-size: 0.8rem;
+        }
+        .specs {
+            background: rgba(255,255,255,0.05);
+            border-radius: 12px;
+            padding: 15px;
+            margin-top: 20px;
+        }
+        .specs h2 { font-size: 1rem; color: #4ecdc4; margin-bottom: 10px; }
+        .spec-section { margin-bottom: 15px; }
+        .spec-section h3 { font-size: 0.85rem; color: #888; margin-bottom: 8px; }
+        .spec-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(100px, 1fr));
+            gap: 10px;
+        }
+        .spec-item {
+            background: rgba(255,255,255,0.05);
+            padding: 10px;
+            border-radius: 8px;
+            text-align: center;
+        }
+        .spec-label { font-size: 0.65rem; color: #888; text-transform: uppercase; }
+        .spec-value { font-size: 1.1rem; font-weight: 600; color: #4ecdc4; }
+        .brands {
+            margin-top: 20px;
+            text-align: center;
+            color: #666;
+            font-size: 0.8rem;
+        }
+        .brands span {
+            display: inline-block;
+            margin: 0 8px;
+            padding: 3px 8px;
+            background: rgba(255,255,255,0.05);
+            border-radius: 4px;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>Refrigerator Pan Roller</h1>
+        <p class="subtitle">3D Printable Replacement Part - Two-Piece Assembly</p>
+
+        <div class="part-numbers">
+            <span class="part-num">W11578839 (Wheel)</span>
+            <span class="part-num">W11573594 (Axle)</span>
+            <span class="part-num">PS16660568</span>
+        </div>
+
+        <div id="viewer"></div>
+        <div class="controls">Drag to rotate | Scroll to zoom | Wheel + Axle Assembly</div>
+
+        <div class="specs">
+            <h2>Specifications</h2>
+            <div class="spec-section">
+                <h3>Wheel (W11578839) - PETG/PLA</h3>
+                <div class="spec-grid">
+                    <div class="spec-item">
+                        <div class="spec-label">Diameter</div>
+                        <div class="spec-value">31 mm</div>
+                    </div>
+                    <div class="spec-item">
+                        <div class="spec-label">Height</div>
+                        <div class="spec-value">8 mm</div>
+                    </div>
+                    <div class="spec-item">
+                        <div class="spec-label">Center Hole</div>
+                        <div class="spec-value">9 mm</div>
+                    </div>
+                    <div class="spec-item">
+                        <div class="spec-label">Material</div>
+                        <div class="spec-value">PETG</div>
+                    </div>
+                </div>
+            </div>
+            <div class="spec-section">
+                <h3>Axle (W11573594) - TPU</h3>
+                <div class="spec-grid">
+                    <div class="spec-item">
+                        <div class="spec-label">Total Height</div>
+                        <div class="spec-value">20 mm</div>
+                    </div>
+                    <div class="spec-item">
+                        <div class="spec-label">Shoulder</div>
+                        <div class="spec-value">10 mm</div>
+                    </div>
+                    <div class="spec-item">
+                        <div class="spec-label">Shaft</div>
+                        <div class="spec-value">8 mm</div>
+                    </div>
+                    <div class="spec-item">
+                        <div class="spec-label">Material</div>
+                        <div class="spec-value">TPU</div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="brands">
+            Compatible with:
+            <span>Whirlpool</span>
+            <span>KitchenAid</span>
+            <span>Maytag</span>
+            <span>Kenmore</span>
+        </div>
+    </div>
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js"></script>
+    <script>
+        const container = document.getElementById('viewer');
+        const scene = new THREE.Scene();
+        scene.background = new THREE.Color(0x0a0a14);
+
+        const camera = new THREE.PerspectiveCamera(45, container.clientWidth / container.clientHeight, 0.1, 1000);
+        camera.position.set(40, 30, 40);
+
+        const renderer = new THREE.WebGLRenderer({ antialias: true });
+        renderer.setSize(container.clientWidth, container.clientHeight);
+        container.appendChild(renderer.domElement);
+
+        scene.add(new THREE.AmbientLight(0x404040, 0.6));
+        const light1 = new THREE.DirectionalLight(0xffffff, 0.8);
+        light1.position.set(50, 50, 50);
+        scene.add(light1);
+        const light2 = new THREE.DirectionalLight(0x4ecdc4, 0.4);
+        light2.position.set(-30, 20, -30);
+        scene.add(light2);
+
+        // Materials
+        const wheelMat = new THREE.MeshPhongMaterial({
+            color: 0x4ecdc4, shininess: 80, specular: 0x222222
+        });
+        const axleMat = new THREE.MeshPhongMaterial({
+            color: 0xe88a4c, shininess: 60, specular: 0x222222
+        });
+
+        // Wheel dimensions (mm)
+        const wheelOD = 31, wheelH = 8, wheelHole = 9;
+
+        // Create wheel (torus-like ring)
+        const wheelGroup = new THREE.Group();
+        const wheelOuterGeom = new THREE.CylinderGeometry(wheelOD/2, wheelOD/2, wheelH, 32);
+        const wheelOuter = new THREE.Mesh(wheelOuterGeom, wheelMat);
+        wheelGroup.add(wheelOuter);
+
+        // Wheel hole (subtract visually with darker material)
+        const holeGeom = new THREE.CylinderGeometry(wheelHole/2, wheelHole/2, wheelH + 1, 32);
+        const holeMat = new THREE.MeshPhongMaterial({ color: 0x0a0a14 });
+        const hole = new THREE.Mesh(holeGeom, holeMat);
+        wheelGroup.add(hole);
+
+        wheelGroup.position.y = 12; // Position wheel on axle
+        scene.add(wheelGroup);
+
+        // Axle dimensions
+        const shoulderD = 10, shoulderH = 2;
+        const shaftD = 8, shaftH = 8;
+        const legLen = 10, legW = 3, legT = 1.5;
+
+        const axleGroup = new THREE.Group();
+
+        // Shaft (bottom part that goes into mount)
+        const shaftGeom = new THREE.CylinderGeometry(shaftD/2, shaftD/2, shaftH, 32);
+        const shaft = new THREE.Mesh(shaftGeom, axleMat);
+        shaft.position.y = shaftH/2;
+        axleGroup.add(shaft);
+
+        // Shoulder
+        const shoulderGeom = new THREE.CylinderGeometry(shoulderD/2, shoulderD/2, shoulderH, 32);
+        const shoulder = new THREE.Mesh(shoulderGeom, axleMat);
+        shoulder.position.y = shaftH + shoulderH/2;
+        axleGroup.add(shoulder);
+
+        // Three legs with wedge clips at 120 degrees
+        for (let i = 0; i < 3; i++) {
+            const angle = (i * 120) * Math.PI / 180;
+
+            // Leg
+            const legGeom = new THREE.BoxGeometry(legT, legLen, legW);
+            const leg = new THREE.Mesh(legGeom, axleMat);
+            leg.position.y = shaftH + shoulderH + legLen/2;
+            leg.position.x = Math.cos(angle) * (shaftD/2 - legT/2);
+            leg.position.z = Math.sin(angle) * (shaftD/2 - legT/2);
+            leg.rotation.y = -angle;
+            axleGroup.add(leg);
+
+            // Wedge clip at top
+            const wedgeGeom = new THREE.ConeGeometry(legW/2, 2, 4);
+            const wedge = new THREE.Mesh(wedgeGeom, axleMat);
+            wedge.position.y = shaftH + shoulderH + legLen;
+            wedge.position.x = Math.cos(angle) * (shaftD/2 + 1);
+            wedge.position.z = Math.sin(angle) * (shaftD/2 + 1);
+            wedge.rotation.z = -Math.PI/2;
+            wedge.rotation.y = -angle;
+            axleGroup.add(wedge);
+        }
+
+        scene.add(axleGroup);
+
+        // Grid
+        const grid = new THREE.GridHelper(80, 16, 0x333333, 0x222222);
+        grid.position.y = -0.1;
+        scene.add(grid);
+
+        // Controls
+        let isDragging = false, prevMouse = { x: 0, y: 0 };
+        let rotation = { x: 0.4, y: 0.6 };
+        let zoom = 50;
+
+        container.addEventListener('mousedown', e => { isDragging = true; prevMouse = { x: e.clientX, y: e.clientY }; });
+        container.addEventListener('mousemove', e => {
+            if (!isDragging) return;
+            rotation.y += (e.clientX - prevMouse.x) * 0.01;
+            rotation.x += (e.clientY - prevMouse.y) * 0.01;
+            rotation.x = Math.max(-1.5, Math.min(1.5, rotation.x));
+            prevMouse = { x: e.clientX, y: e.clientY };
+        });
+        container.addEventListener('mouseup', () => isDragging = false);
+        container.addEventListener('mouseleave', () => isDragging = false);
+        container.addEventListener('wheel', e => { e.preventDefault(); zoom = Math.max(25, Math.min(100, zoom + e.deltaY * 0.1)); });
+
+        function animate() {
+            requestAnimationFrame(animate);
+            camera.position.x = zoom * Math.sin(rotation.y) * Math.cos(rotation.x);
+            camera.position.y = zoom * Math.sin(rotation.x) + 15;
+            camera.position.z = zoom * Math.cos(rotation.y) * Math.cos(rotation.x);
+            camera.lookAt(0, 10, 0);
+            renderer.render(scene, camera);
+        }
+        animate();
+
+        window.addEventListener('resize', () => {
+            camera.aspect = container.clientWidth / container.clientHeight;
+            camera.updateProjectionMatrix();
+            renderer.setSize(container.clientWidth, container.clientHeight);
+        });
+    </script>
+</body>
+</html>
