@@ -146,25 +146,32 @@ Issues and improvements welcome. Please include:
 
 ## Overview
 
-{Brief description of what this part does.}
+{One sentence description of what this part does and where it's used.}
 
-## Specifications
+## {Part} Specifications
 
 | Parameter | Value |
 |-----------|-------|
-| {Dimension} | {value} mm |
+| {Dimension1} | {value}mm |
+| {Dimension2} | {value}mm |
+| Material | {MATERIAL} |
+
+### Cross Section
+{ASCII diagram showing part geometry - see existing FSD files for examples}
 
 ## Material Requirements
 
-| Part | Material | Reason |
-|------|----------|--------|
-| {Part} | {Material} | {Why} |
+| Material | Status | Reason |
+|----------|--------|--------|
+| {MATERIAL} | **Recommended** | {Why recommended} |
+| {OTHER} | Not recommended | {Why not} |
 
 ## Revision History
 
 | Rev | Date | Changes |
 |-----|------|---------|
-| {rXX} | {YYYY} | {Notes} |
+| {rXX} | {YYYY} | {Current version notes} |
+| {rXX-1} | {YYYY} | {Previous changes} |
 ```
 
 ---
