@@ -4,6 +4,6 @@
 
 ## Parts
 
-| Part | Vehicle | Material | Status |
-|------|---------|----------|--------|
-| *Coming soon* | | | |
+| Part | Brand | Part Numbers | Material | Status |
+|------|-------|--------------|----------|--------|
+| *Coming soon* | | | | |
