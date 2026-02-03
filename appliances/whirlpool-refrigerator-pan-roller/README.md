@@ -9,7 +9,7 @@
 
 3D printable replacement pan roller assembly for Whirlpool/KitchenAid/Maytag refrigerator drawers.
 
-<h2 align="center"><a href="https://raw.githubusercontent.com/jdinino/3d-parts/main/appliances/whirlpool-refrigerator-pan-roller/W11578839.stl" download>Download the Wheel</a> | <a href="https://raw.githubusercontent.com/jdinino/3d-parts/main/appliances/whirlpool-refrigerator-pan-roller/W11573594.stl" download>Download the Axle</a></h2>
+<h2 align="center"><a href="https://github.com/jdinino/3d-parts/releases/download/pan-roller-r17/W11578839.stl">Download the Wheel</a> | <a href="https://github.com/jdinino/3d-parts/releases/download/pan-roller-r17/W11573594.stl">Download the Axle</a></h2>
 <h3 align="center"><a href="W11578839.stl">View Wheel</a> | <a href="W11573594.stl">View Axle</a> | <a href="https://jdinino.github.io/3d-parts/appliances/whirlpool-refrigerator-pan-roller/render.html">Interactive Viewer</a></h3>
 
 <p align="center">
