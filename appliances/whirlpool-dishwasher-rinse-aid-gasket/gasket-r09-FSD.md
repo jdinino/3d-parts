@@ -17,7 +17,7 @@ Replacement gasket for rinse aid compartment on Whirlpool/KitchenAid/Maytag dish
 | Inner Lip Thickness | 1mm |
 | Floor Thickness | 1mm |
 | Groove Depth | 3mm |
-| Material | PETG |
+| Material | TPU |
 
 ### Cross Section
 ```
@@ -42,8 +42,8 @@ Replacement gasket for rinse aid compartment on Whirlpool/KitchenAid/Maytag dish
 
 | Material | Status | Reason |
 |----------|--------|--------|
-| PETG | **Recommended** | Good flexibility, durability, sealing |
-| TPU | Alternative | Excellent flexibility, used in r08 |
+| TPU | **Recommended** | Excellent flexibility, superior sealing |
+| PETG | Not recommended | Failed testing, insufficient flexibility |
 | PLA | Not recommended | Too rigid, poor seal |
 
 ## Revision History
