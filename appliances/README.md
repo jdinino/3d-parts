@@ -7,3 +7,4 @@
 | Part | Brand | Part Numbers | Material | Status |
 |------|-------|--------------|----------|--------|
 | [Rinse Aid Gasket](whirlpool-dishwasher-rinse-aid-gasket/) | Whirlpool, KitchenAid, Maytag | W11412300, W11092649 | TPU | Tested |
+| [Refrigerator Pan Roller](whirlpool-refrigerator-pan-roller/) | Whirlpool, KitchenAid, Maytag | W11578839, W11573594 | PETG/PLA, TPU | Tested |
