@@ -50,8 +50,8 @@ Replacement gasket for rinse aid compartment on Whirlpool/KitchenAid/Maytag dish
 
 | Rev | Date | Changes |
 |-----|------|---------|
-| r10 | Feb 2026 | Groove width -1mm (3→2mm), current release |
-| r09 | Feb 2026 | Width +1mm (34→35mm) |
-| r08 | Jan 2026 | Height +1mm (3→4mm) |
-| r07 | - | Outer dims finalized (46×34×3) |
-| r01-r06 | - | Development iterations |
+| r10 | 2026-02-03 | Groove width -1mm (3→2mm), current release |
+| r09 | 2026-02-02 | Width +1mm (34→35mm) |
+| r08 | 2026-01-30 | Height +1mm (3→4mm) |
+| r07 | 2026 | Outer dims finalized (46×34×3) |
+| r01-r06 | 2026 | Development iterations |

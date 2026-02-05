@@ -131,7 +131,7 @@ For multi-part assemblies, repeat print settings per component/material.
 
 | Rev | Date | Changes |
 |-----|------|---------|
-| **{rXX}** | **{YYYY}** | **{Current version notes}** |
+| **{rXX}** | **{YYYY-MM-DD}** | **{Current version notes}** |
 
 ## License
 
@@ -188,8 +188,8 @@ Issues and improvements welcome. Please include:
 
 | Rev | Date | Changes |
 |-----|------|---------|
-| {rXX} | {YYYY} | {Current version notes} |
-| {rXX-1} | {YYYY} | {Previous changes} |
+| {rXX} | {YYYY-MM-DD} | {Current version notes} |
+| {rXX-1} | {YYYY-MM-DD} | {Previous changes} |
 ```
 
 ---

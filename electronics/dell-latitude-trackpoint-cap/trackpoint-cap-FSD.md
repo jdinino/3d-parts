@@ -51,4 +51,4 @@ Replacement TrackPoint pointing stick cap for Dell Latitude E7440 laptop keyboar
 
 | Rev | Date | Changes |
 |-----|------|---------|
-| r01 | Feb 2026 | Initial release - flattened dome, TPU optimized |
+| r01 | 2026-02-05 | Initial release - flattened dome, TPU optimized |
