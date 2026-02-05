@@ -124,9 +124,7 @@
 
 1. Print wheel in PETG or PLA (rigid)
 2. Print axle in TPU (flexible)
-3. Insert axle legs through wheel's 9mm center hole
-4. TPU legs compress to fit, then snap to retain wheel
-5. Install assembly in refrigerator drawer track
+<iframe width="560" height="315" src="https://www.youtube.com/embed/8Ogoslfll-g?si=vLMHYbj-cFdmxksz" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
 
 ## Revision History
 
