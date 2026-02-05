@@ -1,0 +1,229 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>TrackPoint Cap - Dell Latitude E7440</title>
+    <style>
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+            background: linear-gradient(135deg, #1a1a2e 0%, #16213e 100%);
+            min-height: 100vh;
+            color: #fff;
+        }
+        .container { max-width: 900px; margin: 0 auto; padding: 20px; }
+        h1 { text-align: center; margin-bottom: 5px; font-size: 1.5rem; }
+        .subtitle { text-align: center; color: #888; margin-bottom: 20px; font-size: 0.9rem; }
+        .part-numbers {
+            display: flex;
+            justify-content: center;
+            gap: 10px;
+            flex-wrap: wrap;
+            margin-bottom: 20px;
+        }
+        .part-num {
+            background: rgba(78, 205, 196, 0.2);
+            border: 1px solid #4ecdc4;
+            padding: 5px 12px;
+            border-radius: 15px;
+            font-family: monospace;
+            font-size: 0.85rem;
+        }
+        #viewer {
+            width: 100%;
+            height: 450px;
+            background: #0a0a14;
+            border-radius: 12px;
+            overflow: hidden;
+        }
+        .controls {
+            text-align: center;
+            margin-top: 10px;
+            color: #666;
+            font-size: 0.8rem;
+        }
+        .specs {
+            background: rgba(255,255,255,0.05);
+            border-radius: 12px;
+            padding: 15px;
+            margin-top: 20px;
+        }
+        .specs h2 { font-size: 1rem; color: #4ecdc4; margin-bottom: 10px; }
+        .spec-section { margin-bottom: 15px; }
+        .spec-section h3 { font-size: 0.85rem; color: #888; margin-bottom: 8px; }
+        .spec-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(100px, 1fr));
+            gap: 10px;
+        }
+        .spec-item {
+            background: rgba(255,255,255,0.05);
+            padding: 10px;
+            border-radius: 8px;
+            text-align: center;
+        }
+        .spec-label { font-size: 0.65rem; color: #888; text-transform: uppercase; }
+        .spec-value { font-size: 1.1rem; font-weight: 600; color: #4ecdc4; }
+        .brands {
+            margin-top: 20px;
+            text-align: center;
+            color: #666;
+            font-size: 0.8rem;
+        }
+        .brands span {
+            display: inline-block;
+            margin: 0 8px;
+            padding: 3px 8px;
+            background: rgba(255,255,255,0.05);
+            border-radius: 4px;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>TrackPoint Cap</h1>
+        <p class="subtitle">3D Printable Replacement Part - Dell Latitude E7440</p>
+
+        <div class="part-numbers">
+            <span class="part-num">Latitude E7440</span>
+            <span class="part-num">TPU</span>
+        </div>
+
+        <div id="viewer"></div>
+        <div class="controls">Drag to rotate | Scroll to zoom | TrackPoint Cap</div>
+
+        <div class="specs">
+            <h2>Specifications</h2>
+            <div class="spec-section">
+                <h3>Cap - TPU</h3>
+                <div class="spec-grid">
+                    <div class="spec-item">
+                        <div class="spec-label">Total Height</div>
+                        <div class="spec-value">3.75 mm</div>
+                    </div>
+                    <div class="spec-item">
+                        <div class="spec-label">Outer Dia</div>
+                        <div class="spec-value">8.65 mm</div>
+                    </div>
+                    <div class="spec-item">
+                        <div class="spec-label">Inner Dia</div>
+                        <div class="spec-value">7.65 mm</div>
+                    </div>
+                    <div class="spec-item">
+                        <div class="spec-label">Square Hole</div>
+                        <div class="spec-value">3.1 mm</div>
+                    </div>
+                    <div class="spec-item">
+                        <div class="spec-label">Material</div>
+                        <div class="spec-value">TPU</div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="brands">
+            Compatible with:
+            <span>Dell Latitude E7440</span>
+        </div>
+    </div>
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js"></script>
+    <script>
+        const container = document.getElementById('viewer');
+        const scene = new THREE.Scene();
+        scene.background = new THREE.Color(0x0a0a14);
+
+        const camera = new THREE.PerspectiveCamera(45, container.clientWidth / container.clientHeight, 0.1, 1000);
+        camera.position.set(15, 10, 15);
+
+        const renderer = new THREE.WebGLRenderer({ antialias: true });
+        renderer.setSize(container.clientWidth, container.clientHeight);
+        container.appendChild(renderer.domElement);
+
+        scene.add(new THREE.AmbientLight(0x404040, 0.6));
+        const light1 = new THREE.DirectionalLight(0xffffff, 0.8);
+        light1.position.set(50, 50, 50);
+        scene.add(light1);
+        const light2 = new THREE.DirectionalLight(0x4ecdc4, 0.4);
+        light2.position.set(-30, 20, -30);
+        scene.add(light2);
+
+        // Material
+        const capMat = new THREE.MeshPhongMaterial({
+            color: 0xe85555, shininess: 60, specular: 0x222222
+        });
+        const holeMat = new THREE.MeshPhongMaterial({ color: 0x0a0a14 });
+
+        // Dimensions (mm) - scaled up 3x for visibility
+        const scale = 3;
+        const outerR = 4.3233 * scale;
+        const outerH = 0.722 * scale;
+        const innerR = 3.8233 * scale;
+        const innerH = 3.0 * scale;
+        const holeSize = 3.1 * scale;
+        const holeDepth = 1.9 * scale;
+
+        const capGroup = new THREE.Group();
+
+        // Outer ring (base)
+        const outerGeom = new THREE.CylinderGeometry(outerR, outerR, outerH, 48);
+        const outer = new THREE.Mesh(outerGeom, capMat);
+        outer.position.y = outerH / 2;
+        capGroup.add(outer);
+
+        // Inner cylinder (upper)
+        const innerGeom = new THREE.CylinderGeometry(innerR, innerR, innerH, 48);
+        const inner = new THREE.Mesh(innerGeom, capMat);
+        inner.position.y = outerH + innerH / 2;
+        capGroup.add(inner);
+
+        // Square hole (visual cutout)
+        const totalH = (outerH + innerH);
+        const holeGeom = new THREE.BoxGeometry(holeSize, holeDepth + 0.1, holeSize);
+        const hole = new THREE.Mesh(holeGeom, holeMat);
+        hole.position.y = totalH - holeDepth / 2 + 0.05;
+        capGroup.add(hole);
+
+        scene.add(capGroup);
+
+        // Grid
+        const grid = new THREE.GridHelper(40, 16, 0x333333, 0x222222);
+        grid.position.y = -0.1;
+        scene.add(grid);
+
+        // Controls
+        let isDragging = false, prevMouse = { x: 0, y: 0 };
+        let rotation = { x: 0.4, y: 0.6 };
+        let zoom = 30;
+
+        container.addEventListener('mousedown', e => { isDragging = true; prevMouse = { x: e.clientX, y: e.clientY }; });
+        container.addEventListener('mousemove', e => {
+            if (!isDragging) return;
+            rotation.y += (e.clientX - prevMouse.x) * 0.01;
+            rotation.x += (e.clientY - prevMouse.y) * 0.01;
+            rotation.x = Math.max(-1.5, Math.min(1.5, rotation.x));
+            prevMouse = { x: e.clientX, y: e.clientY };
+        });
+        container.addEventListener('mouseup', () => isDragging = false);
+        container.addEventListener('mouseleave', () => isDragging = false);
+        container.addEventListener('wheel', e => { e.preventDefault(); zoom = Math.max(15, Math.min(60, zoom + e.deltaY * 0.1)); });
+
+        function animate() {
+            requestAnimationFrame(animate);
+            camera.position.x = zoom * Math.sin(rotation.y) * Math.cos(rotation.x);
+            camera.position.y = zoom * Math.sin(rotation.x) + 8;
+            camera.position.z = zoom * Math.cos(rotation.y) * Math.cos(rotation.x);
+            camera.lookAt(0, 5, 0);
+            renderer.render(scene, camera);
+        }
+        animate();
+
+        window.addEventListener('resize', () => {
+            camera.aspect = container.clientWidth / container.clientHeight;
+            camera.updateProjectionMatrix();
+            renderer.setSize(container.clientWidth, container.clientHeight);
+        });
+    </script>
+</body>
+</html>
