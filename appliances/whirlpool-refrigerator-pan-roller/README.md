@@ -122,6 +122,10 @@
 
 ## Installation
 
+<p align="center">
+  <a href="https://www.youtube.com/watch?v=8Ogoslfll-g"><img src="https://img.youtube.com/vi/8Ogoslfll-g/hqdefault.jpg" alt="Installation Video" width="480"></a>
+</p>
+
 1. Print wheel in PETG or PLA (rigid)
 2. Print axle in TPU (flexible)
 
