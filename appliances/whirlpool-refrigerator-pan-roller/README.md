@@ -124,7 +124,7 @@
 
 1. Print wheel in PETG or PLA (rigid)
 2. Print axle in TPU (flexible)
-<iframe width="560" height="315" src="https://www.youtube.com/embed/8Ogoslfll-g?si=vLMHYbj-cFdmxksz" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
+[![Installation](https://img.youtube.com/vi/8Ogoslfll-g/0.jpg)](https://www.youtube.com/watch?v=8Ogoslfll-g)
 
 ## Revision History
 
