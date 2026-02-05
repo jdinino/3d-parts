@@ -9,8 +9,8 @@
 
 3D printable replacement gasket for the rinse aid compartment on Whirlpool/KitchenAid/Maytag dishwasher detergent dispensers.
 
-<h2 align="center"><a href="https://github.com/jdinino/3d-parts/releases/download/r10/gasket-r10.stl">Download the Gasket</a></h2>
-<h3 align="center"><a href="gasket-r10.stl">View 3D Model</a> | <a href="https://jdinino.github.io/3d-parts/appliances/whirlpool-dishwasher-rinse-aid-gasket/render.html">Interactive Viewer</a></h3>
+<h2 align="center"><a href="https://github.com/jdinino/3d-parts/releases/download/rinse-aid-gasket-r10/gasket.stl">Download the Gasket</a></h2>
+<h3 align="center"><a href="gasket.stl">View 3D Model</a> | <a href="https://jdinino.github.io/3d-parts/appliances/whirlpool-dishwasher-rinse-aid-gasket/render.html">Interactive Viewer</a></h3>
 
 <p align="center">
   <img src="https://img.shields.io/badge/Material-TPU-brightgreen" alt="Material: TPU">
@@ -86,7 +86,7 @@
 
 ## Print Settings
 
-### Recommended Material: TPU
+### Gasket - TPU
 
 | Setting | Value |
 |---------|-------|
@@ -103,18 +103,18 @@
 
 ### Material Notes
 
-| Material | Status | Notes |
-|----------|--------|-------|
-| TPU | **Recommended** | Excellent flexibility, superior sealing |
-| PETG | Not recommended | Failed testing, insufficient flexibility |
-| PLA | Not recommended | Too rigid, poor seal |
+| Part | Material | Status | Notes |
+|------|----------|--------|-------|
+| Gasket | TPU | **Recommended** | Excellent flexibility, superior sealing |
+| Gasket | PETG | Not recommended | Failed testing, insufficient flexibility |
+| Gasket | PLA | Not recommended | Too rigid, poor seal |
 
 ## Files
 
 | File | Description |
 |------|-------------|
-| `gasket-r10.stl` | 3D printable model |
-| `gasket-r10.scad` | OpenSCAD parametric source |
+| `gasket.stl` | 3D printable model |
+| `gasket.scad` | OpenSCAD parametric source |
 | `gasket-FSD.md` | Functional Specification Document |
 | `render.html` | Interactive 3D preview |
 
@@ -127,13 +127,13 @@
 
 ## Revision History
 
-| Rev | Outer (L×W×H) | Groove | Notes |
-|-----|---------------|--------|-------|
-| r01 | 43×35×5 | 2mm | Initial |
-| r07 | 46×34×3 | 3mm | Outer dims finalized |
-| r08 | 46×34×4 | 3mm | Height +1mm |
-| r09 | 46×35×4 | 3mm | Width +1mm |
-| **r10** | **46×35×4** | **2mm** | **Current release (-1mm groove)** |
+| Rev | Date | Changes |
+|-----|------|---------|
+| r01-r06 | 2026 | Development iterations |
+| r07 | 2026 | Outer dims finalized (46×34×3mm) |
+| r08 | Jan 2026 | Height +1mm (3→4mm) |
+| r09 | Feb 2026 | Width +1mm (34→35mm) |
+| **r10** | **Feb 2026** | **Groove width -1mm (3→2mm)** |
 
 ## License
 
