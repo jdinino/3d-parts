@@ -9,8 +9,8 @@
 
 3D printable replacement gasket for the rinse aid compartment on Whirlpool/KitchenAid/Maytag dishwasher detergent dispensers.
 
-<h2 align="center"><a href="https://github.com/jdinino/3d-parts/releases/download/rinse-aid-gasket-r10/gasket.stl">Download the Gasket</a></h2>
-<h3 align="center"><a href="gasket.stl">View 3D Model</a> | <a href="https://jdinino.github.io/3d-parts/appliances/whirlpool-dishwasher-rinse-aid-gasket/render.html">Interactive Viewer</a></h3>
+<h2 align="center"><a href="https://github.com/jdinino/3d-parts/releases/download/rinse-aid-gasket-r10/gasket-r10.stl">Download the Gasket</a></h2>
+<h3 align="center"><a href="gasket-r10.stl">View 3D Model</a> | <a href="https://jdinino.github.io/3d-parts/appliances/whirlpool-dishwasher-rinse-aid-gasket/render.html">Interactive Viewer</a></h3>
 
 <p align="center">
   <img src="https://img.shields.io/badge/Material-TPU-brightgreen" alt="Material: TPU">
@@ -113,8 +113,8 @@
 
 | File | Description |
 |------|-------------|
-| `gasket.stl` | 3D printable model |
-| `gasket.scad` | OpenSCAD parametric source |
+| `gasket-r10.stl` | 3D printable model |
+| `gasket-r10.scad` | OpenSCAD parametric source |
 | `gasket-FSD.md` | Functional Specification Document |
 | `render.html` | Interactive 3D preview |
 

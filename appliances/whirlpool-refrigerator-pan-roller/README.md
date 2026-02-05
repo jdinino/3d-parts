@@ -9,8 +9,8 @@
 
 3D printable replacement pan roller assembly for Whirlpool/KitchenAid/Maytag refrigerator drawers.
 
-<h2 align="center"><a href="https://github.com/jdinino/3d-parts/releases/download/pan-roller-r17/W11578839.stl">Download the Wheel</a> | <a href="https://github.com/jdinino/3d-parts/releases/download/pan-roller-r17/W11573594.stl">Download the Axle</a></h2>
-<h3 align="center"><a href="W11578839.stl">View Wheel</a> | <a href="W11573594.stl">View Axle</a> | <a href="https://jdinino.github.io/3d-parts/appliances/whirlpool-refrigerator-pan-roller/render.html">Interactive Viewer</a></h3>
+<h2 align="center"><a href="https://github.com/jdinino/3d-parts/releases/download/pan-roller-r17/W11578839-r17.stl">Download the Wheel</a> | <a href="https://github.com/jdinino/3d-parts/releases/download/pan-roller-r17/W11573594-r17.stl">Download the Axle</a></h2>
+<h3 align="center"><a href="W11578839-r17.stl">View Wheel</a> | <a href="W11573594-r17.stl">View Axle</a> | <a href="https://jdinino.github.io/3d-parts/appliances/whirlpool-refrigerator-pan-roller/render.html">Interactive Viewer</a></h3>
 
 <p align="center">
   <img src="https://img.shields.io/badge/Wheel-PETG/PLA-brightgreen" alt="Wheel: PETG/PLA">
@@ -113,10 +113,10 @@
 
 | File | Description |
 |------|-------------|
-| `W11578839.stl` | Wheel - 3D printable model |
-| `W11578839.scad` | Wheel - OpenSCAD parametric source |
-| `W11573594.stl` | Axle - 3D printable model |
-| `W11573594.scad` | Axle - OpenSCAD parametric source |
+| `W11578839-r17.stl` | Wheel - 3D printable model |
+| `W11578839-r17.scad` | Wheel - OpenSCAD parametric source |
+| `W11573594-r17.stl` | Axle - 3D printable model |
+| `W11573594-r17.scad` | Axle - OpenSCAD parametric source |
 | `pan-roller-FSD.md` | Functional Specification Document |
 | `render.html` | Interactive 3D preview |
 

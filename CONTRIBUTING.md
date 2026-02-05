@@ -18,13 +18,13 @@ Example: `appliances/whirlpool-refrigerator-pan-roller/`
 |------|-------------|
 | `README.md` | Part documentation (see template below) |
 | `{part}-FSD.md` | Specifications document |
-| `{part}.stl` | 3D printable model(s) |
-| `{part}.scad` | OpenSCAD source(s) |
+| `{part}-{rXX}.stl` | 3D printable model(s) |
+| `{part}-{rXX}.scad` | OpenSCAD source(s) |
 | `render.html` | Interactive 3D viewer |
 
-Use OEM part numbers for filenames when available (e.g., `W11578839.stl`). Otherwise use a descriptive name (e.g., `gasket.stl`). Do not include revision numbers in filenames.
+Use OEM part numbers for filenames when available (e.g., `W11578839-r17.stl`). Otherwise use a descriptive name (e.g., `gasket-r10.stl`). Always include the revision number in STL and SCAD filenames.
 
-For multi-part assemblies, include one STL/SCAD pair per component (e.g., `W11578839.stl` + `W11573594.stl`).
+For multi-part assemblies, include one STL/SCAD pair per component (e.g., `W11578839-r17.stl` + `W11573594-r17.stl`).
 
 ---
 
@@ -44,8 +44,8 @@ Copy and adapt this structure exactly:
 
 {One sentence description.}
 
-<h2 align="center"><a href="https://github.com/jdinino/3d-parts/releases/download/{release-tag}/{part}.stl">Download the {Part}</a></h2>
-<h3 align="center"><a href="{part}.stl">View 3D Model</a> | <a href="https://jdinino.github.io/3d-parts/{category}/{folder}/render.html">Interactive Viewer</a></h3>
+<h2 align="center"><a href="https://github.com/jdinino/3d-parts/releases/download/{release-tag}/{part}-{rXX}.stl">Download the {Part}</a></h2>
+<h3 align="center"><a href="{part}-{rXX}.stl">View 3D Model</a> | <a href="https://jdinino.github.io/3d-parts/{category}/{folder}/render.html">Interactive Viewer</a></h3>
 
 <p align="center">
   <img src="https://img.shields.io/badge/Material-{MATERIAL}-brightgreen" alt="Material">
@@ -110,8 +110,8 @@ For multi-part assemblies, repeat print settings per component/material.
 
 | File | Description |
 |------|-------------|
-| `{part}.stl` | 3D printable model |
-| `{part}.scad` | OpenSCAD parametric source |
+| `{part}-{rXX}.stl` | 3D printable model |
+| `{part}-{rXX}.scad` | OpenSCAD parametric source |
 | `{part}-FSD.md` | Functional Specification Document |
 | `render.html` | Interactive 3D preview |
 
@@ -222,15 +222,15 @@ Create a release for STL downloads (ensures proper file download instead of brow
 Release tag format: `{part-name}-{rXX}` (e.g., `pan-roller-r17`, `rinse-aid-gasket-r10`).
 
 ```bash
-gh release create {release-tag} "{category}/{folder}/{part}.stl" --title "{Part Name} {rXX}" --notes "{Release notes}"
+gh release create {release-tag} "{category}/{folder}/{part}-{rXX}.stl" --title "{Part Name} {rXX}" --notes "{Release notes}"
 ```
 
 Example:
 ```bash
-gh release create pan-roller-r17 "appliances/whirlpool-refrigerator-pan-roller/W11578839.stl" "appliances/whirlpool-refrigerator-pan-roller/W11573594.stl" --title "Pan Roller r17" --notes "3 legs with rib reinforcement, solid wedge, TPU material"
+gh release create pan-roller-r17 "appliances/whirlpool-refrigerator-pan-roller/W11578839-r17.stl" "appliances/whirlpool-refrigerator-pan-roller/W11573594-r17.stl" --title "Pan Roller r17" --notes "3 legs with rib reinforcement, solid wedge, TPU material"
 ```
 
-Download URL format: `https://github.com/jdinino/3d-parts/releases/download/{release-tag}/{part}.stl`
+Download URL format: `https://github.com/jdinino/3d-parts/releases/download/{release-tag}/{part}-{rXX}.stl`
 
 ---
 
