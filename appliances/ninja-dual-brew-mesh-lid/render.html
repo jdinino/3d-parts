@@ -102,19 +102,19 @@
                 <div class="spec-grid">
                     <div class="spec-item">
                         <div class="spec-label">Length</div>
-                        <div class="spec-value">152 mm</div>
+                        <div class="spec-value">149.9 mm</div>
                     </div>
                     <div class="spec-item">
                         <div class="spec-label">Width</div>
-                        <div class="spec-value">96 mm</div>
+                        <div class="spec-value">75.1 mm</div>
                     </div>
                     <div class="spec-item">
                         <div class="spec-label">Height</div>
-                        <div class="spec-value">17 mm</div>
+                        <div class="spec-value">23 mm</div>
                     </div>
                     <div class="spec-item">
                         <div class="spec-label">Hex Holes</div>
-                        <div class="spec-value">3 mm</div>
+                        <div class="spec-value">2 mm</div>
                     </div>
                     <div class="spec-item">
                         <div class="spec-label">Mesh</div>
@@ -169,9 +169,9 @@
         const holeMat = new THREE.MeshPhongMaterial({ color: 0x0a0a14 });
 
         // Dimensions (mm) - actual scale
-        const L = 152, W = 96, H = 17;
-        const wallT = 3, meshT = 2, rimH = 15;
-        const cornerR = 10;
+        const L = 149.9, W = 75.1, H = 23;
+        const wallT = 7, meshT = 2, rimH = 21;
+        const cornerR = 9;
 
         const lidGroup = new THREE.Group();
 
@@ -227,8 +227,8 @@
         lidGroup.add(border);
 
         // Hex hole pattern (simplified - show representative holes)
-        const hexR = 1.5;
-        const cellSize = hexR + 1.0;
+        const hexR = 1.0;
+        const cellSize = hexR + 0.8;
         const dx = Math.sqrt(3) * cellSize;
         const dy = 1.5 * cellSize;
         const meshAreaL = L - 2 * (wallT + 5);

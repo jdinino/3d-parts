@@ -2,21 +2,23 @@
 
 ## Overview
 
-Breathable mesh variant of the Ninja Dual Brew coffee reservoir lid. The solid top surface is replaced with a fine honeycomb mesh pattern that allows water to evaporate while preventing debris from entering the reservoir. Derived from the original design by louspinuso. Uses import-based approach to preserve the complex non-rectangular contour of the original lid.
+Breathable mesh variant of the Ninja Dual Brew coffee reservoir lid. The solid top surface is replaced with a fine honeycomb mesh pattern that allows water to evaporate while preventing debris from entering the reservoir. Derived from the original design by louspinuso, using the Foster auto-filler lid (Printables 410550) as reference geometry. Uses import-based approach to preserve the rounded rectangle contour of the original lid.
 
 ## Lid Specifications
 
 | Parameter | Value |
 |-----------|-------|
-| Overall Length | 152mm |
-| Overall Width | 96mm |
-| Overall Height | 17mm |
-| Contour | Complex non-rectangular (wider in middle) |
-| Wall Thickness | 3mm |
+| Overall Length | 149.9mm |
+| Overall Width | 75.1mm |
+| Overall Height | 23mm |
+| Contour | Rounded rectangle (corner radius 9mm) |
+| Wall Thickness | 7mm (outer to inner step) |
 | Mesh Thickness | 2mm |
-| Rim Height | 16mm (Z=1 to Z=17) |
+| Depression Depth | 2.5mm (auto-filler cutout fill) |
+| Rim Height | 20.5mm (Z=2.5 to Z=23) |
 | Mesh Border | 5mm |
-| Mesh Area | Fills center opening (~130 × 89mm) |
+| Mesh Area | Fills center opening (~125 × 50mm) |
+| Inner Step | 7.2-142.6 × 7.5-67.6mm (at Z=2.5) |
 | OEM Reservoir Part | 129KKW300 |
 | Material | TPU |
 
@@ -36,20 +38,18 @@ Breathable mesh variant of the Ninja Dual Brew coffee reservoir lid. The solid t
 
 ### Cross Section (Side View)
 ```
-Z=17  ┌──────────────────────────────────────────┐
-      │  ░░░░░░ mesh (2mm) ░░░░░░░░░░░░░░░░░░░  │
-Z=15  │  ░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░  │
-  ────┤                                          ├────  Z=5
-  │   │                                          │   │
-  │   │           (open interior)                │   │
-  │   │                                          │   │  16mm rim
-  │   │                                          │   │
-  └───┘                                          └───┘  Z=1
-──────────────────────────────────────────────────────── Z=0
-←3mm→                                            ←3mm→
-←──────────────── 152mm ──────────────────────────────→
+←──────────────── 149.9mm ─────────────────────────────→
+Z=0   ┌──────────────────────────────────────────────────┐
+      │  ░░░░░░░░░░ mesh (2mm) ░░░░░░░░░░░░░░░░░░░░░░  │
+Z=2.5 ├────┐                                        ┌────┤
+      │    │          (open interior)               │    │
+      │    │                                        │    │  20.5mm rim
+Z=13  ├────┘                                        └────┤
+      │                 (open interior)                  │
+Z=23  └──────────────────────────────────────────────────┘
+      ←7mm→                                        ←7mm→
 
-Note: Contour is non-rectangular (wider in middle, narrower at ends)
+Note: Z=0 is the mesh face (top when installed), Z=23 is the rim end
 ```
 
 ### Top View (Mesh Pattern)
@@ -72,10 +72,10 @@ Note: Contour is non-rectangular (wider in middle, narrower at ends)
 ### Design Features
 - Honeycomb mesh pattern maximizes open area while maintaining structural strength
 - 5mm solid border around mesh prevents edge weakness
-- 3mm perimeter walls for rigid rim structure
-- 16mm rim depth for secure seating on reservoir
-- Complex contour imported directly from reference STL to match reservoir geometry exactly
-- Revision stamp engraved in solid border zone
+- 7mm perimeter walls for rigid rim structure
+- 20.5mm rim depth for secure seating on reservoir
+- Rounded rectangle contour imported directly from reference STL to match reservoir geometry exactly
+- Auto-filler depression (2.5mm) fully filled before mesh cut
 
 ## Material Requirements
 

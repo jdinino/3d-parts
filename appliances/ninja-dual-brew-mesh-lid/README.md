@@ -15,7 +15,7 @@
 <p align="center">
   <img src="https://img.shields.io/badge/Material-TPU-brightgreen" alt="Material: TPU">
   <img src="https://img.shields.io/badge/Revision-r02-blue" alt="Revision: r02">
-  <img src="https://img.shields.io/badge/Size-152×96×17mm-orange" alt="Size: 152×96×17mm">
+  <img src="https://img.shields.io/badge/Size-149.9×75.1×23mm-orange" alt="Size: 149.9×75.1×23mm">
 </p>
 
 ## Compatible Part Numbers
@@ -44,16 +44,16 @@
 
 | Parameter | Value |
 |-----------|-------|
-| **Overall Dimensions** | 152 × 96 × 17 mm |
-| **Contour** | Complex non-rectangular (imported from reference) |
-| **Wall Thickness** | 3 mm |
+| **Overall Dimensions** | 149.9 × 75.1 × 23 mm |
+| **Contour** | Rounded rectangle (imported from reference) |
+| **Wall Thickness** | 7 mm (outer to inner step) |
 | **Mesh Thickness** | 2 mm |
-| **Rim Height** | 16 mm |
+| **Rim Height** | 20.5 mm (Z=2.5 to Z=23) |
 | **Hex Hole Diameter** | 2 mm (vertex-to-vertex) |
 | **Hex Hole Width** | ~1.7 mm (flat-to-flat) |
 | **Min Wall Between Holes** | ~1.1 mm (vertex) / ~1.4 mm (flat) |
-| **Mesh Border** | 3 mm solid border around mesh area |
-| **Mesh Area** | Fills center opening (~130 × 89 mm) |
+| **Mesh Border** | 5 mm solid border around mesh area |
+| **Mesh Area** | Fills center opening (~125 × 50 mm) |
 
 ## Print Settings
 
@@ -86,7 +86,7 @@
 |------|-------------|
 | `mesh-lid-r02.stl` | 3D printable model |
 | `mesh-lid-r02.scad` | OpenSCAD parametric source |
-| `reference-lid.stl` | Original louspinuso lid (reference geometry) |
+| `reference-lid.stl` | Foster auto-filler lid (reference geometry) |
 | `mesh-lid-FSD.md` | Functional Specification Document |
 | `render.html` | Interactive 3D preview |
 
