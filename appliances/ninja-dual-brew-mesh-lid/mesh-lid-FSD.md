@@ -2,7 +2,7 @@
 
 ## Overview
 
-Breathable mesh variant of the Ninja Dual Brew coffee reservoir lid. The solid top surface is replaced with a fine honeycomb mesh pattern that allows water to evaporate while preventing debris from entering the reservoir. Derived from the original design by louspinuso.
+Breathable mesh variant of the Ninja Dual Brew coffee reservoir lid. The solid top surface is replaced with a fine honeycomb mesh pattern that allows water to evaporate while preventing debris from entering the reservoir. Derived from the original design by louspinuso. Uses import-based approach to preserve the complex non-rectangular contour of the original lid.
 
 ## Lid Specifications
 
@@ -11,12 +11,12 @@ Breathable mesh variant of the Ninja Dual Brew coffee reservoir lid. The solid t
 | Overall Length | 152mm |
 | Overall Width | 96mm |
 | Overall Height | 17mm |
-| Corner Radius | 10mm |
+| Contour | Complex non-rectangular (wider in middle) |
 | Wall Thickness | 3mm |
 | Mesh Thickness | 2mm |
-| Rim Height | 15mm |
+| Rim Height | 16mm (Z=1 to Z=17) |
 | Mesh Border | 5mm |
-| Mesh Area | 136 × 80mm |
+| Mesh Area | 130 × 76mm |
 | OEM Reservoir Part | 129KKW300 |
 | Material | TPU |
 
@@ -36,18 +36,20 @@ Breathable mesh variant of the Ninja Dual Brew coffee reservoir lid. The solid t
 
 ### Cross Section (Side View)
 ```
-    ┌──────────────────────────────────────────┐
-    │  ░░░░░░ mesh (2mm) ░░░░░░░░░░░░░░░░░░░  │
-    │  ░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░  │
-────┤                                          ├────
-│   │                                          │   │
-│   │           (open interior)                │   │
-│   │                                          │   │  15mm rim
-│   │                                          │   │
-│   │                                          │   │
-└───┘                                          └───┘
-←3mm→           ←──── 146mm ────→              ←3mm→
-←──────────────── 152mm ──────────────────────→
+Z=17  ┌──────────────────────────────────────────┐
+      │  ░░░░░░ mesh (2mm) ░░░░░░░░░░░░░░░░░░░  │
+Z=15  │  ░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░  │
+  ────┤                                          ├────  Z=5
+  │   │                                          │   │
+  │   │           (open interior)                │   │
+  │   │                                          │   │  16mm rim
+  │   │                                          │   │
+  └───┘                                          └───┘  Z=1
+──────────────────────────────────────────────────────── Z=0
+←3mm→                                            ←3mm→
+←──────────────── 152mm ──────────────────────────────→
+
+Note: Contour is non-rectangular (wider in middle, narrower at ends)
 ```
 
 ### Top View (Mesh Pattern)
@@ -71,8 +73,8 @@ Breathable mesh variant of the Ninja Dual Brew coffee reservoir lid. The solid t
 - Honeycomb mesh pattern maximizes open area while maintaining structural strength
 - 5mm solid border around mesh prevents edge weakness
 - 3mm perimeter walls for rigid rim structure
-- 15mm rim depth for secure seating on reservoir
-- Rounded corners match reservoir geometry
+- 16mm rim depth for secure seating on reservoir
+- Complex contour imported directly from reference STL to match reservoir geometry exactly
 - Revision stamp engraved in solid border zone
 
 ## Material Requirements
@@ -87,4 +89,5 @@ Breathable mesh variant of the Ninja Dual Brew coffee reservoir lid. The solid t
 
 | Rev | Date | Changes |
 |-----|------|---------|
-| r01 | 2026-03-03 | Initial release - honeycomb mesh variant |
+| r02 | 2026-03-03 | Redesigned from louspinuso reference geometry with import-based approach |
+| r01 | 2026-03-03 | Initial release - parametric honeycomb mesh variant |

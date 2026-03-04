@@ -9,12 +9,12 @@
 
 3D printable breathable mesh variant of the Ninja Dual Brew coffee reservoir lid. Replaces the solid top surface with a fine honeycomb mesh pattern that allows water to evaporate while keeping debris out of the reservoir. Based on the original design by [louspinuso](https://www.printables.com/model/1501663-ninja-dual-brew-coffee-reservoir-lid).
 
-<h2 align="center"><a href="https://github.com/jdinino/3d-parts/releases/download/ninja-mesh-lid-r01/mesh-lid-r01.stl">Download the Mesh Lid</a></h2>
-<h3 align="center"><a href="mesh-lid-r01.stl">View 3D Model</a> | <a href="https://jdinino.github.io/3d-parts/appliances/ninja-dual-brew-mesh-lid/render.html">Interactive Viewer</a></h3>
+<h2 align="center"><a href="https://github.com/jdinino/3d-parts/releases/download/ninja-mesh-lid-r02/mesh-lid-r02.stl">Download the Mesh Lid</a></h2>
+<h3 align="center"><a href="mesh-lid-r02.stl">View 3D Model</a> | <a href="https://jdinino.github.io/3d-parts/appliances/ninja-dual-brew-mesh-lid/render.html">Interactive Viewer</a></h3>
 
 <p align="center">
   <img src="https://img.shields.io/badge/Material-TPU-brightgreen" alt="Material: TPU">
-  <img src="https://img.shields.io/badge/Revision-r01-blue" alt="Revision: r01">
+  <img src="https://img.shields.io/badge/Revision-r02-blue" alt="Revision: r02">
   <img src="https://img.shields.io/badge/Size-152×96×17mm-orange" alt="Size: 152×96×17mm">
 </p>
 
@@ -45,15 +45,15 @@
 | Parameter | Value |
 |-----------|-------|
 | **Overall Dimensions** | 152 × 96 × 17 mm |
-| **Corner Radius** | 10 mm |
+| **Contour** | Complex non-rectangular (imported from reference) |
 | **Wall Thickness** | 3 mm |
 | **Mesh Thickness** | 2 mm |
-| **Rim Height** | 15 mm |
+| **Rim Height** | 16 mm |
 | **Hex Hole Diameter** | 3 mm (vertex-to-vertex) |
 | **Hex Hole Width** | ~2.6 mm (flat-to-flat) |
 | **Min Wall Between Holes** | ~1.3 mm (vertex) / ~1.7 mm (flat) |
 | **Mesh Border** | 5 mm solid border around mesh area |
-| **Mesh Area** | 136 × 80 mm |
+| **Mesh Area** | 130 × 76 mm |
 
 ## Print Settings
 
@@ -84,8 +84,9 @@
 
 | File | Description |
 |------|-------------|
-| `mesh-lid-r01.stl` | 3D printable model |
-| `mesh-lid-r01.scad` | OpenSCAD parametric source |
+| `mesh-lid-r02.stl` | 3D printable model |
+| `mesh-lid-r02.scad` | OpenSCAD parametric source |
+| `reference-lid.stl` | Original louspinuso lid (reference geometry) |
 | `mesh-lid-FSD.md` | Functional Specification Document |
 | `render.html` | Interactive 3D preview |
 
@@ -100,7 +101,8 @@
 
 | Rev | Date | Changes |
 |-----|------|---------|
-| **r01** | **2026-03-03** | **Initial release - honeycomb mesh variant for water evaporation** |
+| **r02** | **2026-03-03** | **Redesigned from louspinuso reference geometry with import-based approach** |
+| r01 | 2026-03-03 | Initial release - parametric honeycomb mesh variant |
 
 ## License
 
