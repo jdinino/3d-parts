@@ -6,70 +6,47 @@
 // OEM Reservoir Part: 129KKW300
 // Compatible: CFP201, CFP250A, CFP300, CFP301, CFP305, CFP307
 //
-// Modification: Top surface replaced with honeycomb mesh for water evaporation
-// Approach: Imports reference STL directly to preserve complex non-rectangular contour
+// Modification: Center opening filled with fine honeycomb mesh for water evaporation
+// Approach: Imports reference STL frame, adds mesh plate into the center opening
 
 $fn = 64;
 
-// --- Reference geometry (from ninjacoffeewaterlid.stl analysis) ---
-// Overall: 152 x 96 x 17mm
-// Z=0: Full outer contour (152x96)
-// Z=1: Inner step/rim (139x86, inset ~6.5mm)
-// Z=5: Back to full outer (152x96, shelf/flange)
-// Z=17: Top surface (142x89, slightly narrower)
-// Center offset: approximately (2.0, 3.5) in XY
-// Complex non-rectangular contour (wider in middle, narrower at ends)
+// --- Reference geometry (ninjacoffeewaterlid.stl by louspinuso) ---
+// Open-topped frame/shell lid (center opening ~130mm wide)
+// Overall: 152 x 96 x 17mm, centered at approx (2.0, 3.5) in XY
+// Z=0 to Z=0.998: Base rim/shelf
+// Z=5 to Z=17: Top cap frame (tapered walls, center is OPEN)
+// Opening at Z=17: ~118-142mm x ~89mm (wider in middle)
 
 total_height = 17.0;
-base_z = 1.0;           // bottom of interior cavity
-wall_thick = 3.0;        // wall thickness for hollow interior
-mesh_thickness = 2.0;    // mesh plate thickness at top
+mesh_thickness = 2.0;     // mesh plate thickness
 
-// --- Mesh parameters ---
-hex_radius = 1.5;        // hex hole circumradius (~3mm holes)
-hex_wall = 1.0;          // spacing between hex holes
-mesh_border = 5.0;       // solid border inside mesh edge
+// --- Fine mesh parameters ---
+hex_radius = 1.0;         // hex hole circumradius (~2mm holes)
+hex_wall = 0.8;           // spacing between hex holes
+mesh_border = 3.0;        // solid border around mesh area edge
 
 // --- Revision stamp ---
 revision = "r02";
 text_size = 3.5;
 text_depth = 0.4;
 
-// --- Approximate center of reference geometry ---
+// --- Center of reference geometry ---
 center_x = 2.0;
 center_y = 3.5;
 
-// --- Mesh area (conservative, fits within top surface) ---
-mesh_area_length = 130;  // hex grid coverage length
-mesh_area_width = 76;    // hex grid coverage width
-
 // --- Calculated ---
 cell_size = hex_radius + hex_wall;
-col_spacing = sqrt(3) * cell_size;
-row_spacing = 1.5 * cell_size;
 hex_flat_to_flat = hex_radius * sqrt(3);
 min_wall_vertex = sqrt(3) * cell_size - 2 * hex_radius;
 
-// --- Verification output ---
 echo("===========================================");
 echo("       VERIFICATION REPORT - r02");
-echo("   Ninja Dual Brew Mesh Lid");
-echo("   (import-based from louspinuso geometry)");
 echo("===========================================");
-echo("");
-echo("--- REFERENCE GEOMETRY ---");
-echo("Source: reference-lid.stl (ninjacoffeewaterlid.stl by louspinuso)");
-echo("Overall: 152 x 96 x 17 mm");
-echo("Contour: Complex non-rectangular (wider in middle)");
-echo("");
-echo("--- MESH PARAMETERS ---");
 echo("Hex Hole Diameter:", hex_radius * 2, "mm");
 echo("Hex Flat-to-Flat:", hex_flat_to_flat, "mm");
-echo("Min Wall:", min_wall_vertex, "mm");
-echo("Mesh Area:", mesh_area_length, "x", mesh_area_width, "mm");
+echo("Min Wall (vertex):", min_wall_vertex, "mm");
 echo("Mesh Thickness:", mesh_thickness, "mm");
-echo("Mesh Border:", mesh_border, "mm");
-echo("Wall Thickness:", wall_thick, "mm");
 echo("===========================================");
 
 // --- Modules ---
@@ -91,60 +68,67 @@ module hex_grid(area_length, area_width, hex_r, wall_param, thickness) {
 
             if (abs(x) < area_length/2 - hex_r * 0.5 &&
                 abs(y) < area_width/2 - hex_r * 0.5) {
-                translate([x, y, -0.1])
-                    cylinder(r=hex_r, h=thickness + 0.2, $fn=6);
+                translate([x, y, 0])
+                    cylinder(r=hex_r, h=thickness, $fn=6);
             }
         }
     }
 }
 
 // --- Main construction ---
-// Import reference STL, hollow interior, cut hex mesh through top
+// Reference STL is an open-topped frame. Add a mesh plate into the opening.
 
-difference() {
-    // Start with the full reference lid
+union() {
+    // 1. Original lid frame (open-topped shell)
     import("reference-lid.stl");
 
-    // Hollow interior: project cross-section at Z=1 (inner step),
-    // offset inward by wall thickness, extrude from base_z to
-    // total_height minus mesh plate thickness
-    translate([0, 0, base_z])
-        linear_extrude(height = total_height - base_z - mesh_thickness)
-            offset(r = -wall_thick)
-                projection(cut = true)
-                    translate([0, 0, -base_z])
-                        import("reference-lid.stl");
-
-    // Hex mesh holes through top mesh plate
-    // Clip to the top surface shape using intersection
+    // 2. Mesh plate filling the center opening
+    //    Clipped to the outer boundary at Z=17 (slightly inset)
     intersection() {
-        // Hex grid covering the mesh area
-        translate([center_x, center_y, total_height - mesh_thickness - 0.1])
-            hex_grid(
-                mesh_area_length - 2 * mesh_border,
-                mesh_area_width - 2 * mesh_border,
-                hex_radius,
-                hex_wall,
-                mesh_thickness + 0.2
-            );
+        // Large mesh plate with fine hex holes
+        translate([0, 0, total_height - mesh_thickness])
+        difference() {
+            // Solid plate covering full area
+            translate([-100, -60, 0])
+                cube([200, 120, mesh_thickness]);
 
-        // Clip to top surface minus border
-        translate([0, 0, total_height - mesh_thickness - 0.2])
-            linear_extrude(height = mesh_thickness + 0.4)
-                offset(r = -(wall_thick + mesh_border))
-                    projection(cut = true)
-                        translate([0, 0, -total_height + 0.5])
-                            import("reference-lid.stl");
+            // Cut hex holes
+            translate([center_x, center_y, -0.1])
+                hex_grid(160, 100, hex_radius, hex_wall,
+                         mesh_thickness + 0.2);
+        }
+
+        // Clip to the lid's outer boundary at Z=17
+        // hull() fills the ring cross-section to get the outer contour
+        // offset(-mesh_border) ensures solid border around mesh edge
+        translate([0, 0, total_height - mesh_thickness - 0.1])
+            linear_extrude(height = mesh_thickness + 0.2)
+                offset(r = -mesh_border)
+                    hull()
+                        projection(cut = true)
+                            translate([0, 0, -total_height + 0.1])
+                                import("reference-lid.stl");
     }
 
-    // Engrave revision stamp in solid border zone
-    translate([center_x + 55, center_y,
-               total_height - text_depth + 0.01])
-        linear_extrude(height = text_depth + 0.1)
-            text(revision,
-                 size = text_size,
-                 font = "Liberation Sans:style=Bold",
-                 halign = "center",
-                 valign = "center",
-                 $fn = 32);
+    // 3. Solid border ring (fills gap between mesh edge and rim inner edge)
+    //    This connects the mesh plate to the frame
+    intersection() {
+        translate([0, 0, total_height - mesh_thickness])
+            linear_extrude(height = mesh_thickness)
+                difference() {
+                    hull()
+                        projection(cut = true)
+                            translate([0, 0, -total_height + 0.1])
+                                import("reference-lid.stl");
+                    offset(r = -mesh_border)
+                        hull()
+                            projection(cut = true)
+                                translate([0, 0, -total_height + 0.1])
+                                    import("reference-lid.stl");
+                }
+
+        // Only fill where there's actually an opening (not where rim already exists)
+        translate([-100, -60, total_height - mesh_thickness - 0.1])
+            cube([200, 120, mesh_thickness + 0.2]);
+    }
 }

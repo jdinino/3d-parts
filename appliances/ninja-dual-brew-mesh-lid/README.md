@@ -49,11 +49,11 @@
 | **Wall Thickness** | 3 mm |
 | **Mesh Thickness** | 2 mm |
 | **Rim Height** | 16 mm |
-| **Hex Hole Diameter** | 3 mm (vertex-to-vertex) |
-| **Hex Hole Width** | ~2.6 mm (flat-to-flat) |
-| **Min Wall Between Holes** | ~1.3 mm (vertex) / ~1.7 mm (flat) |
-| **Mesh Border** | 5 mm solid border around mesh area |
-| **Mesh Area** | 130 × 76 mm |
+| **Hex Hole Diameter** | 2 mm (vertex-to-vertex) |
+| **Hex Hole Width** | ~1.7 mm (flat-to-flat) |
+| **Min Wall Between Holes** | ~1.1 mm (vertex) / ~1.4 mm (flat) |
+| **Mesh Border** | 3 mm solid border around mesh area |
+| **Mesh Area** | Fills center opening (~130 × 89 mm) |
 
 ## Print Settings
 

@@ -16,7 +16,7 @@ Breathable mesh variant of the Ninja Dual Brew coffee reservoir lid. The solid t
 | Mesh Thickness | 2mm |
 | Rim Height | 16mm (Z=1 to Z=17) |
 | Mesh Border | 5mm |
-| Mesh Area | 130 × 76mm |
+| Mesh Area | Fills center opening (~130 × 89mm) |
 | OEM Reservoir Part | 129KKW300 |
 | Material | TPU |
 
@@ -25,14 +25,14 @@ Breathable mesh variant of the Ninja Dual Brew coffee reservoir lid. The solid t
 | Parameter | Value |
 |-----------|-------|
 | Pattern | Honeycomb (hexagonal) |
-| Hex Hole Circumradius | 1.5mm |
-| Hex Hole Diameter (vertex-vertex) | 3mm |
-| Hex Hole Width (flat-flat) | ~2.6mm |
-| Hex Wall Parameter | 1.0mm |
-| Min Wall (vertex-vertex) | ~1.3mm |
-| Min Wall (flat-flat) | ~1.7mm |
-| Grid Column Spacing | ~4.33mm |
-| Grid Row Spacing | ~3.75mm |
+| Hex Hole Circumradius | 1.0mm |
+| Hex Hole Diameter (vertex-vertex) | 2mm |
+| Hex Hole Width (flat-flat) | ~1.7mm |
+| Hex Wall Parameter | 0.8mm |
+| Min Wall (vertex-vertex) | ~1.1mm |
+| Min Wall (flat-flat) | ~1.4mm |
+| Grid Column Spacing | ~3.12mm |
+| Grid Row Spacing | ~2.7mm |
 
 ### Cross Section (Side View)
 ```
