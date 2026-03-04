@@ -5,6 +5,8 @@
 // Original License: CC BY-NC-SA 4.0
 //
 // Modification: Solid top replaced with honeycomb mesh for water evaporation
+// OEM Reservoir Part: 129KKW300
+// Compatible: CFP201, CFP250A, CFP300, CFP301, CFP305, CFP307
 
 $fn = 64;
 

@@ -13,10 +13,16 @@
 <h3 align="center"><a href="mesh-lid-r01.stl">View 3D Model</a> | <a href="https://jdinino.github.io/3d-parts/appliances/ninja-dual-brew-mesh-lid/render.html">Interactive Viewer</a></h3>
 
 <p align="center">
-  <img src="https://img.shields.io/badge/Material-PETG/PLA-brightgreen" alt="Material: PETG/PLA">
+  <img src="https://img.shields.io/badge/Material-TPU_95A-brightgreen" alt="Material: TPU 95A">
   <img src="https://img.shields.io/badge/Revision-r01-blue" alt="Revision: r01">
   <img src="https://img.shields.io/badge/Size-152×96×17mm-orange" alt="Size: 152×96×17mm">
 </p>
+
+## Compatible Part Numbers
+
+| Part Number | Type |
+|-------------|------|
+| **129KKW300** | OEM reservoir (lid not sold separately) |
 
 ## Attribution
 
@@ -28,11 +34,11 @@
 
 ### Ninja
 - CFP201 (DualBrew)
-- CFP300 Series (DualBrew Pro)
+- CFP250A (DualBrew)
+- CFP300 (DualBrew Pro)
 - CFP301 (DualBrew Pro)
 - CFP305 (DualBrew Pro)
 - CFP307 (DualBrew Pro)
-- CFP451 (DualBrew Pro Specialty)
 
 ## Specifications
 
@@ -51,28 +57,28 @@
 
 ## Print Settings
 
-### Mesh Lid - PETG
+### Mesh Lid - TPU 95A
 
 | Setting | Value |
 |---------|-------|
 | Layer Height | 0.2 mm |
 | Wall Count | 3-4 |
 | Infill | 100% |
-| Print Speed | 40-50 mm/s |
-| Nozzle Temp | 230-245°C |
-| Bed Temp | 70-80°C |
-| Cooling | 50-75% |
+| Print Speed | 20-30 mm/s |
+| Nozzle Temp | 220-240°C |
+| Bed Temp | 50-60°C |
+| Cooling | 50-100% |
 | Orientation | Top down (mesh on bed) |
 | Supports | None required |
+| Direct Drive | Recommended |
 
 ### Material Notes
 
 | Part | Material | Status | Notes |
 |------|----------|--------|-------|
-| Mesh Lid | PETG | **Recommended** | Heat resistant, food safe, durable |
-| Mesh Lid | PLA | Acceptable | Easy to print, may warp near heat |
-| Mesh Lid | ASA | Acceptable | Excellent heat resistance, UV stable |
-| Mesh Lid | TPU | Not recommended | Too flexible for a structural lid |
+| Mesh Lid | TPU 95A | **Recommended** | Flexible, durable, food safe, heat tolerant |
+| Mesh Lid | PETG | Acceptable | Rigid, heat resistant |
+| Mesh Lid | PLA | Not recommended | Brittle mesh walls, may warp near heat |
 
 ## Files
 
@@ -85,7 +91,7 @@
 
 ## Installation
 
-1. Print the mesh lid in PETG or PLA
+1. Print the mesh lid in TPU 95A
 2. Remove original solid lid from reservoir
 3. Place mesh lid on reservoir opening
 4. Ensure rim seats fully around reservoir edge
@@ -111,7 +117,7 @@ Issues and improvements welcome. Please include:
 
 ## Keywords
 
-`ninja` `dual brew` `dualbrew` `coffee` `reservoir` `lid` `mesh` `breathable` `evaporation` `CFP201` `CFP301` `CFP305` `CFP307` `CFP451` `3d print` `replacement part`
+`129KKW300` `ninja` `dual brew` `dualbrew` `coffee` `reservoir` `lid` `mesh` `breathable` `evaporation` `CFP201` `CFP250A` `CFP300` `CFP301` `CFP305` `CFP307` `3d print` `replacement part`
 
 ---
 
