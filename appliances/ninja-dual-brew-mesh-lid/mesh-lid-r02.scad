@@ -112,10 +112,10 @@ difference() {
                      total_height - shelf_z - mesh_thickness + 0.2,
                      corner_radius);
 
-    // 5. Cut fine hex mesh through top — height exceeds part
+    // 5. Cut fine hex mesh through top cap only (above shelf)
     translate([inner_origin_x + inner_length/2,
-               inner_origin_y + inner_width/2, -1])
+               inner_origin_y + inner_width/2, shelf_z])
         hex_grid(inner_length - 2 * mesh_border,
                  inner_width - 2 * mesh_border,
-                 hex_radius, hex_wall, total_height + 5);
+                 hex_radius, hex_wall, total_height - shelf_z + 1);
 }
