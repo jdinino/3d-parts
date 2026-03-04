@@ -138,181 +138,51 @@
     </div>
 
     <script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/three@0.128.0/examples/js/loaders/STLLoader.js"></script>
     <script>
         const container = document.getElementById('viewer');
         const scene = new THREE.Scene();
         scene.background = new THREE.Color(0x0a0a14);
 
         const camera = new THREE.PerspectiveCamera(45, container.clientWidth / container.clientHeight, 0.1, 1000);
-        camera.position.set(120, 80, 120);
-
         const renderer = new THREE.WebGLRenderer({ antialias: true });
         renderer.setSize(container.clientWidth, container.clientHeight);
         container.appendChild(renderer.domElement);
 
-        scene.add(new THREE.AmbientLight(0x404040, 0.6));
+        scene.add(new THREE.AmbientLight(0x404040, 0.8));
         const light1 = new THREE.DirectionalLight(0xffffff, 0.8);
         light1.position.set(100, 100, 100);
         scene.add(light1);
         const light2 = new THREE.DirectionalLight(0x4ecdc4, 0.4);
         light2.position.set(-60, 40, -60);
         scene.add(light2);
+        const light3 = new THREE.DirectionalLight(0xffffff, 0.3);
+        light3.position.set(0, -80, 0);
+        scene.add(light3);
 
-        // Materials
-        const lidMat = new THREE.MeshPhongMaterial({
+        const material = new THREE.MeshPhongMaterial({
             color: 0x2196F3, shininess: 60, specular: 0x222222
         });
-        const meshMat = new THREE.MeshPhongMaterial({
-            color: 0x2196F3, shininess: 40, specular: 0x111111,
-            transparent: true, opacity: 0.6, side: THREE.DoubleSide
-        });
-        const holeMat = new THREE.MeshPhongMaterial({ color: 0x0a0a14 });
 
-        // Dimensions from SCAD/STL (mm)
-        const L = 149.9, W = 75.1, H = 23;
-        const cornerR = 9;
-        const meshT = 2;           // mesh plate thickness
-        const innerL = 135.4;      // inner step length (at Z=2.5)
-        const innerW = 60.1;       // inner step width
-        const innerR = Math.max(1, cornerR - 7.2);  // inner corner radius ~1.8
-        const thinWall = 3;        // wall thickness in middle/lower sections
-        const meshBorder = 5;      // solid border around mesh area
+        // Load actual STL model
+        const loader = new THREE.STLLoader();
+        loader.load('mesh-lid-r02.stl', function(geometry) {
+            geometry.center();
+            geometry.rotateX(-Math.PI / 2);
+            geometry.computeVertexNormals();
 
-        // Y positions (Y=0 is bottom/rim end, Y=H is top/mesh face)
-        // STL Z=23 -> Y=0, Z=13 -> Y=10, Z=2.5 -> Y=20.5, Z=0 -> Y=23
-        const lowerH = 10;         // lower section height (Z=23 to Z=13)
-        const midH = 10.5;         // middle section height (Z=13 to Z=2.5)
-        const stepH = 2.5;         // upper step height (Z=2.5 to Z=0)
-
-        const lidGroup = new THREE.Group();
-
-        // Rounded rectangle shape (centered at origin)
-        function roundedRectShape(w, h, r) {
-            const shape = new THREE.Shape();
-            shape.moveTo(-w/2 + r, -h/2);
-            shape.lineTo(w/2 - r, -h/2);
-            shape.quadraticCurveTo(w/2, -h/2, w/2, -h/2 + r);
-            shape.lineTo(w/2, h/2 - r);
-            shape.quadraticCurveTo(w/2, h/2, w/2 - r, h/2);
-            shape.lineTo(-w/2 + r, h/2);
-            shape.quadraticCurveTo(-w/2, h/2, -w/2, h/2 - r);
-            shape.lineTo(-w/2, -h/2 + r);
-            shape.quadraticCurveTo(-w/2, -h/2, -w/2 + r, -h/2);
-            return shape;
-        }
-
-        // --- 1. Lower walls (Y=0 to Y=lowerH): full outer dims, thin walls ---
-        const lowerOuter = roundedRectShape(L, W, cornerR);
-        const lowerInner = roundedRectShape(L - thinWall*2, W - thinWall*2, Math.max(1, cornerR - thinWall));
-        lowerOuter.holes.push(lowerInner);
-        const lowerGeom = new THREE.ExtrudeGeometry(lowerOuter, { depth: lowerH, bevelEnabled: false });
-        const lower = new THREE.Mesh(lowerGeom, lidMat);
-        lower.rotation.x = -Math.PI / 2;
-        lower.position.y = 0;
-        lidGroup.add(lower);
-
-        // --- 2. Shelf at Y=lowerH: ring connecting outer to inner ---
-        const shelfOuter = roundedRectShape(L, W, cornerR);
-        const shelfInner = roundedRectShape(innerL - thinWall*2, innerW - thinWall*2, Math.max(1, innerR - thinWall));
-        shelfOuter.holes.push(shelfInner);
-        const shelfGeom = new THREE.ExtrudeGeometry(shelfOuter, { depth: 0.5, bevelEnabled: false });
-        const shelfMesh = new THREE.Mesh(shelfGeom, lidMat);
-        shelfMesh.rotation.x = -Math.PI / 2;
-        shelfMesh.position.y = lowerH;
-        lidGroup.add(shelfMesh);
-
-        // --- 3. Middle walls (Y=lowerH to Y=lowerH+midH): inner step dims, thin walls ---
-        const midOuter = roundedRectShape(innerL, innerW, innerR);
-        const midInner = roundedRectShape(innerL - thinWall*2, innerW - thinWall*2, Math.max(1, innerR - thinWall));
-        midOuter.holes.push(midInner);
-        const midGeom = new THREE.ExtrudeGeometry(midOuter, { depth: midH, bevelEnabled: false });
-        const midMesh = new THREE.Mesh(midGeom, lidMat);
-        midMesh.rotation.x = -Math.PI / 2;
-        midMesh.position.y = lowerH;
-        lidGroup.add(midMesh);
-
-        // --- 4. Upper step (Y=lowerH+midH to Y=H): full outer, thick walls (7mm) ---
-        const upperOuter = roundedRectShape(L, W, cornerR);
-        const upperInner = roundedRectShape(innerL, innerW, innerR);
-        upperOuter.holes.push(upperInner);
-        const upperGeom = new THREE.ExtrudeGeometry(upperOuter, { depth: stepH, bevelEnabled: false });
-        const upperMesh = new THREE.Mesh(upperGeom, lidMat);
-        upperMesh.rotation.x = -Math.PI / 2;
-        upperMesh.position.y = lowerH + midH;
-        lidGroup.add(upperMesh);
-
-        // --- 5. Top mesh plate at Y=H (semi-transparent to suggest mesh) ---
-        const topShape = roundedRectShape(L, W, cornerR);
-        const topGeom = new THREE.ExtrudeGeometry(topShape, { depth: meshT, bevelEnabled: false });
-        const topPlate = new THREE.Mesh(topGeom, meshMat);
-        topPlate.rotation.x = -Math.PI / 2;
-        topPlate.position.y = H;
-        lidGroup.add(topPlate);
-
-        // --- 6. Solid border ring on mesh face ---
-        const meshAreaL = innerL - 2 * meshBorder;   // 125.4
-        const meshAreaW = innerW - 2 * meshBorder;   // 50.1
-        const meshAreaR = Math.max(1, innerR - meshBorder);
-        const borderOuter = roundedRectShape(L, W, cornerR);
-        const borderInner = roundedRectShape(meshAreaL, meshAreaW, meshAreaR);
-        borderOuter.holes.push(borderInner);
-        const borderGeom = new THREE.ExtrudeGeometry(borderOuter, { depth: meshT + 0.1, bevelEnabled: false });
-        const border = new THREE.Mesh(borderGeom, lidMat);
-        border.rotation.x = -Math.PI / 2;
-        border.position.y = H - 0.05;
-        lidGroup.add(border);
-
-        // --- 7. Hex hole pattern on mesh face ---
-        const hexR = 1.0;
-        const cellSize = hexR + 0.8;
-        const dx = Math.sqrt(3) * cellSize;
-        const dy = 1.5 * cellSize;
-
-        const hexShape = new THREE.Shape();
-        for (let i = 0; i < 6; i++) {
-            const angle = (Math.PI / 3) * i - Math.PI / 6;
-            const x = hexR * Math.cos(angle);
-            const y = hexR * Math.sin(angle);
-            if (i === 0) hexShape.moveTo(x, y);
-            else hexShape.lineTo(x, y);
-        }
-        hexShape.closePath();
-
-        const hexGeom = new THREE.ExtrudeGeometry(hexShape, {
-            depth: meshT + 0.4, bevelEnabled: false
+            const mesh = new THREE.Mesh(geometry, material);
+            scene.add(mesh);
         });
 
-        const maxCols = Math.ceil(meshAreaL / dx) + 1;
-        const maxRows = Math.ceil(meshAreaW / dy) + 1;
-
-        for (let row = -maxRows; row <= maxRows; row++) {
-            for (let col = -maxCols; col <= maxCols; col++) {
-                const xOff = (row % 2 === 0) ? 0 : dx / 2;
-                const x = col * dx + xOff;
-                const y = row * dy;
-
-                if (Math.abs(x) < meshAreaL/2 - hexR &&
-                    Math.abs(y) < meshAreaW/2 - hexR) {
-                    const hex = new THREE.Mesh(hexGeom, holeMat);
-                    hex.rotation.x = -Math.PI / 2;
-                    hex.position.set(x, H - 0.2, y);
-                    lidGroup.add(hex);
-                }
-            }
-        }
-
-        lidGroup.position.y = -H/2;
-        scene.add(lidGroup);
-
-        // Grid
         const grid = new THREE.GridHelper(200, 20, 0x333333, 0x222222);
-        grid.position.y = -H/2 - 0.5;
+        grid.position.y = -12;
         scene.add(grid);
 
         // Controls
         let isDragging = false, prevMouse = { x: 0, y: 0 };
         let rotation = { x: 0.4, y: 0.6 };
-        let zoom = 180;
+        let zoom = 150;
 
         container.addEventListener('mousedown', e => { isDragging = true; prevMouse = { x: e.clientX, y: e.clientY }; });
         container.addEventListener('mousemove', e => {
@@ -324,14 +194,26 @@
         });
         container.addEventListener('mouseup', () => isDragging = false);
         container.addEventListener('mouseleave', () => isDragging = false);
-        container.addEventListener('wheel', e => { e.preventDefault(); zoom = Math.max(80, Math.min(350, zoom + e.deltaY * 0.3)); });
+        container.addEventListener('wheel', e => { e.preventDefault(); zoom = Math.max(60, Math.min(350, zoom + e.deltaY * 0.3)); });
+
+        // Touch support
+        container.addEventListener('touchstart', e => { if (e.touches.length === 1) { isDragging = true; prevMouse = { x: e.touches[0].clientX, y: e.touches[0].clientY }; } }, { passive: false });
+        container.addEventListener('touchmove', e => {
+            e.preventDefault();
+            if (!isDragging || e.touches.length !== 1) return;
+            rotation.y += (e.touches[0].clientX - prevMouse.x) * 0.01;
+            rotation.x += (e.touches[0].clientY - prevMouse.y) * 0.01;
+            rotation.x = Math.max(-1.5, Math.min(1.5, rotation.x));
+            prevMouse = { x: e.touches[0].clientX, y: e.touches[0].clientY };
+        }, { passive: false });
+        container.addEventListener('touchend', () => isDragging = false);
 
         function animate() {
             requestAnimationFrame(animate);
             camera.position.x = zoom * Math.sin(rotation.y) * Math.cos(rotation.x);
-            camera.position.y = zoom * Math.sin(rotation.x) + 20;
+            camera.position.y = zoom * Math.sin(rotation.x) + 10;
             camera.position.z = zoom * Math.cos(rotation.y) * Math.cos(rotation.x);
-            camera.lookAt(0, 3, 0);
+            camera.lookAt(0, 0, 0);
             renderer.render(scene, camera);
         }
         animate();
