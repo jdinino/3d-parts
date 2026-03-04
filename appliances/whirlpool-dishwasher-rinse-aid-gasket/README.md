@@ -15,7 +15,6 @@
 <p align="center">
   <img src="https://img.shields.io/badge/Material-TPU-brightgreen" alt="Material: TPU">
   <img src="https://img.shields.io/badge/Revision-r10-blue" alt="Revision: r10">
-  <img src="https://img.shields.io/badge/Size-46×35×4mm-orange" alt="Size: 46×35×4mm">
 </p>
 
 ## Compatible Part Numbers

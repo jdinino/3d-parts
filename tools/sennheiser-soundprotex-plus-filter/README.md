@@ -15,7 +15,6 @@
 <p align="center">
   <img src="https://img.shields.io/badge/Material-TPU/PETG/PLA-brightgreen" alt="Material: TPU/PETG/PLA">
   <img src="https://img.shields.io/badge/Revision-r01-blue" alt="Revision: r01">
-  <img src="https://img.shields.io/badge/Size-9×4.5mm-orange" alt="Size: 9×4.5mm">
 </p>
 
 ## Compatible Earplug Models
