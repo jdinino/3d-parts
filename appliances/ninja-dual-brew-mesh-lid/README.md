@@ -13,7 +13,7 @@
 <h3 align="center"><a href="mesh-lid-r01.stl">View 3D Model</a> | <a href="https://jdinino.github.io/3d-parts/appliances/ninja-dual-brew-mesh-lid/render.html">Interactive Viewer</a></h3>
 
 <p align="center">
-  <img src="https://img.shields.io/badge/Material-TPU_95A-brightgreen" alt="Material: TPU 95A">
+  <img src="https://img.shields.io/badge/Material-TPU-brightgreen" alt="Material: TPU">
   <img src="https://img.shields.io/badge/Revision-r01-blue" alt="Revision: r01">
   <img src="https://img.shields.io/badge/Size-152×96×17mm-orange" alt="Size: 152×96×17mm">
 </p>
@@ -57,7 +57,7 @@
 
 ## Print Settings
 
-### Mesh Lid - TPU 95A
+### Mesh Lid - TPU
 
 | Setting | Value |
 |---------|-------|
@@ -76,7 +76,7 @@
 
 | Part | Material | Status | Notes |
 |------|----------|--------|-------|
-| Mesh Lid | TPU 95A | **Recommended** | Flexible, durable, food safe, heat tolerant |
+| Mesh Lid | TPU | **Recommended** | Flexible, durable, food safe, heat tolerant |
 | Mesh Lid | PETG | Acceptable | Rigid, heat resistant |
 | Mesh Lid | PLA | Not recommended | Brittle mesh walls, may warp near heat |
 
@@ -91,7 +91,7 @@
 
 ## Installation
 
-1. Print the mesh lid in TPU 95A
+1. Print the mesh lid in TPU
 2. Remove original solid lid from reservoir
 3. Place mesh lid on reservoir opening
 4. Ensure rim seats fully around reservoir edge

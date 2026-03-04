@@ -18,7 +18,7 @@ Breathable mesh variant of the Ninja Dual Brew coffee reservoir lid. The solid t
 | Mesh Border | 5mm |
 | Mesh Area | 136 × 80mm |
 | OEM Reservoir Part | 129KKW300 |
-| Material | TPU 95A |
+| Material | TPU |
 
 ## Mesh Specifications
 
@@ -79,7 +79,7 @@ Breathable mesh variant of the Ninja Dual Brew coffee reservoir lid. The solid t
 
 | Material | Status | Reason |
 |----------|--------|--------|
-| TPU 95A | **Recommended** | Flexible, durable, food safe, heat tolerant |
+| TPU | **Recommended** | Flexible, durable, food safe, heat tolerant |
 | PETG | Acceptable | Rigid, heat resistant |
 | PLA | Not recommended | Brittle mesh walls, may warp near heat |
 
