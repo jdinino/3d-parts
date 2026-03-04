@@ -1,5 +1,5 @@
 // Ninja Dual Brew Coffee Reservoir Mesh Lid
-// Revision: r02
+// Revision: r02 (parametric from Lid.stl dimensions)
 // Reference: Coffee Maker Auto-Filler lid (Printables 410550) by Joshua Foster
 // Derivative of: Ninja Dual Brew Coffee Reservoir Lid by louspinuso
 // Original: https://www.printables.com/model/1501663
@@ -7,43 +7,44 @@
 // OEM Reservoir Part: 129KKW300
 // Compatible: CFP201, CFP250A, CFP300, CFP301, CFP305, CFP307
 //
-// Modification: Original center opening filled solid, then cut with fine honeycomb mesh
+// Modification: Top cap filled with fine honeycomb mesh
 
 $fn = 64;
 
-// --- Reference lid (Lid.stl) dimensions ---
-// 149.9 x 75.1 x 23mm, origin at (0,0,0)
-// Z=0:    Base flange, full outer
-// Z=2.5:  Innermost step (7.2-142.7 x 7.5-67.6)
-// Z=13:   Shelf, full outer
-// Z=23:   Top cap (2.2-147.7 x 2.5-72.6)
-// Center opening runs from ~Z=2.5 through Z=23
-
-corner_radius = 9.0;
-
-// --- Inner opening dimensions (to be filled) ---
-inner_x = 5.35;          // origin X of inner opening
-inner_y = 5.5;            // origin Y of inner opening
-inner_length = 139.2;     // inner opening length
-inner_width = 64.1;       // inner opening width
-shelf_z = 13.0;           // Z where top cap begins
+// --- Lid dimensions from Lid.stl (mm) ---
+outer_length = 149.9;
+outer_width = 75.1;
 total_height = 23.0;
+corner_radius = 9.0;
+flange_height = 2.5;
+
+// --- Drop-in wall dimensions ---
+wall_inset_x = 7.25;
+wall_inset_y = 7.5;
+wall_length = outer_length - 2 * wall_inset_x;
+wall_width = outer_width - 2 * wall_inset_y;
+wall_thickness = 3.0;
+shelf_z = 13.0;
+
+// --- Top cap dimensions ---
+cap_taper_x = 2.25;
+cap_taper_y = 2.5;
+cap_top_length = outer_length - 2 * cap_taper_x;
+cap_top_width = outer_width - 2 * cap_taper_y;
+
+// --- Inner opening ---
+cap_inner_offset_x = 1.9;
+cap_inner_offset_y = 2.0;
+inner_length = wall_length + 2 * cap_inner_offset_x;
+inner_width = wall_width + 2 * cap_inner_offset_y;
+inner_origin_x = wall_inset_x - cap_inner_offset_x;
+inner_origin_y = wall_inset_y - cap_inner_offset_y;
+mesh_thickness = 2.0;
 
 // --- Fine mesh parameters ---
-hex_radius = 1.0;         // ~2mm holes
-hex_wall = 0.8;           // wall between holes
-mesh_border = 5.0;        // solid border inside innermost rect
-
-// Innermost rectangle center
-inner_cx = (7.2 + 142.7) / 2;   // ~74.95
-inner_cy = (7.5 + 67.6) / 2;    // ~37.55
-
-// Grid area = innermost rect minus border on each side
-grid_length = 135.5 - 2 * mesh_border;   // ~125.5
-grid_width = 60.1 - 2 * mesh_border;     // ~50.1
-
-// Cut height exceeds full part (23mm)
-cut_height = 30;
+hex_radius = 1.0;
+hex_wall = 0.8;
+mesh_border = 5.0;
 
 // --- Modules ---
 
@@ -76,19 +77,45 @@ module hex_grid(area_l, area_w, hex_r, wall_p, h) {
 }
 
 // --- Construction ---
+// Single difference: solid lid minus interior cavity minus hex mesh
+
 difference() {
     union() {
-        // Original lid (has center opening)
-        import("reference-lid.stl");
+        // 1. Base flange
+        rounded_rect(outer_length, outer_width, flange_height, corner_radius);
 
-        // Fill the center opening with a solid cap
-        translate([inner_x, inner_y, shelf_z])
-            rounded_rect(inner_length, inner_width,
-                         total_height - shelf_z, corner_radius);
+        // 2. Drop-in walls (hollow shell)
+        translate([wall_inset_x, wall_inset_y, 0])
+        difference() {
+            rounded_rect(wall_length, wall_width, shelf_z, corner_radius);
+            translate([wall_thickness, wall_thickness, flange_height])
+                rounded_rect(
+                    wall_length - 2 * wall_thickness,
+                    wall_width - 2 * wall_thickness,
+                    shelf_z + 1,
+                    max(1, corner_radius - wall_thickness));
+        }
+
+        // 3. Top cap (tapered, solid — no auto-filler hole)
+        hull() {
+            translate([0, 0, shelf_z])
+                rounded_rect(outer_length, outer_width, 0.01, corner_radius);
+            translate([cap_taper_x, cap_taper_y, total_height - 0.01])
+                rounded_rect(cap_top_length, cap_top_width, 0.01,
+                             max(1, corner_radius - cap_taper_x));
+        }
     }
 
-    // Cut fine hex mesh through everything, full depth
-    translate([inner_cx, inner_cy, -3])
-        hex_grid(grid_length, grid_width,
-                 hex_radius, hex_wall, cut_height);
+    // 4. Cut interior cavity (below mesh plate)
+    translate([inner_origin_x, inner_origin_y, shelf_z - 0.1])
+        rounded_rect(inner_length, inner_width,
+                     total_height - shelf_z - mesh_thickness + 0.2,
+                     corner_radius);
+
+    // 5. Cut fine hex mesh through top — height exceeds part
+    translate([inner_origin_x + inner_length/2,
+               inner_origin_y + inner_width/2, -1])
+        hex_grid(inner_length - 2 * mesh_border,
+                 inner_width - 2 * mesh_border,
+                 hex_radius, hex_wall, total_height + 5);
 }
