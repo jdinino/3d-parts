@@ -8,4 +8,4 @@
 |------|-------|--------------|----------|--------|
 | [Rinse Aid Gasket](whirlpool-dishwasher-rinse-aid-gasket/) | Whirlpool, KitchenAid, Maytag | W11412300, W11092649 | TPU | Tested |
 | [Refrigerator Pan Roller](whirlpool-refrigerator-pan-roller/) | Whirlpool, KitchenAid, Maytag | W11578839, W11573594 | PETG/PLA, TPU | Tested |
-| [Coffee Reservoir Mesh Lid](ninja-dual-brew-mesh-lid/) | Ninja | 129KKW300 | TPU | Untested |
+| [Coffee Reservoir Mesh Lid](ninja-dual-brew-mesh-lid/) | Ninja | 129KKW300 | TPU | Tested |
