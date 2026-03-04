@@ -158,7 +158,7 @@
         light2.position.set(-60, 40, -60);
         scene.add(light2);
 
-        // Material
+        // Materials
         const lidMat = new THREE.MeshPhongMaterial({
             color: 0x2196F3, shininess: 60, specular: 0x222222
         });
@@ -168,14 +168,25 @@
         });
         const holeMat = new THREE.MeshPhongMaterial({ color: 0x0a0a14 });
 
-        // Dimensions (mm) - actual scale
+        // Dimensions from SCAD/STL (mm)
         const L = 149.9, W = 75.1, H = 23;
-        const wallT = 7, meshT = 2, rimH = 21;
         const cornerR = 9;
+        const meshT = 2;           // mesh plate thickness
+        const innerL = 135.4;      // inner step length (at Z=2.5)
+        const innerW = 60.1;       // inner step width
+        const innerR = Math.max(1, cornerR - 7.2);  // inner corner radius ~1.8
+        const thinWall = 3;        // wall thickness in middle/lower sections
+        const meshBorder = 5;      // solid border around mesh area
+
+        // Y positions (Y=0 is bottom/rim end, Y=H is top/mesh face)
+        // STL Z=23 -> Y=0, Z=13 -> Y=10, Z=2.5 -> Y=20.5, Z=0 -> Y=23
+        const lowerH = 10;         // lower section height (Z=23 to Z=13)
+        const midH = 10.5;         // middle section height (Z=13 to Z=2.5)
+        const stepH = 2.5;         // upper step height (Z=2.5 to Z=0)
 
         const lidGroup = new THREE.Group();
 
-        // Create rounded rectangle shape
+        // Rounded rectangle shape (centered at origin)
         function roundedRectShape(w, h, r) {
             const shape = new THREE.Shape();
             shape.moveTo(-w/2 + r, -h/2);
@@ -190,49 +201,72 @@
             return shape;
         }
 
-        // Outer rim walls
-        const outerShape = roundedRectShape(L, W, cornerR);
-        const innerShape = roundedRectShape(L - wallT*2, W - wallT*2, Math.max(1, cornerR - wallT));
-        outerShape.holes.push(innerShape);
+        // --- 1. Lower walls (Y=0 to Y=lowerH): full outer dims, thin walls ---
+        const lowerOuter = roundedRectShape(L, W, cornerR);
+        const lowerInner = roundedRectShape(L - thinWall*2, W - thinWall*2, Math.max(1, cornerR - thinWall));
+        lowerOuter.holes.push(lowerInner);
+        const lowerGeom = new THREE.ExtrudeGeometry(lowerOuter, { depth: lowerH, bevelEnabled: false });
+        const lower = new THREE.Mesh(lowerGeom, lidMat);
+        lower.rotation.x = -Math.PI / 2;
+        lower.position.y = 0;
+        lidGroup.add(lower);
 
-        const rimGeom = new THREE.ExtrudeGeometry(outerShape, {
-            depth: rimH, bevelEnabled: false
-        });
-        const rim = new THREE.Mesh(rimGeom, lidMat);
-        rim.rotation.x = -Math.PI / 2;
-        rim.position.y = 0;
-        lidGroup.add(rim);
+        // --- 2. Shelf at Y=lowerH: ring connecting outer to inner ---
+        const shelfOuter = roundedRectShape(L, W, cornerR);
+        const shelfInner = roundedRectShape(innerL - thinWall*2, innerW - thinWall*2, Math.max(1, innerR - thinWall));
+        shelfOuter.holes.push(shelfInner);
+        const shelfGeom = new THREE.ExtrudeGeometry(shelfOuter, { depth: 0.5, bevelEnabled: false });
+        const shelfMesh = new THREE.Mesh(shelfGeom, lidMat);
+        shelfMesh.rotation.x = -Math.PI / 2;
+        shelfMesh.position.y = lowerH;
+        lidGroup.add(shelfMesh);
 
-        // Top mesh plate (semi-transparent to suggest mesh)
+        // --- 3. Middle walls (Y=lowerH to Y=lowerH+midH): inner step dims, thin walls ---
+        const midOuter = roundedRectShape(innerL, innerW, innerR);
+        const midInner = roundedRectShape(innerL - thinWall*2, innerW - thinWall*2, Math.max(1, innerR - thinWall));
+        midOuter.holes.push(midInner);
+        const midGeom = new THREE.ExtrudeGeometry(midOuter, { depth: midH, bevelEnabled: false });
+        const midMesh = new THREE.Mesh(midGeom, lidMat);
+        midMesh.rotation.x = -Math.PI / 2;
+        midMesh.position.y = lowerH;
+        lidGroup.add(midMesh);
+
+        // --- 4. Upper step (Y=lowerH+midH to Y=H): full outer, thick walls (7mm) ---
+        const upperOuter = roundedRectShape(L, W, cornerR);
+        const upperInner = roundedRectShape(innerL, innerW, innerR);
+        upperOuter.holes.push(upperInner);
+        const upperGeom = new THREE.ExtrudeGeometry(upperOuter, { depth: stepH, bevelEnabled: false });
+        const upperMesh = new THREE.Mesh(upperGeom, lidMat);
+        upperMesh.rotation.x = -Math.PI / 2;
+        upperMesh.position.y = lowerH + midH;
+        lidGroup.add(upperMesh);
+
+        // --- 5. Top mesh plate at Y=H (semi-transparent to suggest mesh) ---
         const topShape = roundedRectShape(L, W, cornerR);
-        const topGeom = new THREE.ExtrudeGeometry(topShape, {
-            depth: meshT, bevelEnabled: false
-        });
+        const topGeom = new THREE.ExtrudeGeometry(topShape, { depth: meshT, bevelEnabled: false });
         const topPlate = new THREE.Mesh(topGeom, meshMat);
         topPlate.rotation.x = -Math.PI / 2;
-        topPlate.position.y = rimH;
+        topPlate.position.y = H;
         lidGroup.add(topPlate);
 
-        // Solid border ring on top
+        // --- 6. Solid border ring on mesh face ---
+        const meshAreaL = innerL - 2 * meshBorder;   // 125.4
+        const meshAreaW = innerW - 2 * meshBorder;   // 50.1
+        const meshAreaR = Math.max(1, innerR - meshBorder);
         const borderOuter = roundedRectShape(L, W, cornerR);
-        const borderInner = roundedRectShape(L - (wallT + 5)*2, W - (wallT + 5)*2, Math.max(1, cornerR - wallT - 5));
+        const borderInner = roundedRectShape(meshAreaL, meshAreaW, meshAreaR);
         borderOuter.holes.push(borderInner);
-
-        const borderGeom = new THREE.ExtrudeGeometry(borderOuter, {
-            depth: meshT + 0.1, bevelEnabled: false
-        });
+        const borderGeom = new THREE.ExtrudeGeometry(borderOuter, { depth: meshT + 0.1, bevelEnabled: false });
         const border = new THREE.Mesh(borderGeom, lidMat);
         border.rotation.x = -Math.PI / 2;
-        border.position.y = rimH - 0.05;
+        border.position.y = H - 0.05;
         lidGroup.add(border);
 
-        // Hex hole pattern (simplified - show representative holes)
+        // --- 7. Hex hole pattern on mesh face ---
         const hexR = 1.0;
         const cellSize = hexR + 0.8;
         const dx = Math.sqrt(3) * cellSize;
         const dy = 1.5 * cellSize;
-        const meshAreaL = L - 2 * (wallT + 5);
-        const meshAreaW = W - 2 * (wallT + 5);
 
         const hexShape = new THREE.Shape();
         for (let i = 0; i < 6; i++) {
@@ -257,11 +291,11 @@
                 const x = col * dx + xOff;
                 const y = row * dy;
 
-                if (Math.abs(x) < meshAreaL/2 - hexR * 0.5 &&
-                    Math.abs(y) < meshAreaW/2 - hexR * 0.5) {
+                if (Math.abs(x) < meshAreaL/2 - hexR &&
+                    Math.abs(y) < meshAreaW/2 - hexR) {
                     const hex = new THREE.Mesh(hexGeom, holeMat);
                     hex.rotation.x = -Math.PI / 2;
-                    hex.position.set(x, rimH - 0.2, y);
+                    hex.position.set(x, H - 0.2, y);
                     lidGroup.add(hex);
                 }
             }

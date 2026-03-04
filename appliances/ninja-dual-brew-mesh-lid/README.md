@@ -46,7 +46,7 @@
 |-----------|-------|
 | **Overall Dimensions** | 149.9 × 75.1 × 23 mm |
 | **Contour** | Rounded rectangle (imported from reference) |
-| **Wall Thickness** | 7 mm (outer to inner step) |
+| **Wall Thickness** | 7.2 mm (outer to inner step) |
 | **Mesh Thickness** | 2 mm |
 | **Rim Height** | 20.5 mm (Z=2.5 to Z=23) |
 | **Hex Hole Diameter** | 2 mm (vertex-to-vertex) |
