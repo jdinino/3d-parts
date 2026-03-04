@@ -53,7 +53,7 @@
 | **Hex Hole Width** | ~1.7 mm (flat-to-flat) |
 | **Min Wall Between Holes** | ~1.1 mm (vertex) / ~1.4 mm (flat) |
 | **Mesh Border** | 5 mm solid border around mesh area |
-| **Mesh Area** | Fills center opening (~125 × 50 mm) |
+| **Mesh Area** | Fills center opening (~125.4 × 50.1 mm) |
 
 ## Print Settings
 

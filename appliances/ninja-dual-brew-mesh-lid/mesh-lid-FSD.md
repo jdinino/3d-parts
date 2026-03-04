@@ -12,12 +12,12 @@ Breathable mesh variant of the Ninja Dual Brew coffee reservoir lid. The solid t
 | Overall Width | 75.1mm |
 | Overall Height | 23mm |
 | Contour | Rounded rectangle (corner radius 9mm) |
-| Wall Thickness | 7mm (outer to inner step) |
+| Wall Thickness | 7.2mm (outer to inner step) |
 | Mesh Thickness | 2mm |
 | Depression Depth | 2.5mm (auto-filler cutout fill) |
 | Rim Height | 20.5mm (Z=2.5 to Z=23) |
 | Mesh Border | 5mm |
-| Mesh Area | Fills center opening (~125 × 50mm) |
+| Mesh Area | Fills center opening (~125.4 × 50.1mm) |
 | Inner Step | 7.2-142.6 × 7.5-67.6mm (at Z=2.5) |
 | OEM Reservoir Part | 129KKW300 |
 | Material | TPU |
@@ -47,7 +47,7 @@ Z=2.5 ├────┐                                        ┌────�
 Z=13  ├────┘                                        └────┤
       │                 (open interior)                  │
 Z=23  └──────────────────────────────────────────────────┘
-      ←7mm→                                        ←7mm→
+      ←7.2mm→                                      ←7.2mm→
 
 Note: Z=0 is the mesh face (top when installed), Z=23 is the rim end
 ```
@@ -72,7 +72,7 @@ Note: Z=0 is the mesh face (top when installed), Z=23 is the rim end
 ### Design Features
 - Honeycomb mesh pattern maximizes open area while maintaining structural strength
 - 5mm solid border around mesh prevents edge weakness
-- 7mm perimeter walls for rigid rim structure
+- 7.2mm perimeter walls for rigid rim structure
 - 20.5mm rim depth for secure seating on reservoir
 - Rounded rectangle contour imported directly from reference STL to match reservoir geometry exactly
 - Auto-filler depression (2.5mm) fully filled before mesh cut
