@@ -6,4 +6,4 @@
 
 | Part | Brand | Part Numbers | Material | Status |
 |------|-------|-------------|----------|--------|
-| [D-Ring Shackle Protector](d-ring-shackle-protector/) | Universal | N/A (custom design) | TPU 95A | Tested |
+| [D-Ring Shackle Protector](d-ring-shackle-protector/) | — | N/A (custom design) | TPU 95A | Tested |
