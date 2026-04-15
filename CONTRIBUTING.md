@@ -6,9 +6,9 @@ Use this as your template and checklist when adding parts to this repository.
 
 ## Folder Structure
 
-Create: `{category}/{brand}-{product}-{part}/`
+Create: `{category}/[{brand}-]{product}-{part}/`
 
-Example: `appliances/whirlpool-refrigerator-pan-roller/`
+Examples: `appliances/whirlpool-refrigerator-pan-roller/`, `automotive/d-ring-shackle-protector/`
 
 ---
 
@@ -26,6 +26,22 @@ Use OEM part numbers for filenames when available (e.g., `W11578839-r17.stl`). O
 
 For multi-part assemblies, include one STL/SCAD pair per component (e.g., `W11578839-r17.stl` + `W11573594-r17.stl`).
 
+### Reference Files (Optional)
+
+A reference file is an extra STL included for comparison — not the main part you'd print. No revision number. Include a `.scad` if it can be regenerated.
+
+Naming: `reference-{part}.stl` (e.g., `reference-d-ring-shackle-protector.stl`, `reference-mesh-lid.stl`).
+
+### Part Markings (Recommended)
+
+Engrave or emboss text directly on parts as functionally allowable to be legible. Priority:
+
+1. **Revision** — e.g., `r10`
+2. **Name** — e.g., `HALF-TORUS SHACKLE PROTECTOR`
+3. **Specs** — e.g., `CENTER HOLE: 40MM | C-CHANNEL: 18MM`
+
+Document marking locations in the FSD.
+
 ---
 
 ## README.md Template
@@ -33,7 +49,7 @@ For multi-part assemblies, include one STL/SCAD pair per component (e.g., `W1157
 Copy and adapt this structure exactly:
 
 ```markdown
-# {Brand} {Product} {Part Name}
+# [{Brand}] {Product} {Part Name}
 
 <p align="center">
   <b>If this part saved you money, consider buying me a thank you!</b><br><br>
@@ -46,6 +62,9 @@ Copy and adapt this structure exactly:
 
 <h2 align="center"><a href="https://github.com/jdinino/3d-parts/releases/download/{release-tag}/{part}-{rXX}.stl">Download the {Part}</a></h2>
 <h3 align="center"><a href="{part}-{rXX}.stl">View 3D Model</a> | <a href="https://jdinino.github.io/3d-parts/{category}/{folder}/render.html">Interactive Viewer</a></h3>
+
+<!-- For parts with reference variants, add separate download and view links per variant.
+     See d-ring-shackle-protector README for example. -->
 
 <p align="center">
   <img src="https://img.shields.io/badge/Material-{MATERIAL}-brightgreen" alt="Material">
@@ -177,6 +196,9 @@ Issues and improvements welcome. Please include:
 ### Cross Section
 {ASCII diagram showing part geometry - see existing FSD files for examples}
 
+### Part Markings
+{Document marking text, locations, and orientation — see `d-ring-shackle-protector-FSD.md` for example}
+
 ## Material Requirements
 
 | Material | Status | Reason |
@@ -219,7 +241,7 @@ Add row to `{category}/README.md`:
 
 Create a release for STL downloads (ensures proper file download instead of browser displaying text).
 
-Release tag format: `{part-name}-{rXX}` (e.g., `pan-roller-r17`, `rinse-aid-gasket-r10`).
+Release tag format: `{part-name}-{rXX}` (e.g., `pan-roller-r17`, `d-ring-shackle-protector-r01`).
 
 ```bash
 gh release create {release-tag} "{category}/{folder}/{part}-{rXX}.stl" --title "{Part Name} {rXX}" --notes "{Release notes}"
@@ -238,7 +260,7 @@ Download URL format: `https://github.com/jdinino/3d-parts/releases/download/{rel
 
 Before committing, verify:
 
-- [ ] Folder: `{category}/{brand}-{product}-{part}/`
+- [ ] Folder: `{category}/[{brand}-]{product}-{part}/`
 - [ ] README.md matches template structure exactly
 - [ ] FSD.md with specifications
 - [ ] STL file(s)
@@ -256,4 +278,4 @@ Before committing, verify:
 
 ## Reference
 
-Working example: `appliances/whirlpool-refrigerator-pan-roller/`
+Working examples: `appliances/whirlpool-refrigerator-pan-roller/` (assembly), `automotive/d-ring-shackle-protector/` (reference variant)

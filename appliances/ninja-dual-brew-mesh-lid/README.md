@@ -86,7 +86,7 @@
 |------|-------------|
 | `mesh-lid-r02.stl` | 3D printable model |
 | `mesh-lid-r02.scad` | OpenSCAD parametric source |
-| `reference-lid.stl` | Foster auto-filler lid (reference geometry) |
+| `reference-mesh-lid.stl` | Foster auto-filler lid (reference geometry) |
 | `mesh-lid-FSD.md` | Functional Specification Document |
 | `render.html` | Interactive 3D preview |
 

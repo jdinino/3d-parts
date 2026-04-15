@@ -67,40 +67,29 @@ module half_torus() {
 }
 
 // ============================================================
-//  EMBOSSED TEXT — TOP FLAT BAND
+//  EMBOSSED TEXT — curved along torus arc
 // ============================================================
-module text_top() {
-    translate([0, v_clip, R])
-    rotate([90, 180, 0])
-    linear_extrude(height = text_depth)
-        text("HALF-TORUS SHACKLE PROTECTOR", size = text_size_top,
-             halign = "center", valign = "center",
-             font = "Liberation Sans:style=Bold");
-}
-
-// ============================================================
-//  EMBOSSED TEXT — BOTTOM FLAT BAND
-// ============================================================
-module text_bottom() {
-    ch_dia = 2 * r_out;
-    bore   = center_hole_dia;
-
-    translate([0, -v_clip, R])
-    rotate([-90, 0, 0])
-    mirror([0, 1, 0])
-    linear_extrude(height = text_depth) {
-        translate([-20, 0])
-            text(str("CENTER HOLE: ", bore, "MM"), size = text_size_bot,
-                 halign = "center", valign = "center",
-                 font = "Liberation Sans:style=Bold");
-        text("|", size = text_size_bot + 1,
-             halign = "center", valign = "center",
-             font = "Liberation Sans:style=Bold");
-        translate([22, 0])
-            text(str("C-CHANNEL: ", ch_dia, "MM"), size = text_size_bot,
-                 halign = "center", valign = "center",
+module curved_text(label, z_pos, sz, face_up) {
+    n = len(label);
+    ca = sz * 0.72 * 180 / (3.14159265 * R);  // degrees per character
+    for (i = [0:n-1]) {
+        a = 90 + (i - (n-1)/2) * ca;
+        rotate([0, 0, a])
+        translate([R, 0, z_pos])
+        rotate(face_up ? [0, 0, 90] : [180, 0, 90])
+        linear_extrude(height = text_depth)
+            text(label[i], size = sz, halign = "center", valign = "center",
                  font = "Liberation Sans:style=Bold");
     }
+}
+
+module text_top() {
+    curved_text("HALF-TORUS SHACKLE PROTECTOR", v_clip, text_size_top, true);
+}
+
+module text_bottom() {
+    label = str("CENTER HOLE: ", center_hole_dia, "MM  |  C-CHANNEL: ", 2 * r_out, "MM");
+    curved_text(label, -v_clip, text_size_bot, false);
 }
 
 // ============================================================
