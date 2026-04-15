@@ -235,6 +235,8 @@ Add row to `{category}/README.md`:
 | [Part Name](folder-name/) | Brand1, Brand2 | PartNum1, PartNum2 | Material | Tested |
 ```
 
+For brandless parts, use `—` for Brand and `N/A` for Part Numbers.
+
 ---
 
 ## Create GitHub Release
