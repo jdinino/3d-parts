@@ -9,8 +9,8 @@
 
 Half-torus shackle protector with C-channel cross-section, fits standard 3/4" D-ring or bow shackles to reduce noise and prevent surface damage.
 
-<h2 align="center"><a href="https://github.com/jdinino/3d-parts/releases/download/protector-r01/protector-r01.stl">Download the Shackle Protector</a></h2>
-<h3 align="center"><a href="protector-r01.stl">View 3D Model</a> | <a href="https://jdinino.github.io/3d-parts/automotive/universal-shackle-protector/render.html">Interactive Viewer</a></h3>
+<h2 align="center"><a href="https://github.com/jdinino/3d-parts/releases/download/shackle-protector-r01/shackle-protector-r01.stl">Download the Shackle Protector</a></h2>
+<h3 align="center"><a href="shackle-protector-r01.stl">View 3D Model</a> | <a href="https://jdinino.github.io/3d-parts/automotive/universal-shackle-protector/render.html">Interactive Viewer</a></h3>
 
 <p align="center">
   <img src="https://img.shields.io/badge/Material-TPU_95A-brightgreen" alt="Material">
@@ -59,8 +59,8 @@ Two C-channel sizes are included for print testing:
 
 | Variant | C-Channel | Wall | Side Depth | File |
 |---------|-----------|------|------------|------|
-| **Lean (18mm)** | 9mm radius | 2.5mm | 18mm | `protector-r01.stl` |
-| **Reference (26mm)** | 13mm radius | 5.3mm | 26mm | `protector-ref-26mm-r01.stl` |
+| **Lean (18mm)** | 9mm radius | 2.5mm | 18mm | `shackle-protector-r01.stl` |
+| **Reference (26mm)** | 13mm radius | 5.3mm | 26mm | `shackle-protector-ref-26mm-r01.stl` |
 
 Both share the same 40mm center hole and fit the same 3/4" shackles. The lean design uses less material; the reference matches commercial protector dimensions.
 
@@ -93,10 +93,10 @@ Both share the same 40mm center hole and fit the same 3/4" shackles. The lean de
 
 | File | Description |
 |------|-------------|
-| `protector-r01.stl` | 3D printable model — 18mm C-channel (lean design) |
-| `protector-ref-26mm-r01.stl` | 3D printable model — 26mm C-channel (reference size) |
-| `protector-r01.scad` | OpenSCAD parametric source |
-| `protector-FSD.md` | Functional Specification Document |
+| `shackle-protector-r01.stl` | 3D printable model — 18mm C-channel (lean design) |
+| `shackle-protector-ref-26mm-r01.stl` | 3D printable model — 26mm C-channel (reference size) |
+| `shackle-protector-r01.scad` | OpenSCAD parametric source |
+| `shackle-protector-FSD.md` | Functional Specification Document |
 | `render.html` | Interactive 3D preview |
 
 ## Installation
