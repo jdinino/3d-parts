@@ -1,0 +1,97 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Shackle Protector - 3D Viewer</title>
+<style>
+*{margin:0;padding:0;box-sizing:border-box}
+body{font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',sans-serif;background:#1a1a2e;color:#eee;overflow:hidden}
+#info{position:absolute;top:0;left:0;right:0;padding:15px 20px;background:rgba(0,0,0,.7);z-index:10;text-align:center}
+#info h1{font-size:18px;margin-bottom:5px}#info p{font-size:12px;color:#aaa}
+#specs{position:absolute;bottom:0;left:0;right:0;padding:12px 20px;background:rgba(0,0,0,.7);z-index:10;display:flex;justify-content:center;gap:30px;flex-wrap:wrap}
+.spec{text-align:center}.spec-label{font-size:10px;color:#888;text-transform:uppercase}.spec-value{font-size:16px;font-weight:bold;color:#4fc3f7}
+</style>
+</head>
+<body>
+<div id="info">
+<h1>Shackle Protector - Half-Torus Design</h1>
+<p>Fits Standard 3/4" D-Ring or Bow Shackles &bull; TPU 95A &bull; Rev 01 &bull; Print Orientation</p>
+</div>
+<div id="specs">
+<div class="spec"><div class="spec-label">Center Hole</div><div class="spec-value">40mm</div></div>
+<div class="spec"><div class="spec-label">C-Channel</div><div class="spec-value">18mm</div></div>
+<div class="spec"><div class="spec-label">Wall</div><div class="spec-value">2.5mm</div></div>
+<div class="spec"><div class="spec-label">Gap</div><div class="spec-value">80&deg;</div></div>
+<div class="spec"><div class="spec-label">Material</div><div class="spec-value">TPU 95A</div></div>
+</div>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js"></script>
+<script>
+const scene=new THREE.Scene();scene.background=new THREE.Color(0x1a1a2e);
+const camera=new THREE.PerspectiveCamera(45,innerWidth/innerHeight,.1,1000);
+const renderer=new THREE.WebGLRenderer({antialias:true});
+renderer.setSize(innerWidth,innerHeight);renderer.setPixelRatio(devicePixelRatio);
+document.body.appendChild(renderer.domElement);
+scene.add(new THREE.AmbientLight(0x606080,.5));
+[[0xffffff,.9,[50,80,60]],[0x4488cc,.3,[-30,20,-40]],[0xffffff,.4,[0,-30,60]]].forEach(([c,i,p])=>{const l=new THREE.DirectionalLight(c,i);l.position.set(...p);scene.add(l)});
+
+const R=29,rO=9,rI=6.5,gH=40*Math.PI/180,vC=Math.sqrt(81-6.25),nS=100,nP=80;
+function mkProf(){const p=[],sp=2*Math.PI-2*gH;for(let i=0;i<=nP;i++){const t=gH+sp*i/nP;p.push([rO*Math.cos(t),Math.max(-vC,Math.min(vC,rO*Math.sin(t)))])}for(let i=nP;i>=0;i--){const t=gH+sp*i/nP;p.push([rI*Math.cos(t),Math.max(-vC,Math.min(vC,rI*Math.sin(t)))])}return p}
+const prof=mkProf(),np=prof.length,V=[],I=[];
+for(let j=0;j<=nS;j++){const phi=Math.PI*j/nS,cx=R*Math.cos(phi),cz=R*Math.sin(phi),rx=Math.cos(phi),rz=Math.sin(phi);for(let i=0;i<np;i++){const[u,v]=prof[i];V.push(cx+u*rx,v,cz+u*rz)}}
+for(let j=0;j<nS;j++)for(let i=0;i<np;i++){const n=(i+1)%np,a=j*np+i,b=j*np+n,c=(j+1)*np+i,d=(j+1)*np+n;I.push(a,c,d,a,d,b)}
+for(let cap=0;cap<2;cap++){const o=cap*nS*np,ci=V.length/3;let sx=0,sy=0,sz=0;for(let i=0;i<np;i++){sx+=V[(o+i)*3];sy+=V[(o+i)*3+1];sz+=V[(o+i)*3+2]}V.push(sx/np,sy/np,sz/np);for(let i=0;i<np;i++){const n=(i+1)%np;cap===0?I.push(ci,o+n,o+i):I.push(ci,o+i,o+n)}}
+const geo=new THREE.BufferGeometry();geo.setAttribute('position',new THREE.Float32BufferAttribute(V,3));geo.setIndex(I);geo.computeVertexNormals();
+scene.add(new THREE.Mesh(geo,new THREE.MeshPhongMaterial({color:0x2266cc,specular:0x444444,shininess:30,side:THREE.DoubleSide})));
+
+// Text on flat bands — FrontSide only, correct winding per face direction
+function makeText(text, yPos, faceUp, flipCanvas) {
+    const c=document.createElement('canvas'),x=c.getContext('2d');
+    c.width=2048;c.height=128;x.clearRect(0,0,2048,128);
+    x.fillStyle='#ffffff';x.font='bold 64px sans-serif';x.textAlign='center';x.textBaseline='middle';
+    if(flipCanvas){x.save();x.translate(1024,64);x.rotate(Math.PI);x.fillText(text,0,0);x.restore()}
+    else{x.fillText(text,1024,64)}
+    const tex=new THREE.CanvasTexture(c),sV=[],sU=[],sI=[],sN=80,bH=2.2;
+    for(let j=0;j<=sN;j++){
+        const phi=Math.PI*j/sN,cx=R*Math.cos(phi),cz=R*Math.sin(phi),rx=Math.cos(phi),rz=Math.sin(phi),u=j/sN;
+        sV.push(cx-bH*rx,yPos,cz-bH*rz);sU.push(u,0);
+        sV.push(cx+bH*rx,yPos,cz+bH*rz);sU.push(u,1);
+    }
+    for(let j=0;j<sN;j++){
+        const a=j*2,b=j*2+1,c=(j+1)*2,d=(j+1)*2+1;
+        // Winding order determines which side the face is visible from
+        if(faceUp){sI.push(a,d,c,a,b,d)} // normal points +Y
+        else{sI.push(a,c,d,a,d,b)}        // normal points -Y
+    }
+    const g=new THREE.BufferGeometry();
+    g.setAttribute('position',new THREE.Float32BufferAttribute(sV,3));
+    g.setAttribute('uv',new THREE.Float32BufferAttribute(sU,2));
+    g.setIndex(sI);g.computeVertexNormals();
+    scene.add(new THREE.Mesh(g,new THREE.MeshBasicMaterial({
+        map:tex,transparent:true,alphaTest:.1,
+        side:THREE.FrontSide,depthWrite:false,
+        polygonOffset:true,polygonOffsetFactor:-1
+    })));
+}
+
+// Top band: faces +Y, text 180° rotated on canvas
+makeText("HALF-TORUS SHACKLE PROTECTOR", vC+.05, true, true);
+// Bottom band: faces -Y, text normal on canvas
+makeText("CENTER HOLE: 40MM  |  C-CHANNEL: 18MM", -(vC+.05), false, false);
+
+const grid=new THREE.GridHelper(120,24,0x444466,0x2a2a44);grid.rotation.x=Math.PI/2;grid.position.z=-.05;scene.add(grid);
+const tgt=new THREE.Vector3(0,0,18);let rY=-.8,rX=.5,dst=100,drg=false,px,py;
+function cam(){camera.position.set(tgt.x+dst*Math.cos(rX)*Math.sin(rY),tgt.y+dst*Math.cos(rX)*Math.cos(rY),tgt.z+dst*Math.sin(rX));camera.up.set(0,0,1);camera.lookAt(tgt)}cam();
+renderer.domElement.addEventListener('mousedown',e=>{drg=true;px=e.clientX;py=e.clientY});
+renderer.domElement.addEventListener('mousemove',e=>{if(!drg)return;rY+=(e.clientX-px)*.01;rX=Math.max(-.2,Math.min(1.4,rX+(e.clientY-py)*.005));px=e.clientX;py=e.clientY;cam()});
+renderer.domElement.addEventListener('mouseup',()=>drg=false);
+renderer.domElement.addEventListener('wheel',e=>{dst=Math.max(40,Math.min(250,dst+e.deltaY*.08));cam()});
+renderer.domElement.addEventListener('touchstart',e=>{drg=true;px=e.touches[0].clientX;py=e.touches[0].clientY});
+renderer.domElement.addEventListener('touchmove',e=>{if(!drg)return;rY+=(e.touches[0].clientX-px)*.01;rX=Math.max(-.2,Math.min(1.4,rX+(e.touches[0].clientY-py)*.005));px=e.touches[0].clientX;py=e.touches[0].clientY;cam()});
+renderer.domElement.addEventListener('touchend',()=>drg=false);
+let auto=true;renderer.domElement.addEventListener('mousedown',()=>auto=false);renderer.domElement.addEventListener('mouseup',()=>setTimeout(()=>auto=true,3000));
+(function a(){requestAnimationFrame(a);if(auto){rY+=.003;cam()}renderer.render(scene,camera)})();
+addEventListener('resize',()=>{camera.aspect=innerWidth/innerHeight;camera.updateProjectionMatrix();renderer.setSize(innerWidth,innerHeight)});
+</script>
+</body>
+</html>

@@ -5,5 +5,5 @@
 ## Parts
 
 | Part | Brand | Part Numbers | Material | Status |
-|------|-------|--------------|----------|--------|
-| *Coming soon* | | | | |
+|------|-------|-------------|----------|--------|
+| [Shackle Protector](universal-shackle-protector/) | Universal | N/A (custom design) | TPU 95A | Tested |
