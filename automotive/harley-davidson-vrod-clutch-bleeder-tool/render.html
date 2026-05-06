@@ -1,0 +1,310 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>V-Rod Clutch Bleeder Tool - 3D Viewer</title>
+<style>
+*{margin:0;padding:0;box-sizing:border-box}
+body{font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',sans-serif;background:#1a1a2e;color:#eee;overflow:hidden}
+#info{position:absolute;top:0;left:0;right:0;padding:15px 20px;background:rgba(0,0,0,.7);z-index:10;text-align:center}
+#info h1{font-size:18px;margin-bottom:5px}#info p{font-size:12px;color:#aaa}
+#specs{position:absolute;bottom:0;left:0;right:0;padding:12px 20px;background:rgba(0,0,0,.7);z-index:10;display:flex;justify-content:center;gap:40px;flex-wrap:wrap}
+.variant{text-align:center}.variant-label{font-size:11px;color:#4fc3f7;font-weight:bold;text-transform:uppercase;margin-bottom:6px}
+.spec-row{display:flex;gap:20px;justify-content:center}
+.spec{text-align:center}.spec-label{font-size:10px;color:#888;text-transform:uppercase}.spec-value{font-size:16px;font-weight:bold;color:#4fc3f7}
+</style>
+</head>
+<body>
+<div id="info">
+<h1>Harley-Davidson V-Rod Clutch Bleeder Tool</h1>
+<p>Clutch bleeder tool 36757-01B &bull; Fits 2002-2006 VRSCA / VRSCB / VRSCSE &bull; PLA &bull; Rev 01</p>
+</div>
+<div id="specs">
+<div class="variant">
+<div class="variant-label">Thread / Shaft</div>
+<div class="spec-row">
+<div class="spec"><div class="spec-label">Thread</div><div class="spec-value">M5&times;0.8</div></div>
+<div class="spec"><div class="spec-label">Shaft</div><div class="spec-value">12mm</div></div>
+</div>
+</div>
+<div class="variant">
+<div class="variant-label">Grip / Stem</div>
+<div class="spec-row">
+<div class="spec"><div class="spec-label">Hex AF</div><div class="spec-value">8mm</div></div>
+<div class="spec"><div class="spec-label">Stem</div><div class="spec-value">5&times;5mm</div></div>
+</div>
+</div>
+<div class="variant">
+<div class="variant-label">Dome / Bore</div>
+<div class="spec-row">
+<div class="spec"><div class="spec-label">Dome</div><div class="spec-value">7mm</div></div>
+<div class="spec"><div class="spec-label">Bore</div><div class="spec-value">2mm</div></div>
+<div class="spec"><div class="spec-label">Length</div><div class="spec-value">~30mm</div></div>
+</div>
+</div>
+</div>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js"></script>
+<script>
+// =====================================================================
+// V-Rod Clutch Bleeder Tool — 3D Viewer
+// All geometry uses +Y as the axial (vertical) direction, threads at
+// the bottom (-Y) and dome at the top (+Y), matching the SCAD source's
+// vertical print orientation.
+// =====================================================================
+const scene=new THREE.Scene();scene.background=new THREE.Color(0x1a1a2e);
+const camera=new THREE.PerspectiveCamera(45,innerWidth/innerHeight,.1,1000);
+const renderer=new THREE.WebGLRenderer({antialias:true});
+renderer.setSize(innerWidth,innerHeight);renderer.setPixelRatio(devicePixelRatio);
+document.body.appendChild(renderer.domElement);
+scene.add(new THREE.AmbientLight(0x606080,.5));
+[[0xffffff,.9,[50,80,60]],[0x4488cc,.3,[-30,20,-40]],[0xffffff,.4,[0,-30,60]]].forEach(([c,i,p])=>{const l=new THREE.DirectionalLight(c,i);l.position.set(...p);scene.add(l)});
+
+// ---- Dimensions (mirror the SCAD constants) ----
+const SHAFT_D=5.0, SHAFT_H=12.0, SHAFT_PITCH=0.8;
+const HEX_AF=8.0, HEX_H=3.0;
+const HEX_CORNERS=HEX_AF/Math.cos(Math.PI/6);
+const SHAFT_MINOR_D=SHAFT_D - 2*(5/8)*(SHAFT_PITCH*Math.sqrt(3)/2);
+const HEX_UNDER_H=(HEX_CORNERS - SHAFT_MINOR_D)/2;
+const HEX_OVER_H=2.5;
+const STEM_D=5.0, STEM_H=5.0;
+const DOME_D=7.0, DOME_R=DOME_D/2;
+const DOME_UNDER_H=(DOME_D - STEM_D)/2;
+const BORE_D=2.0;
+
+// Axial milestones (using "z" name internally for clarity vs SCAD;
+// these become Y coordinates when fed into LatheGeometry).
+const z0=0;
+const z1=SHAFT_H;
+const z2=z1+HEX_UNDER_H;
+const z3=z2+HEX_H;
+const z4=z3+HEX_OVER_H;
+const z5=z4+STEM_H;
+const z6=z5+DOME_UNDER_H;
+const z7=z6+DOME_R;
+const totalH=z7;
+const yOff=-totalH/2;     // center the part vertically about origin
+
+const toolColor=0xc8a55c;     // PLA gold/tan
+const goldMat=new THREE.MeshPhongMaterial({color:toolColor,specular:0x444444,shininess:50,side:THREE.DoubleSide});
+const boreMat=new THREE.MeshBasicMaterial({color:0x1a1a2e,side:THREE.BackSide});
+
+// ---- Lathe profile (everything except the hex flats; revolved around +Y) ----
+// THREE.LatheGeometry treats Vector2(x, y) as (radius, axialY).
+const profile=[];
+const NTAPER=24;
+function p(r,axY){profile.push(new THREE.Vector2(r,axY+yOff))}
+
+// Threaded shaft — silhouette at MINOR diameter so the helical thread tube
+// (added separately) reads as raised crests above the root. ISO 60° M5×0.8:
+//   major = 5.0, minor = 4.134, depth = 0.433 mm radial.
+p(BORE_D/2, z0);
+p(SHAFT_MINOR_D/2, z0);
+p(SHAFT_MINOR_D/2, z1);
+// Smooth join into the 45° countersink (already at minor dia)
+p(SHAFT_MINOR_D/2, z1);
+p(HEX_CORNERS/2, z2);
+// Hex region — silhouette uses the inscribed (apothem) radius so the
+// lathe doesn't poke through the hex prism that overlays this segment.
+p(HEX_AF/2, z2);
+p(HEX_AF/2, z3);
+// Curved cosine taper from HEX_AF/2 down to STEM_D/2
+for(let i=1;i<=NTAPER;i++){
+    const t=i/NTAPER;
+    const r=STEM_D/2 + (HEX_AF/2 - STEM_D/2)*(1+Math.cos(Math.PI*t))/2;
+    const z=z3 + t*HEX_OVER_H;
+    p(r,z);
+}
+// Stem
+p(STEM_D/2, z5);
+// Under-dome cone
+p(DOME_D/2, z6);
+// Dome hemisphere
+const NDOME=24;
+for(let i=1;i<=NDOME;i++){
+    const a=(i/NDOME)*(Math.PI/2);
+    const r=DOME_R*Math.cos(a);
+    const z=z6 + DOME_R*Math.sin(a);
+    p(r,z);
+}
+p(BORE_D/2, z7);
+
+const lathe=new THREE.LatheGeometry(profile, 96);
+lathe.computeVertexNormals();
+scene.add(new THREE.Mesh(lathe, goldMat));
+
+// ---- Hex prism over [z2..z3], aligned with +Y axis ----
+// Build the hex shape in XY (with the bore as a hole), extrude +Z, then
+// rotate -90° about X so the extrusion direction becomes +Y.
+// Vertices placed at 0°, 60°, 120°… so face midpoints land at 30°, 90°,
+// 150°… — matching the SCAD's text positions. (Earlier version had this
+// rotated 30°, which put the text labels straddling the corners.)
+const hexShape=new THREE.Shape();
+for(let i=0;i<6;i++){
+    const a=i*(Math.PI/3);
+    const r=HEX_CORNERS/2;
+    const x=r*Math.cos(a), y=r*Math.sin(a);
+    if(i===0) hexShape.moveTo(x,y); else hexShape.lineTo(x,y);
+}
+hexShape.closePath();
+const hexHole=new THREE.Path();
+hexHole.absarc(0,0,BORE_D/2,0,Math.PI*2,false);
+hexShape.holes.push(hexHole);
+const hexGeo=new THREE.ExtrudeGeometry(hexShape,{depth:HEX_H, bevelEnabled:false, curveSegments:32});
+const hexMesh=new THREE.Mesh(hexGeo, goldMat);
+hexMesh.rotation.x=-Math.PI/2;       // make extrusion direction +Y
+hexMesh.position.y=z2+yOff;
+scene.add(hexMesh);
+
+// ---- Through-bore visualization (Y-axial cylinder, BackSide so we see "into" the part) ----
+const boreGeo=new THREE.CylinderGeometry(BORE_D/2*0.98, BORE_D/2*0.98, totalH+0.4, 48, 1, true);
+const boreMesh=new THREE.Mesh(boreGeo, boreMat);
+boreMesh.position.y=yOff+totalH/2;
+scene.add(boreMesh);
+
+// ---- Threaded shaft (parametric ISO 60° thread surface) ----
+// Builds a deformed cylinder where r varies with (θ, y) to produce a real
+// single-start, right-handed M5×0.8 thread. At each point the axial
+// distance to the nearest thread crest (`phi`) determines the radius:
+//   r = major   when phi = 0     (crest, sharp peak)
+//   r = minor   when |phi| = pitch/2  (root)
+// Linear ramp in between gives a triangular ISO 60° profile.
+function buildThreadedShaft() {
+    const segCirc=96;
+    const segAxial=320;
+    const verts=[];
+    const indices=[];
+    const yStart=z0+yOff;
+    const halfP=SHAFT_PITCH/2;
+    const majorR=SHAFT_D/2;
+    const minorR=SHAFT_MINOR_D/2;
+    const turns=SHAFT_H/SHAFT_PITCH;
+
+    for (let j=0; j<=segAxial; j++) {
+        const tA=j/segAxial;
+        const y=yStart + tA*SHAFT_H;
+        // RH thread: crest theta DECREASES as y increases (one full turn per pitch)
+        const crestTheta=-2*Math.PI*tA*turns;
+        for (let i=0; i<=segCirc; i++) {
+            const theta=(i/segCirc)*2*Math.PI;
+            // Wrap (theta - crestTheta) into [-π, π]
+            let dPhi=theta - crestTheta;
+            dPhi=((dPhi+Math.PI) % (2*Math.PI) + 2*Math.PI) % (2*Math.PI) - Math.PI;
+            const phi=dPhi/(2*Math.PI)*SHAFT_PITCH;
+            const r=majorR - (majorR - minorR)*Math.abs(phi)/halfP;
+            verts.push(r*Math.cos(theta), y, r*Math.sin(theta));
+        }
+    }
+    for (let j=0; j<segAxial; j++) {
+        for (let i=0; i<segCirc; i++) {
+            const a=j*(segCirc+1)+i;
+            const b=a+1;
+            const c=a+(segCirc+1);
+            const d=c+1;
+            indices.push(a, c, b);
+            indices.push(b, c, d);
+        }
+    }
+    const geo=new THREE.BufferGeometry();
+    geo.setAttribute('position', new THREE.Float32BufferAttribute(verts, 3));
+    geo.setIndex(indices);
+    geo.computeVertexNormals();
+    return geo;
+}
+const threadMat=new THREE.MeshPhongMaterial({
+    color:toolColor, specular:0x444444, shininess:40,
+    side:THREE.DoubleSide, flatShading:true
+});
+scene.add(new THREE.Mesh(buildThreadedShaft(), threadMat));
+
+// ---- Embossed "DO NOT TORQ" on the six hex flats (matches SCAD's WORDS array) ----
+// SCAD: WORDS = ["DO", "NOT", "TORQ", "DO", "NOT", "TORQ"], theta = 30 + i*60
+const WORDS=["DO","NOT","TORQ","DO","NOT","TORQ"];
+const TEXT_THETA_DEG=[30,90,150,210,270,330];
+const apothem=HEX_AF/2;
+const hex_y_center=z2 + HEX_H/2 + yOff;
+
+function makeHexText(word, theta_deg, yCenter) {
+    const c=document.createElement('canvas');
+    c.width=512; c.height=256;
+    const ctx=c.getContext('2d');
+    ctx.clearRect(0,0,512,256);
+    // Pure black, heavy weight — must read against gold PLA at small scale.
+    ctx.fillStyle='#000000';
+    ctx.font='900 '+(word==='TORQ'?130:220)+'px "Arial Black", "Helvetica", sans-serif';
+    ctx.textAlign='center';
+    ctx.textBaseline='middle';
+    ctx.fillText(word, 256, 140);
+    const tex=new THREE.CanvasTexture(c);
+    tex.minFilter=THREE.LinearFilter;
+    tex.magFilter=THREE.LinearFilter;
+    tex.needsUpdate=true;
+
+    // Plane sized to fit comfortably on the hex face (face side ≈ 4.62 mm,
+    // hex height 3 mm) with a small margin.
+    const planeW=4.2, planeH=2.6;
+    const geom=new THREE.PlaneGeometry(planeW, planeH);
+    const mat=new THREE.MeshBasicMaterial({
+        map:tex, transparent:true, alphaTest:0.3,
+        side:THREE.DoubleSide, depthWrite:false,
+        polygonOffset:true, polygonOffsetFactor:-4, polygonOffsetUnits:-4
+    });
+    const mesh=new THREE.Mesh(geom, mat);
+    const theta=theta_deg*Math.PI/180;
+    // Sit slightly outside the face surface so the text reads above the gold material.
+    mesh.position.set(
+        (apothem+0.08)*Math.cos(theta),
+        yCenter,
+        (apothem+0.08)*Math.sin(theta)
+    );
+    // Default plane normal +Z; rotate around Y so normal points radially outward.
+    mesh.rotation.y=Math.PI/2 - theta;
+    scene.add(mesh);
+}
+for(let i=0;i<6;i++) makeHexText(WORDS[i], TEXT_THETA_DEG[i], hex_y_center);
+
+// ---- Grid + camera (Y-up) ----
+const grid=new THREE.GridHelper(60,30,0x444466,0x2a2a44);
+grid.position.y=yOff-0.5;
+scene.add(grid);
+
+const tgt=new THREE.Vector3(0,0,0);
+let yaw=-0.6, pitch=0.25, dst=55, drg=false, px, py;
+function cam(){
+    camera.position.set(
+        tgt.x + dst*Math.cos(pitch)*Math.sin(yaw),
+        tgt.y + dst*Math.sin(pitch),
+        tgt.z + dst*Math.cos(pitch)*Math.cos(yaw)
+    );
+    camera.up.set(0,1,0);
+    camera.lookAt(tgt);
+}
+cam();
+
+renderer.domElement.addEventListener('mousedown',e=>{drg=true;px=e.clientX;py=e.clientY});
+renderer.domElement.addEventListener('mousemove',e=>{
+    if(!drg) return;
+    yaw+=(e.clientX-px)*.01;
+    pitch=Math.max(-1.4, Math.min(1.4, pitch+(e.clientY-py)*.005));
+    px=e.clientX; py=e.clientY; cam();
+});
+renderer.domElement.addEventListener('mouseup',()=>drg=false);
+renderer.domElement.addEventListener('wheel',e=>{dst=Math.max(20, Math.min(150, dst+e.deltaY*.04)); cam()});
+renderer.domElement.addEventListener('touchstart',e=>{drg=true; px=e.touches[0].clientX; py=e.touches[0].clientY});
+renderer.domElement.addEventListener('touchmove',e=>{
+    if(!drg) return;
+    yaw+=(e.touches[0].clientX-px)*.01;
+    pitch=Math.max(-1.4, Math.min(1.4, pitch+(e.touches[0].clientY-py)*.005));
+    px=e.touches[0].clientX; py=e.touches[0].clientY; cam();
+});
+renderer.domElement.addEventListener('touchend',()=>drg=false);
+
+let auto=true;
+renderer.domElement.addEventListener('mousedown',()=>auto=false);
+renderer.domElement.addEventListener('mouseup',()=>setTimeout(()=>auto=true,3000));
+
+(function animate(){requestAnimationFrame(animate); if(auto){yaw+=.005; cam()} renderer.render(scene,camera)})();
+addEventListener('resize',()=>{camera.aspect=innerWidth/innerHeight; camera.updateProjectionMatrix(); renderer.setSize(innerWidth,innerHeight)});
+</script>
+</body>
+</html>

@@ -7,3 +7,4 @@
 | Part | Brand | Part Numbers | Material | Status |
 |------|-------|-------------|----------|--------|
 | [D-Ring Shackle Protector](d-ring-shackle-protector/) | — | N/A | TPU 95A | Untested |
+| [V-Rod Secondary Clutch Actuator Bleeder Tool](harley-davidson-vrod-clutch-bleeder-tool/) | Harley-Davidson | 36757-01B, 36757-01K | PLA | Tested |
