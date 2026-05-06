@@ -10,7 +10,7 @@
 3D printable bleeder tool for the Harley-Davidson V-Rod secondary clutch actuator. Used during the clutch bleed procedure to route fluid through a vinyl hose into a catch container, keeping DOT brake fluid off paint and frame. **This is a service tool, not a part of the motorcycle — it does not seal the bleed port and is never a substitute for the OEM bleeder screw (HD 36757-01K).**
 
 <h2 align="center"><a href="https://github.com/jdinino/3d-parts/releases/download/clutch-bleeder-tool-r01/36757-01B-r01.stl">Download the Bleeder Tool</a></h2>
-<h3 align="center"><a href="36757-01B-r01.stl">View 3D Model</a> | <a href="https://jdinino.github.io/3d-parts/automotive/harley-davidson-vrod-clutch-bleeder-tool/render.html">Interactive Viewer</a></h3>
+<h3 align="center"><a href="36757-01B-r01.stl">View 3D Model</a> | <a href="https://jdinino.github.io/3d-parts/automotive/harley-davidson-v-rod-clutch-bleeder/render.html">Interactive Viewer</a></h3>
 
 <p align="center">
   <img src="https://img.shields.io/badge/Material-PLA-brightgreen" alt="Material">
@@ -125,5 +125,5 @@ Issues and improvements welcome. Please include:
 ---
 
 <p align="center">
-  <img src="https://api.visitorbadge.io/api/visitors?path=https%3A%2F%2Fgithub.com%2Fjdinino%2F3d-parts%2Ftree%2Fmain%2Fautomotive%2Fharley-davidson-vrod-clutch-bleeder-tool&label=Views&countColor=%23263759" alt="Views" />
+  <img src="https://api.visitorbadge.io/api/visitors?path=https%3A%2F%2Fgithub.com%2Fjdinino%2F3d-parts%2Ftree%2Fmain%2Fautomotive%2Fharley-davidson-v-rod-clutch-bleeder&label=Views&countColor=%23263759" alt="Views" />
 </p>
