@@ -85,8 +85,9 @@ The interactive viewer (`render.html`) shows the embossed variant for reference 
 
 Before slicing, verify:
 
-1. **Seam position is set to Random.** Aligned or sharpest-corner seams put every layer's start/stop point on the same radial line, gashing every thread along that line. The M5 will not engage cleanly with an aligned seam.
-2. **Z-hop is enabled (≥0.4 mm).** The part has a small first-layer footprint and a tall, narrow profile — without Z-hop the nozzle will drag across the dome during travel moves and pull the print off the bed. The brim alone is not enough to resist nozzle drag at this scale.
+1. **Nozzle: 0.2 mm strongly recommended.** The M5×0.8 thread crests are only 0.43 mm radial. A 0.4 mm nozzle smears the threads into a coarse continuous helix; a 0.2 mm nozzle resolves discrete crests that engage cleanly with the mating M5 thread. Set extrusion width to 0.20–0.22 mm and layer height to 0.08 mm. A 0.4 mm print will function but threads will be sloppy.
+2. **Seam position is set to Random.** Aligned or sharpest-corner seams put every layer's start/stop point on the same radial line, gashing every thread along that line. The M5 will not engage cleanly with an aligned seam.
+3. **Z-hop is enabled (≥0.4 mm).** The part has a small first-layer footprint and a tall, narrow profile — without Z-hop the nozzle will drag across the dome during travel moves and pull the print off the bed. The brim alone is not enough to resist nozzle drag at this scale.
 
 After printing, verify:
 

@@ -13,9 +13,8 @@
 <h3 align="center"><a href="36757-01B-r01.stl">View 3D Model</a> | <a href="https://jdinino.github.io/3d-parts/automotive/harley-davidson-v-rod-clutch-bleeder/render.html">Interactive Viewer</a></h3>
 
 <p align="center">
-  <img src="https://img.shields.io/badge/Material-PLA-brightgreen" alt="Material">
-  <img src="https://img.shields.io/badge/Revision-r01-blue" alt="Revision">
-  <img src="https://img.shields.io/badge/Status-Tested-success" alt="Status">
+  <img src="https://img.shields.io/badge/Material-PLA-brightgreen" alt="Material: PLA">
+  <img src="https://img.shields.io/badge/Revision-r01-blue" alt="Revision: r01">
 </p>
 
 ## Compatible Part Numbers
@@ -25,7 +24,7 @@
 | **36757-01B** | This printed bleeder tool (B = bleed) |
 | 36757-01K | Harley-Davidson OEM bleeder screw fitted to the V-Rod secondary clutch actuator — listed for searchability. The printed bleeder tool fits the same M5×0.8 bleed port but does **not** perform the screw's sealing function. |
 
-## Compatible V-Rod Models
+## Compatible Motorcycle Models
 
 ### Harley-Davidson
 - **2002-2004 VRSCA** V-Rod
@@ -52,7 +51,8 @@
 
 | Setting | Value |
 |---------|-------|
-| Layer Height | 0.12 mm (0.16 mm acceptable) |
+| **Nozzle Diameter** | **0.2 mm strongly recommended.** A 0.4 mm nozzle prints, but the M5×0.8 thread crests are only 0.43 mm radial — a 0.2 mm nozzle resolves them as discrete ridges instead of smearing them into a coarse helix. Set extrusion width to 0.20–0.22 mm. |
+| Layer Height | 0.08 mm with 0.2 mm nozzle, 0.12 mm with 0.4 mm nozzle (0.16 mm acceptable, threads will be coarser) |
 | Wall Count | 4 |
 | Infill | 100% |
 | Print Speed | 15-20 mm/s outer, 50 mm/s inner |

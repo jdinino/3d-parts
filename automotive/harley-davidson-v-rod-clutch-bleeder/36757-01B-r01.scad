@@ -12,9 +12,14 @@
 //
 // PLA PRINT SETTINGS (tested, prints support-free)
 // -----------------------------------------------------------------
+// Nozzle:         0.2 mm STRONGLY RECOMMENDED. The M5×0.8 thread crests
+//                 are only 0.43 mm radial — a 0.4 mm nozzle smears them
+//                 into a coarse helix; a 0.2 mm nozzle resolves discrete
+//                 ridges. Set extrusion width to 0.20–0.22 mm.
 // Orientation:    threads down, dome up
 // Supports:       OFF (geometry is designed support-free)
-// Layer height:   0.12 mm  (0.16 mm acceptable, threads slightly coarser)
+// Layer height:   0.08 mm with 0.2 mm nozzle (use this for the M5 threads)
+//                 0.12 mm with 0.4 mm nozzle (acceptable, threads coarser)
 // Perimeters:     4
 // Infill:         100 %  (small part, sparse infill saves nothing meaningful)
 // Brim:           15 mm wide, 8 outline loops  (small first-layer footprint)
