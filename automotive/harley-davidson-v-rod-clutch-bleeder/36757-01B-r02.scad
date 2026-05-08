@@ -90,8 +90,10 @@ BORE_D = 2.0;
 // false if printing with a 0.4 mm nozzle and you'd prefer smooth hex
 // flats over partially-legible text.
 EMBOSS_TEXT = true;
-// CW order around the hex so reading the printed part reads DO NOT TORQ.
-WORDS       = ["TORQ", "NOT", "DO", "TORQ", "NOT", "DO"];
+// CCW order around the hex (when the part is held threads-down): when
+// you rotate the printed part the natural way in your hand, the text
+// reads DO NOT TORQ.
+WORDS       = ["DO", "NOT", "TORQ", "DO", "NOT", "TORQ"];
 TEXT_SIZE   = 1.4;
 TEXT_HEIGHT = 0.3;
 function word_size(w) = (w == "TORQ") ? 1.0 : TEXT_SIZE;
