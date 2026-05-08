@@ -57,11 +57,9 @@ Clutch bleeder tool for the Harley-Davidson V-Rod secondary clutch actuator. Dur
 
 ### Part Markings
 
-The shipped STL is printed without engraved markings — at M5 hex scale (~4.6 mm flats) FDM bridging artifacts make the letters illegible at standard layer heights. The OpenSCAD source has an optional `EMBOSS_TEXT` parameter that adds "DO NOT TORQ" / "DO NOT TORQ" across the six hex flats (sequence: `DO`, `NOT`, `TORQ`, `DO`, `NOT`, `TORQ` at 30°, 90°, 150°, 210°, 270°, 330°).
+The shipped r02 STL has `DO NOT TORQ` embossed across the six hex flats (sequence around the hex, clockwise reading order: `TORQ`, `NOT`, `DO`, `TORQ`, `NOT`, `DO` at θ = 30°, 90°, 150°, 210°, 270°, 330°). Letters are 1.4 mm tall (1.0 mm for `TORQ`) and protrude 0.3 mm radially from each hex flat.
 
-To enable: set `EMBOSS_TEXT = true` in `36757-01B-r01.scad` (line 75) and re-export the STL. Recommended only if printing at ≥1.5× scale or with a 0.2 mm nozzle and 0.08 mm layer height.
-
-The interactive viewer (`render.html`) shows the embossed variant for reference even though the shipped STL is plain — this is intentional, so the visualization documents the marking layout that the SCAD source supports.
+The text resolves cleanly when printed with the recommended 0.2 mm nozzle and 0.08 mm layer height. With a 0.4 mm nozzle the letters will be partially obscured by FDM bridging artifacts at this scale (~4.6 mm flats). To disable embossing for a smooth-flat variant: set `EMBOSS_TEXT = false` in `36757-01B-r02.scad` and re-export the STL.
 
 ## Material Requirements
 
@@ -103,4 +101,5 @@ If the part rocks loose mid-print: print 3-4 copies on the bed at once for added
 
 | Rev | Date | Changes |
 |-----|------|---------|
-| **r01** | **2026-05-06** | **Initial design: M5×0.8 threaded shaft, hex grip with 45° countersink, cosine over-hex taper, 5mm stem, 7mm hemisphere dome, 2mm through-bore. PLA tested on V-Rod.** |
+| r01 | 2026-05-06 | Initial design: M5×0.8 threaded shaft, hex grip with 45° countersink, cosine over-hex taper, 5mm stem, 7mm hemisphere dome, 2mm through-bore. PLA tested on V-Rod. |
+| **r02** | **2026-05-07** | **`EMBOSS_TEXT` enabled by default. Word order set to CW reading (`TORQ`, `NOT`, `DO`, ×2) so rotating the printed part naturally reads `DO NOT TORQ`. Recommends 0.2 mm nozzle / 0.08 mm layer height for legibility.** |

@@ -9,12 +9,12 @@
 
 3D printable bleeder tool for the Harley-Davidson V-Rod secondary clutch actuator. Used during the clutch bleed procedure to route fluid through a vinyl hose into a catch container, keeping DOT brake fluid off paint and frame. **This is a service tool, not a part of the motorcycle — it does not seal the bleed port and is never a substitute for the OEM bleeder screw (HD 36757-01K).**
 
-<h2 align="center"><a href="https://github.com/jdinino/3d-parts/releases/download/clutch-bleeder-tool-r01/36757-01B-r01.stl">Download the Bleeder Tool</a></h2>
-<h3 align="center"><a href="36757-01B-r01.stl">View 3D Model</a> | <a href="https://jdinino.github.io/3d-parts/automotive/harley-davidson-v-rod-clutch-bleeder/render.html">Interactive Viewer</a></h3>
+<h2 align="center"><a href="https://github.com/jdinino/3d-parts/releases/download/clutch-bleeder-tool-r02/36757-01B-r02.stl">Download the Bleeder Tool</a></h2>
+<h3 align="center"><a href="36757-01B-r02.stl">View 3D Model</a> | <a href="https://jdinino.github.io/3d-parts/automotive/harley-davidson-v-rod-clutch-bleeder/render.html">Interactive Viewer</a></h3>
 
 <p align="center">
   <img src="https://img.shields.io/badge/Material-PLA-brightgreen" alt="Material: PLA">
-  <img src="https://img.shields.io/badge/Revision-r01-blue" alt="Revision: r01">
+  <img src="https://img.shields.io/badge/Revision-r02-blue" alt="Revision: r02">
 </p>
 
 ## Compatible Part Numbers
@@ -67,8 +67,6 @@
 | Retraction | 1.0-1.5 mm direct drive, 4-5 mm Bowden |
 | **Seam Position** | **Random — REQUIRED.** An aligned or sharpest-corner seam places the layer-change scar on a single radial line down the shaft, gashing every thread along that line and ruining the M5 fit. Random seam distributes the artifact around the helix. |
 
-Total print time: ~45 min single, ~2 hr for 4 copies.
-
 ### Material Notes
 
 | Part | Material | Status | Notes |
@@ -81,8 +79,8 @@ Total print time: ~45 min single, ~2 hr for 4 copies.
 
 | File | Description |
 |------|-------------|
-| `36757-01B-r01.stl` | 3D printable model |
-| `36757-01B-r01.scad` | OpenSCAD parametric source (BOSL2 required) |
+| `36757-01B-r02.stl` | 3D printable model |
+| `36757-01B-r02.scad` | OpenSCAD parametric source (BOSL2 required) |
 | `clutch-bleeder-tool-FSD.md` | Functional Specification Document |
 | `render.html` | Interactive 3D preview |
 
@@ -105,7 +103,8 @@ Total print time: ~45 min single, ~2 hr for 4 copies.
 
 | Rev | Date | Changes |
 |-----|------|---------|
-| **r01** | **2026-05-06** | **Initial design: M5×0.8 threaded shaft, 8mm hex grip, curved cosine taper, 5mm stem, 7mm hemisphere dome, 2mm through-bore. Tested on V-Rod.** |
+| r01 | 2026-05-06 | Initial design: M5×0.8 threaded shaft, 8mm hex grip, curved cosine taper, 5mm stem, 7mm hemisphere dome, 2mm through-bore. Tested on V-Rod. |
+| **r02** | **2026-05-07** | **Embossed `DO NOT TORQ` text enabled on the six hex flats (CW reading order). Recommends 0.2 mm nozzle / 0.08 mm layer height for legibility.** |
 
 ## License
 

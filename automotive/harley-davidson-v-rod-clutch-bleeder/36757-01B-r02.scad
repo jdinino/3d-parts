@@ -50,10 +50,7 @@
 //   Retraction:   1.0–1.5 mm direct drive, 4–5 mm Bowden
 //
 // If the part rocks loose mid-print: print 3–4 copies on the bed at once,
-// or set EMBOSS_TEXT = true and reduce TEXT_HEIGHT, or fall back to a
-// sacrificial print pad (ask Claude to add one).
-//
-// Total print time: ~45 min single, ~2 hr for 4 copies.
+// or reduce TEXT_HEIGHT, or fall back to a sacrificial print pad.
 // =====================================================================
 
 include <BOSL2/std.scad>
@@ -87,12 +84,14 @@ DOME_UNDER_H = (DOME_D - STEM_D) / 2;
 
 BORE_D = 2.0;
 
-// ---- TEXT (optional — set true to add embossed "DO NOT TORQ" on hex flats) ----
-// Default off because at the small scale of an M5 hex (~4.6 mm wide flats)
-// the letters tend to be illegible after FDM bridging artefacts. Re-enable
-// if you're printing at high resolution or scaled up.
-EMBOSS_TEXT = false;
-WORDS       = ["DO", "NOT", "TORQ", "DO", "NOT", "TORQ"];
+// ---- TEXT — embossed "DO NOT TORQ" on the six hex flats ----
+// Enabled by default in r02. With the recommended 0.2 mm nozzle and
+// 0.08 mm layer height the M5-scale letters resolve cleanly. Set to
+// false if printing with a 0.4 mm nozzle and you'd prefer smooth hex
+// flats over partially-legible text.
+EMBOSS_TEXT = true;
+// CW order around the hex so reading the printed part reads DO NOT TORQ.
+WORDS       = ["TORQ", "NOT", "DO", "TORQ", "NOT", "DO"];
 TEXT_SIZE   = 1.4;
 TEXT_HEIGHT = 0.3;
 function word_size(w) = (w == "TORQ") ? 1.0 : TEXT_SIZE;
