@@ -56,7 +56,6 @@ omitted — no remaining surface is both large enough and functionally free
 |----------|--------|--------|
 | TPU 95A | **Recommended** | Tested. Hollow single-wall print reproduces OEM rubber compliance; damps airbox cover vibration and survives repeated prong insertion. |
 | TPU 85A | Untested | Softer shore would be closer to OEM rubber; likely works with solid infill instead of hollow. |
-| PETG / PLA / ABS | Not recommended | Rigid materials cannot snap into the panel hole or grip the cover prong; defeats the vibration-isolation function. |
 
 ## Revision History
 
