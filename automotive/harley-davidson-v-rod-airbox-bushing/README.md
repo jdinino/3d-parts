@@ -55,9 +55,10 @@
 | Bed Temp | 45-50°C |
 | Cooling | 50-70% |
 | Orientation | Base down |
-| Supports | **Required** — a single perimeter cannot bridge the head underside over the groove; supports tear cleanly out of TPU |
+| Supports | **Required** |
 
-The 1-perimeter / 0% infill combination is deliberate, not a draft setting: it prints the bushing as a hollow rubber shell, which is what makes a 95A filament squish like the softer OEM molded part. Printing solid produces a bushing too stiff to snap into the panel or accept the cover prong.
+The 1-perimeter / 0% infill combination is deliberate, not a draft setting: it prints the bushing as a hollow rubber shell, which is what makes a 95A filament squish like the softer OEM molded part.
+Printing solid produces a bushing too stiff to snap into the panel or accept the cover prong.
 
 ### Material Notes
 
@@ -65,7 +66,6 @@ The 1-perimeter / 0% infill combination is deliberate, not a draft setting: it p
 |------|----------|--------|-------|
 | Bushing | TPU 95A | **Recommended** | Tested with hollow print settings above |
 | Bushing | TPU 85A | Untested | Closer to OEM durometer; may allow solid print |
-| Bushing | PLA/PETG/ABS | Not recommended | Rigid — cannot snap in or damp vibration |
 
 ## Files
 
