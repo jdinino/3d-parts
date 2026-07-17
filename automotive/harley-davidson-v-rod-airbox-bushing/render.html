@@ -1,0 +1,154 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>V-Rod Airbox Mounting Bushing - 3D Viewer</title>
+<style>
+*{margin:0;padding:0;box-sizing:border-box}
+body{font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',sans-serif;background:#1a1a2e;color:#eee;overflow:hidden}
+#info{position:absolute;top:0;left:0;right:0;padding:15px 20px;background:rgba(0,0,0,.7);z-index:10;text-align:center}
+#info h1{font-size:18px;margin-bottom:5px}#info p{font-size:12px;color:#aaa}
+#specs{position:absolute;bottom:0;left:0;right:0;padding:12px 20px;background:rgba(0,0,0,.7);z-index:10;display:flex;justify-content:center;gap:40px;flex-wrap:wrap}
+.variant{text-align:center}.variant-label{font-size:11px;color:#4fc3f7;font-weight:bold;text-transform:uppercase;margin-bottom:6px}
+.spec-row{display:flex;gap:20px;justify-content:center}
+.spec{text-align:center}.spec-label{font-size:10px;color:#888;text-transform:uppercase}.spec-value{font-size:16px;font-weight:bold;color:#4fc3f7}
+</style>
+</head>
+<body>
+<div id="info">
+<h1>Harley-Davidson V-Rod Airbox Mounting Bushing</h1>
+<p>OEM 11519 / 11519-A &bull; VRSC V-Rod airbox cover &amp; overflow bottle mount &bull; TPU 95A &bull; Rev 03</p>
+</div>
+<div id="specs">
+<div class="variant">
+<div class="variant-label">Base / Groove</div>
+<div class="spec-row">
+<div class="spec"><div class="spec-label">Flange</div><div class="spec-value">&Oslash;20&times;3mm</div></div>
+<div class="spec"><div class="spec-label">Groove</div><div class="spec-value">&Oslash;11&times;3mm</div></div>
+</div>
+</div>
+<div class="variant">
+<div class="variant-label">Head</div>
+<div class="spec-row">
+<div class="spec"><div class="spec-label">Taper</div><div class="spec-value">&Oslash;16&rarr;&Oslash;13</div></div>
+<div class="spec"><div class="spec-label">Height</div><div class="spec-value">9mm</div></div>
+</div>
+</div>
+<div class="variant">
+<div class="variant-label">Bore</div>
+<div class="spec-row">
+<div class="spec"><div class="spec-label">Through</div><div class="spec-value">&Oslash;8mm</div></div>
+<div class="spec"><div class="spec-label">Flare</div><div class="spec-value">&Oslash;12mm</div></div>
+</div>
+</div>
+</div>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js"></script>
+<script>
+// =====================================================================
+// V-Rod Airbox Mounting Bushing (11519) — 3D Viewer
+// Pure surface of revolution: LatheGeometry from the SCAD profile.
+// +Y is the part axis (print Z); base flange at the bottom.
+// =====================================================================
+const scene=new THREE.Scene();scene.background=new THREE.Color(0x1a1a2e);
+const camera=new THREE.PerspectiveCamera(45,innerWidth/innerHeight,.1,1000);
+const renderer=new THREE.WebGLRenderer({antialias:true});
+renderer.setSize(innerWidth,innerHeight);renderer.setPixelRatio(devicePixelRatio);
+document.body.appendChild(renderer.domElement);
+scene.add(new THREE.AmbientLight(0x606080,.6));
+[[0xffffff,.9,[50,80,60]],[0x4488cc,.3,[-30,20,-40]],[0xffffff,.4,[0,-30,60]]].forEach(([c,i,p])=>{const l=new THREE.DirectionalLight(c,i);l.position.set(...p);scene.add(l)});
+
+// ---- Dimensions (mirror the SCAD constants) ----
+const BASE_OD=20.0, BASE_H=3.0;
+const GROOVE_D=11.0, GROOVE_H=3.0;
+const HEAD_BOT_D=16.0, HEAD_TOP_D=13.0;
+const TOTAL_H=9.0;
+const BORE_D=8.0, FLARE_D=12.0, FLARE_H=2.0;
+
+// Profile (r, y) — same point order as the SCAD polygon, closed loop.
+// LatheGeometry wants an open polyline; walk outer contour top-down then
+// bore back to the flare so both surfaces render (DoubleSide material).
+const prof=[
+    [FLARE_D/2, 0],
+    [BASE_OD/2, 0],
+    [BASE_OD/2, BASE_H],
+    [GROOVE_D/2, BASE_H],
+    [GROOVE_D/2, BASE_H+GROOVE_H],
+    [HEAD_BOT_D/2, BASE_H+GROOVE_H],
+    [HEAD_TOP_D/2, TOTAL_H],
+    [BORE_D/2, TOTAL_H],
+    [BORE_D/2, FLARE_H],
+    [FLARE_D/2, 0]
+];
+const pts=prof.map(([r,y])=>new THREE.Vector2(r,y));
+const yOff=-TOTAL_H/2;   // center vertically in view
+const geo=new THREE.LatheGeometry(pts,128);
+geo.computeVertexNormals();
+const mat=new THREE.MeshStandardMaterial({color:0x2b2b2e,roughness:.85,metalness:.05,side:THREE.DoubleSide});
+const part=new THREE.Mesh(geo,mat);
+part.position.y=yOff;
+scene.add(part);
+
+// ---- 'r03' marking hint on the underside ----
+(function(){
+    const c=document.createElement('canvas'); c.width=256; c.height=128;
+    const ctx=c.getContext('2d'); ctx.clearRect(0,0,256,128);
+    ctx.fillStyle='#111114';
+    ctx.font='900 90px "Arial Black","Helvetica",sans-serif';
+    ctx.textAlign='center'; ctx.textBaseline='middle';
+    ctx.fillText('r03',128,64);
+    const tex=new THREE.CanvasTexture(c);
+    tex.minFilter=THREE.LinearFilter; tex.magFilter=THREE.LinearFilter;
+    const g=new THREE.PlaneGeometry(5.0,2.8);
+    const m=new THREE.MeshBasicMaterial({map:tex,transparent:true,alphaTest:.3,side:THREE.DoubleSide,depthWrite:false,polygonOffset:true,polygonOffsetFactor:-4,polygonOffsetUnits:-4});
+    const mesh=new THREE.Mesh(g,m);
+    mesh.position.set(0,yOff-0.02,7.9);
+    mesh.rotation.x=Math.PI/2;      // face downward (readable from below)
+    scene.add(mesh);
+})();
+
+// ---- Grid + camera (Y-up) ----
+const grid=new THREE.GridHelper(60,30,0x444466,0x2a2a44);
+grid.position.y=yOff-0.5;
+scene.add(grid);
+
+const tgt=new THREE.Vector3(0,0,0);
+let yaw=-0.6, pitch=0.35, dst=48, drg=false, px, py;
+function cam(){
+    camera.position.set(
+        tgt.x + dst*Math.cos(pitch)*Math.sin(yaw),
+        tgt.y + dst*Math.sin(pitch),
+        tgt.z + dst*Math.cos(pitch)*Math.cos(yaw)
+    );
+    camera.up.set(0,1,0);
+    camera.lookAt(tgt);
+}
+cam();
+
+renderer.domElement.addEventListener('mousedown',e=>{drg=true;px=e.clientX;py=e.clientY});
+renderer.domElement.addEventListener('mousemove',e=>{
+    if(!drg) return;
+    yaw+=(e.clientX-px)*.01;
+    pitch=Math.max(-1.4, Math.min(1.4, pitch+(e.clientY-py)*.005));
+    px=e.clientX; py=e.clientY; cam();
+});
+renderer.domElement.addEventListener('mouseup',()=>drg=false);
+renderer.domElement.addEventListener('wheel',e=>{dst=Math.max(15, Math.min(120, dst+e.deltaY*.04)); cam()});
+renderer.domElement.addEventListener('touchstart',e=>{drg=true; px=e.touches[0].clientX; py=e.touches[0].clientY});
+renderer.domElement.addEventListener('touchmove',e=>{
+    if(!drg) return;
+    yaw+=(e.touches[0].clientX-px)*.01;
+    pitch=Math.max(-1.4, Math.min(1.4, pitch+(e.touches[0].clientY-py)*.005));
+    px=e.touches[0].clientX; py=e.touches[0].clientY; cam();
+});
+renderer.domElement.addEventListener('touchend',()=>drg=false);
+
+let auto=true;
+renderer.domElement.addEventListener('mousedown',()=>auto=false);
+renderer.domElement.addEventListener('mouseup',()=>setTimeout(()=>auto=true,3000));
+
+(function animate(){requestAnimationFrame(animate); if(auto){yaw+=.005; cam()} renderer.render(scene,camera)})();
+addEventListener('resize',()=>{camera.aspect=innerWidth/innerHeight; camera.updateProjectionMatrix(); renderer.setSize(innerWidth,innerHeight)});
+</script>
+</body>
+</html>
