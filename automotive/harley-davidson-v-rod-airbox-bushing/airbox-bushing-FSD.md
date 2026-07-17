@@ -45,7 +45,7 @@ Rubber mounting bushing for the Harley-Davidson V-Rod airbox cover (OEM 11519, "
 the part's underside. Marking depth is deliberately shallow: with the
 validated 1-perimeter / 0% infill print settings, only the bottom solid skin
 (~0.8 mm) carries the mark, and a deeper cut would perforate the hollow part.
-(The fit-test article carried a 0.9 mm-deep prototype marking and printed
+(The fit-test article carried a 0.6 mm-deep prototype marking and printed
 successfully, so 0.4 mm is conservative.) Name and dimension markings are
 omitted — no remaining surface is both large enough and functionally free
 (the top face and head engage the cover prong, the groove engages the panel).
