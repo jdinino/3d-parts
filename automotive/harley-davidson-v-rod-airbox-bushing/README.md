@@ -85,6 +85,10 @@ Printing solid produces a bushing too stiff to snap into the panel or accept the
 | `airbox-bushing-FSD.md` | Functional Specification Document |
 | `render.html` | Interactive 3D preview |
 
+## Installation
+
+Installs exactly like the OEM grommet — press in by hand. Printed per the settings above, the part squishes and flexes as good as OEM.
+
 ## Revision History
 
 | Rev | Date | Changes |
