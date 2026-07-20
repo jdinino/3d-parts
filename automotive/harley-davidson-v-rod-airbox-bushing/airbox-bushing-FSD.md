@@ -2,7 +2,7 @@
 
 ## Overview
 
-Rubber mounting bushing for the Harley-Davidson V-Rod airbox cover (OEM 11519, "RUBBER MOUNT, AIRBOX COVER"; alternate 11519-A). The bushing snaps into the airbox panel hole via its Ø11 groove; the airbox cover's prong presses into the Ø8 bore, which is flared at the underside for lead-in. Printed hollow in TPU 95A (1 perimeter, 0% infill) to reproduce the compliance of the OEM molded rubber; the exact validated PrusaSlicer profile ships as `11519-r03.3mf`. The profile's two-perimeter height-range override on the first groove layer (z 3.0-3.2 mm) is required, not optional — it fills the groove-to-flange junction that otherwise shears when the cover prong is pulled out (see README Print Settings).
+Rubber mounting bushing for the Harley-Davidson V-Rod airbox cover (OEM 11519, "RUBBER MOUNT, AIRBOX COVER"; alternate 11519-A). The bushing snaps into the airbox panel hole via its Ø11 groove; the airbox cover's prong presses into the Ø8 bore, which is flared at the underside for lead-in. Printed hollow in TPU 95A (1 perimeter, 0% infill) to reproduce the compliance of the OEM molded rubber; the exact validated PrusaSlicer profile ships as `11519-r03.3mf`. The profile's two-perimeter height-range override on the first groove layer (z 3.0-3.2 mm) is required, not optional — it fills the groove-to-flange junction, where flex concentrates and a single-perimeter layer tears in service (see README Print Settings).
 
 ## Bushing Specifications
 
