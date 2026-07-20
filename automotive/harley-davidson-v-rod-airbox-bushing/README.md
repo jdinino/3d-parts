@@ -17,6 +17,10 @@
   <img src="https://img.shields.io/badge/Revision-r03-blue" alt="Revision: r03">
 </p>
 
+<p align="center">
+  <img src="11519-r03-photo.webp" alt="3D printed airbox mounting bushings in TPU 95A, r03 — head side and marked underside" width="480">
+</p>
+
 ## Compatible Part Numbers
 
 | Part Number | Type |
@@ -80,13 +84,6 @@ Printing solid produces a bushing too stiff to snap into the panel or accept the
 | `11519-r03.scad` | OpenSCAD parametric source |
 | `airbox-bushing-FSD.md` | Functional Specification Document |
 | `render.html` | Interactive 3D preview |
-
-## Installation
-
-1. Print in TPU 95A per settings above (or slice the included `11519-r03.3mf` directly); remove supports from the groove and flare
-2. Press the bushing head-first into the airbox panel hole until the Ø11 groove snaps into the panel
-3. Press the airbox cover prong into the Ø8 bore — the flared underside provides the lead-in
-4. A drop of adhesive between flange and panel is a common V-Rod owner trick to keep the grommet from walking out with the cover
 
 ## Revision History
 
