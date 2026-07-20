@@ -55,7 +55,8 @@ difference() {
 
 // ============================================================
 //  PRINT — TPU 95A — FIELD-VALIDATED (owner-tested, r03):
-//    perimeters = 1 (+1 on first groove layer, z 3.0-3.2)
+//    perimeters = 1 (+1 on first groove layer, z 3.0-3.2 — REQUIRED,
+//                    fills the groove/flange junction shear plane)
 //    infill     = 0%        (hollow shell = matches OEM rubber squish)
 //    supports   = ENABLED   (single wall can't bridge head underside)
 //  Orientation: base down.

@@ -50,7 +50,8 @@ The exact validated profile ships as [`11519-r03.3mf`](https://github.com/jdinin
 | Setting | Value |
 |---------|-------|
 | Layer Height | 0.2 mm |
-| Wall Count | **1** (+1 perimeter on the first groove layer — z 3.0-3.2 mm height-range override in the 3MF) |
+| Wall Count | **1** (global — see Groove-Root Reinforcement below before changing) |
+| **Groove-Root Reinforcement** | **2 perimeters on the z 3.0-3.2 mm layer — REQUIRED.** The first groove layer is the only material tying the groove stem and head to the base flange. Printed hollow at a single 0.45 mm perimeter, that layer becomes a shear plane: the bushing looks fine, then the head tears off at the flange the first time the cover prong is pulled back out. Two perimeters on the Ø8-Ø11 ring effectively fill that junction solid. The included 3MF implements this as a height-range modifier (PrusaSlicer: object → Height range modifier, 3.0-3.2 mm, Perimeters = 2). Do **not** fix this by raising the global wall count instead — a 2-wall part is too stiff to snap into the panel. |
 | Infill | **0%** |
 | Print Speed | 20-25 mm/s effective (profile is volumetric-capped at 1.8 mm³/s) |
 | Nozzle Temp | 225°C |
