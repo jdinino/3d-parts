@@ -43,19 +43,22 @@
 
 ## Print Settings
 
+The exact validated profile ships as [`11519-r03.3mf`](https://github.com/jdinino/3d-parts/releases/download/airbox-bushing-r03/11519-r03.3mf) — a PrusaSlicer 2.9 project (AnkerMake M5C, 0.4 mm nozzle, Generic TPU 95A). The table below summarizes it.
+
 ### Bushing - TPU 95A
 
 | Setting | Value |
 |---------|-------|
 | Layer Height | 0.2 mm |
-| Wall Count | **1** |
+| Wall Count | **1** (+1 perimeter on the first groove layer — z 3.0-3.2 mm height-range override in the 3MF) |
 | Infill | **0%** |
-| Print Speed | 20-25 mm/s |
-| Nozzle Temp | 225-230°C |
-| Bed Temp | 45-50°C |
-| Cooling | 50-70% |
+| Print Speed | 20-25 mm/s effective (profile is volumetric-capped at 1.8 mm³/s) |
+| Nozzle Temp | 225°C |
+| Bed Temp | 30°C |
+| Cooling | 30% constant, off for first 3 layers (auto-cooling disabled) |
+| Retraction | 0.8 mm @ 60 mm/s |
 | Orientation | Base down |
-| Supports | **Required** |
+| Supports | **Required** — organic style, 0.2 mm contact distance |
 
 The 1-perimeter / 0% infill combination is deliberate, not a draft setting: it prints the bushing as a hollow rubber shell, which is what makes a 95A filament squish like the softer OEM molded part.
 Printing solid produces a bushing too stiff to snap into the panel or accept the cover prong.
@@ -72,13 +75,14 @@ Printing solid produces a bushing too stiff to snap into the panel or accept the
 | File | Description |
 |------|-------------|
 | `11519-r03.stl` | 3D printable model |
+| `11519-r03.3mf` | PrusaSlicer project — exact validated print profile |
 | `11519-r03.scad` | OpenSCAD parametric source |
 | `airbox-bushing-FSD.md` | Functional Specification Document |
 | `render.html` | Interactive 3D preview |
 
 ## Installation
 
-1. Print in TPU 95A per settings above; remove supports from the groove and flare
+1. Print in TPU 95A per settings above (or slice the included `11519-r03.3mf` directly); remove supports from the groove and flare
 2. Press the bushing head-first into the airbox panel hole until the Ø11 groove snaps into the panel
 3. Press the airbox cover prong into the Ø8 bore — the flared underside provides the lead-in
 4. A drop of adhesive between flange and panel is a common V-Rod owner trick to keep the grommet from walking out with the cover

@@ -55,9 +55,10 @@ difference() {
 
 // ============================================================
 //  PRINT — TPU 95A — FIELD-VALIDATED (owner-tested, r03):
-//    perimeters = 1
+//    perimeters = 1 (+1 on first groove layer, z 3.0-3.2)
 //    infill     = 0%        (hollow shell = matches OEM rubber squish)
 //    supports   = ENABLED   (single wall can't bridge head underside)
 //  Orientation: base down.
-//  Temps/speeds: 225-230C / bed 45-50C / 20-25 mm/s / retr <=0.5mm.
+//  225C / bed 30C / 20-25 mm/s (1.8 mm3/s cap) / retr 0.8mm @ 60mm/s.
+//  Exact profile: 11519-r03.3mf (PrusaSlicer, AnkerMake M5C, 0.4mm).
 // ============================================================
