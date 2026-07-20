@@ -51,22 +51,25 @@ The exact validated profile ships as [`11519-r03.3mf`](https://github.com/jdinin
 
 ### Bushing - TPU 95A
 
-| Setting | Value |
-|---------|-------|
-| Layer Height | 0.2 mm |
-| Wall Count | **1** (global — see Groove-Root Reinforcement below before changing) |
-| **Groove-Root Reinforcement** | **2 perimeters on the z 3.0-3.2 mm layer — REQUIRED.** The first groove layer is the only material tying the groove stem and head to the base flange. The bushing has to stay squishy and flex to do its job, and printed hollow at a single 0.45 mm perimeter that junction layer is where the flex concentrates: the part looks fine, then tears between the flange and the stem after some flexing. Two perimeters on the Ø8-Ø11 ring effectively fill that junction solid. The included 3MF implements this as a height-range modifier (PrusaSlicer: object → Height range modifier, 3.0-3.2 mm, Perimeters = 2). Do **not** fix this by raising the global wall count instead — a 2-wall part is too stiff to snap into the panel. |
-| Infill | **0%** |
-| Print Speed | 20-25 mm/s effective (profile is volumetric-capped at 1.8 mm³/s) |
-| Nozzle Temp | 225°C |
-| Bed Temp | 30°C |
-| Cooling | 30% constant, off for first 3 layers (auto-cooling disabled) |
-| Retraction | 0.8 mm @ 60 mm/s |
-| Orientation | Base down |
-| Supports | **Required** — organic style, 0.2 mm contact distance |
+| Setting | Required | Value |
+|---------|:--------:|-------|
+| Layer Height | | 0.2 mm |
+| Wall Count | ✓ | **1** (global — do not raise) |
+| Groove-Root Reinforcement | ✓ | **2 perimeters on the z 3.0-3.2 mm layer** (height-range modifier in the 3MF) |
+| Infill | ✓ | **0%** |
+| Print Speed | | 20-25 mm/s effective (profile is volumetric-capped at 1.8 mm³/s) |
+| Nozzle Temp | | 225°C |
+| Bed Temp | | 30°C |
+| Cooling | | 30% constant, off for first 3 layers (auto-cooling disabled) |
+| Retraction | | 0.8 mm @ 60 mm/s |
+| Orientation | | Base down |
+| Supports | ✓ | Enabled — organic style, 0.2 mm contact distance |
 
-The 1-perimeter / 0% infill combination is deliberate, not a draft setting: it prints the bushing as a hollow rubber shell, which is what makes a 95A filament squish like the softer OEM molded part.
-Printing solid produces a bushing too stiff to snap into the panel or accept the cover prong.
+**Required settings, and why:**
+
+- **Wall Count 1 + Infill 0%** — deliberate, not a draft setting: the hollow single-wall shell is what makes a 95A filament squish like the softer OEM molded rubber. Printing solid (or with 2 global walls) produces a bushing too stiff to snap into the panel or accept the cover prong.
+- **Groove-Root Reinforcement** — the first groove layer is the only material tying the groove stem and head to the base flange. The bushing has to stay squishy and flex to do its job, and printed hollow at a single 0.45 mm perimeter that junction layer is where the flex concentrates: the part looks fine, then tears between the flange and the stem after some flexing. Two perimeters on the Ø8-Ø11 ring effectively fill that junction solid (PrusaSlicer: object → Height range modifier, 3.0-3.2 mm, Perimeters = 2).
+- **Supports** — a single perimeter cannot bridge the head underside over the groove; supports tear cleanly out of TPU.
 
 ### Material Notes
 

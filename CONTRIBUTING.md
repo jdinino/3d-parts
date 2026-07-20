@@ -36,7 +36,7 @@ Naming: `reference-{part}.stl` (e.g., `reference-d-ring-shackle-protector.stl`, 
 
 ### Slicer Project (Recommended)
 
-If a print profile has been validated on real hardware, ship it as `{part}-{rXX}.3mf` next to the STL. Summarize the profile in the README Print Settings table, link the 3MF from that section, and attach it to the GitHub Release alongside the STL. Call out any setting the part's function depends on as a bolded **REQUIRED** row with the failure mode explained (see the airbox bushing's Groove-Root Reinforcement row and the bleeder tool's Z-Hop row for the pattern).
+If a print profile has been validated on real hardware, ship it as `{part}-{rXX}.3mf` next to the STL. Summarize the profile in the README Print Settings table, link the 3MF from that section, and attach it to the GitHub Release alongside the STL. Mark any setting the part's function depends on with a ✓ in the Print Settings table's Required column and explain its failure mode below the table (see the airbox bushing and bleeder tool READMEs for the pattern).
 
 ### Part Photo (Recommended)
 
@@ -135,6 +135,19 @@ The exact validated profile ships as [`{part}-{rXX}.3mf`](https://github.com/jdi
 | Cooling | {X}% |
 | Orientation | {description} |
 | Supports | None required |
+
+<!-- If any setting is function-critical, add a Required column, mark those rows
+     with ✓, keep the value cells short, and explain each below the table:
+
+| Setting | Required | Value |
+|---------|:--------:|-------|
+| Layer Height | | {X} mm |
+| {Critical Setting} | ✓ | **{value}** |
+
+**Required settings, and why:**
+
+- **{Critical Setting}** — {failure mode without it}
+-->
 
 For multi-part assemblies, repeat print settings per component/material.
 

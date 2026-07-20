@@ -49,23 +49,30 @@
 
 ### Bleeder Tool - PLA
 
-| Setting | Value |
-|---------|-------|
-| **Nozzle Diameter** | **0.2 mm strongly recommended.** A 0.4 mm nozzle prints, but the M5×0.8 thread crests are only 0.43 mm radial — a 0.2 mm nozzle resolves them as discrete ridges instead of smearing them into a coarse helix. Set extrusion width to 0.20–0.22 mm. |
-| Layer Height | 0.08 mm with 0.2 mm nozzle, 0.12 mm with 0.4 mm nozzle (0.16 mm acceptable, threads will be coarser) |
-| Wall Count | 4 |
-| Infill | 100% |
-| Print Speed | 15-20 mm/s outer, 50 mm/s inner |
-| First Layer Speed | 12 mm/s |
-| Nozzle Temp | 205-215°C (215°C first layer, 220°C for silk PLA) |
-| Bed Temp | 70°C (full print) |
-| Cooling | Off for first 5 layers, then 100% |
-| Brim | 15 mm wide, 8 outline loops |
-| Orientation | Threads down, dome up |
-| Supports | None required |
-| **Z-Hop** | **0.4 mm — REQUIRED.** Small first-layer footprint means the brim is the only thing holding the part to the bed. Without Z-hop, the nozzle drags across the dome on travel moves and rips the part off the build plate (silk PLA especially). Enable Z-hop on every retract. PrusaSlicer: Printer Settings → Extruder → Lift Z. |
-| Retraction | 1.0-1.5 mm direct drive, 4-5 mm Bowden |
-| **Seam Position** | **Random — REQUIRED.** An aligned or sharpest-corner seam places the layer-change scar on a single radial line down the shaft, gashing every thread along that line and ruining the M5 fit. Random seam distributes the artifact around the helix. |
+| Setting | Required | Value |
+|---------|:--------:|-------|
+| Nozzle Diameter | | **0.2 mm strongly recommended** — extrusion width 0.20-0.22 mm |
+| Layer Height | | 0.08 mm with 0.2 mm nozzle, 0.12 mm with 0.4 mm nozzle (0.16 mm acceptable, threads will be coarser) |
+| Wall Count | | 4 |
+| Infill | | 100% |
+| Print Speed | | 15-20 mm/s outer, 50 mm/s inner |
+| First Layer Speed | | 12 mm/s |
+| Nozzle Temp | | 205-215°C (215°C first layer, 220°C for silk PLA) |
+| Bed Temp | | 70°C (full print) |
+| Cooling | | Off for first 5 layers, then 100% |
+| Brim | | 15 mm wide, 8 outline loops |
+| Orientation | | Threads down, dome up |
+| Supports | | None required |
+| Z-Hop | ✓ | **0.4 mm, on every retract** |
+| Retraction | | 1.0-1.5 mm direct drive, 4-5 mm Bowden |
+| Seam Position | ✓ | **Random** |
+
+**Required settings, and why:**
+
+- **Z-Hop** — the small first-layer footprint means the brim is the only thing holding the part to the bed. Without Z-hop, the nozzle drags across the dome on travel moves and rips the part off the build plate (silk PLA especially). PrusaSlicer: Printer Settings → Extruder → Lift Z.
+- **Seam Position: Random** — an aligned or sharpest-corner seam places the layer-change scar on a single radial line down the shaft, gashing every thread along that line and ruining the M5 fit. Random seam distributes the artifact around the helix.
+
+**Strongly recommended:** a 0.2 mm nozzle. A 0.4 mm nozzle prints, but the M5×0.8 thread crests are only 0.43 mm radial — a 0.2 mm nozzle resolves them as discrete ridges instead of smearing them into a coarse helix.
 
 ### Material Notes
 
