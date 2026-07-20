@@ -32,6 +32,14 @@ A reference file is an extra STL included for comparison — not the main part y
 
 Naming: `reference-{part}.stl` (e.g., `reference-d-ring-shackle-protector.stl`, `reference-mesh-lid.stl`).
 
+### Slicer Project (Recommended)
+
+If a print profile has been validated on real hardware, ship it as `{part}-{rXX}.3mf` next to the STL. Summarize the profile in the README Print Settings table, link the 3MF from that section, and attach it to the GitHub Release alongside the STL. Call out any setting the part's function depends on as a bolded **REQUIRED** row with the failure mode explained (see the airbox bushing's Groove-Root Reinforcement row and the bleeder tool's Z-Hop row for the pattern).
+
+### Part Photo (Recommended)
+
+Commit a photo of the printed part as `{part}-{rXX}-photo.{ext}` — don't hotlink external images, they rot. Place it in the README centered after the badges block, before Compatible Part Numbers.
+
 ### Part Markings (Recommended)
 
 Engrave or emboss text directly on parts as functionally allowable to be legible. Priority:
@@ -70,6 +78,12 @@ Copy and adapt this structure exactly:
   <img src="https://img.shields.io/badge/Material-{MATERIAL}-brightgreen" alt="Material">
   <img src="https://img.shields.io/badge/Revision-{rXX}-blue" alt="Revision">
 </p>
+
+<!-- If a photo of the printed part exists:
+<p align="center">
+  <img src="{part}-{rXX}-photo.webp" alt="{Part description}" width="480">
+</p>
+-->
 
 ## Compatible Part Numbers
 
@@ -133,6 +147,9 @@ For multi-part assemblies, repeat print settings per component/material.
 | `{part}-{rXX}.scad` | OpenSCAD parametric source |
 | `{part}-FSD.md` | Functional Specification Document |
 | `render.html` | Interactive 3D preview |
+
+<!-- If a validated slicer project is included, add after the STL row:
+     | `{part}-{rXX}.3mf` | PrusaSlicer project — exact validated print profile | -->
 
 ## Installation
 
@@ -256,6 +273,8 @@ gh release create pan-roller-r17 "appliances/whirlpool-refrigerator-pan-roller/W
 
 Download URL format: `https://github.com/jdinino/3d-parts/releases/download/{release-tag}/{part}-{rXX}.stl`
 
+If the part ships a 3MF slicer project, attach it to the same release (`gh release upload {release-tag} "{category}/{folder}/{part}-{rXX}.3mf"`) so the README's Print Settings link resolves.
+
 ---
 
 ## Checklist
@@ -271,6 +290,8 @@ Before committing, verify:
 - [ ] Category README.md updated
 - [ ] All filenames in README match actual files
 - [ ] GitHub Release created with STL file(s)
+- [ ] 3MF slicer project committed and attached to the release (if a validated profile exists)
+- [ ] Photo of the printed part committed as `{part}-{rXX}-photo.{ext}` (if available)
 - [ ] Download URLs point to GitHub Release assets
 - [ ] Interactive Viewer URL uses GitHub Pages path
 - [ ] Visitor badge URL is properly encoded
