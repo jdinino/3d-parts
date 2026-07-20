@@ -12,7 +12,9 @@ Examples: `appliances/whirlpool-refrigerator-pan-roller/`, `automotive/d-ring-sh
 
 ---
 
-## Required Files
+## Files
+
+Required for every part:
 
 | File | Description |
 |------|-------------|
@@ -38,7 +40,7 @@ If a print profile has been validated on real hardware, ship it as `{part}-{rXX}
 
 ### Part Photo (Recommended)
 
-Commit a photo of the printed part as `{part}-{rXX}-photo.{ext}` — don't hotlink external images, they rot. Place it in the README centered after the badges block, before Compatible Part Numbers.
+Commit a photo of the printed part as `{part}-{rXX}-photo.{ext}` (e.g., `11519-r03-photo.webp`) — don't hotlink external images, they rot. Place it in the README centered after the badges block, before Compatible Part Numbers.
 
 ### Part Markings (Recommended)
 
@@ -115,6 +117,10 @@ For multi-part assemblies, use a separate subsection and table per component:
 | **{Dimension}** | {value} mm |
 
 ## Print Settings
+
+<!-- If a validated slicer project is included, open the section with:
+The exact validated profile ships as [`{part}-{rXX}.3mf`](https://github.com/jdinino/3d-parts/releases/download/{release-tag}/{part}-{rXX}.3mf) — a {slicer} project ({printer}, {nozzle} nozzle, {filament}). The table below summarizes it.
+-->
 
 ### {Component} - {Material Name}
 
