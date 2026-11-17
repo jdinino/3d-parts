@@ -60,12 +60,11 @@ The validated profile ships as [`holster-adapter-r16.3mf`](https://github.com/jd
 | Layer Height | | 0.2 mm |
 | Wall Count | | 4 |
 | Infill | | 15% |
-| Seam | | Aligned |
-| Filament | | 3D-Fuel Pro PCTG (PrusaSlicer profile `3D-Fuel Pro PCTG`) |
 | Print Speed | | Your print preset; the filament profile caps flow at 8 mm³/s |
 | Nozzle Temp | | 255°C |
 | Bed Temp | | 80°C |
-| Cooling | | 0-40% (fan always on), off for first 3 layers, 80% on bridges |
+| Cooling | | Auto: 0% on layers over 20 s, up to 40% on shorter layers; off for first 3 layers; 80% on bridges |
+| Seam | | Aligned |
 | Brim | | Filament dependent (the first layer is a 3.2 mm wide ring) |
 | Orientation | ✓ | **Stem tip on the bed, cup opening up** |
 | Supports | ✓ | **On, everywhere (not build plate only); snug, 0.2 mm contact, 75% XY** |
