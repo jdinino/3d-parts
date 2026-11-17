@@ -17,6 +17,12 @@
   <img src="https://img.shields.io/badge/Revision-r65-blue" alt="Revision: r65">
 </p>
 
+## Compatible Part Numbers
+
+| Part Number | Type |
+|-------------|------|
+| **N/A** | Replaces the OEM insert in the Bolt EV's console phone slot; GM part number not yet identified |
+
 ## Compatible Vehicle Models
 
 ### Chevrolet
@@ -71,10 +77,9 @@ There is no validated slicer profile for this revision yet. [`wireless-charger-i
 |------|-------------|
 | `wireless-charger-insert-r65.stl` | 3D printable model (print orientation, lip down) |
 | `wireless-charger-insert-r65.3mf` | Same mesh, placed on the bed; no print settings |
+| `wireless-charger-insert-r65.scad` | OpenSCAD parametric source (DejaVu Sans Bold font required) |
 | `wireless-charger-insert-FSD.md` | Functional Specification Document |
 | `render.html` | Interactive 3D preview |
-
-No OpenSCAD source yet: this part was generated with a Python script that is not in the repository.
 
 ## Installation
 
