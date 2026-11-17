@@ -6,7 +6,7 @@ Dock adapter for a ChargePoint Home Flex (CPH50) with a NACS (Tesla) cable and h
 
 The stem follows the NACS connector nose in Tesla's *North American Charging Standard* TS-0023666 rev 1.1, §5.1 (outer profile, lead-in, draft, latch pocket). The cup follows the J1772 vehicle inlet in SAE J1772 OCT2017, Appendix A (sheets A-1, A-2, A-4). Fit values that differ from the standards were set on real hardware and are marked *[fit]*.
 
-The part is one hollow, open tube from the stem tip to the cup rim, printed stem-down. The only support it needs is under the J1772 latch catch, and that support stands on a ledge inside the cup, not on the bed.
+The part is one hollow, open tube from the stem tip to the cup rim, printed stem-down. The only support it needs is under the J1772 latch catch, and that support stands on a ledge inside the cup, not on the bed. The 3MF marks it with a support enforcer.
 
 ## Stem Specifications (NACS nose)
 
@@ -87,6 +87,7 @@ What the trials showed: with the tooth latched there is under 3 mm of room betwe
 
 - `holster-adapter-r16.scad` is the parametric source, and `holster-adapter-r16.stl` is its OpenSCAD 2021.01 render (about 4 minutes in CGAL). The STL is watertight, with every edge shared by exactly two triangles; its volume is 40,836 mm³.
 - `holster-adapter-r16.3mf` is a PrusaSlicer project holding the same mesh as the STL, placed with the plug axis at X 110, Y 110 (the centre of a 220 × 220 bed), with the validated per-object print settings embedded: layer height, perimeters, infill, seam and supports. Temperatures and cooling come from PrusaSlicer's `3D-Fuel Pro PCTG` filament profile; printer, nozzle and brim from your own presets.
+- The 3MF also carries a support enforcer, a second volume of the object: a block 11.4 mm wide (the hook slot between the cheeks), from Y 25 mm (inside the surface P pad) out to the ramp top at Y 30 mm, and from the support ledge top (31.5 mm below the rim) to 1.0 mm above the catch face (21.3 mm below the rim). In PrusaSlicer 2.9.7 the support comes out as it does with the automatic settings alone (under the catch only, standing on the ledge, same footprint and height), and the enforcer produces it by itself with automatic supports off. Nothing of the block is printed. The file is marked as a PrusaSlicer 3MF (`slic3rpe:Version3mf`), which PrusaSlicer needs to place the enforcer with the part; other slicers may read the block as part of the model.
 - The fit-tested print was made from an earlier export of r16 with different lettering. Away from the lettering, that mesh's vertices are within 0.005 mm of the released STL's surface.
 
 ## Material Requirements
