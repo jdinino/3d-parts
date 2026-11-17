@@ -70,11 +70,12 @@ There is no validated slicer profile for this revision yet. [`wireless-charger-i
 | File | Description |
 |------|-------------|
 | `wireless-charger-insert-r65.stl` | 3D printable model (print orientation, lip down) |
+| `wireless-charger-insert-r65.scad` | OpenSCAD source |
 | `wireless-charger-insert-r65.3mf` | Same mesh, placed on the bed; no print settings |
 | `wireless-charger-insert-FSD.md` | Functional Specification Document |
 | `render.html` | Interactive 3D preview |
 
-No OpenSCAD source yet: this part was generated with a Python script that is not in the repository.
+The STL is rendered from the SCAD: `openscad -o wireless-charger-insert-r65.stl wireless-charger-insert-r65.scad` (about 40 seconds in OpenSCAD 2021.01). The engraving uses DejaVu Sans Bold, which must be installed.
 
 ## Installation
 

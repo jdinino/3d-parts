@@ -87,8 +87,9 @@ Pocket A is 16.00 wide all the way down, and its Side A wall ends square at the 
 
 ### Source Files
 
-- `wireless-charger-insert-r65.stl` and `wireless-charger-insert-r65.3mf` hold the same mesh, in print orientation (lip top on the bed at z = 0). The STL leaves out 4 zero-area triangles that the 3MF carries along the edge of the pocket A opening; both are watertight. The 3MF places the part at X 110, Y 110 and carries no print settings.
-- There is no OpenSCAD source. The part was generated with a Python script (manifold3d) that is not in the repository.
+- `wireless-charger-insert-r65.scad` is the OpenSCAD source. It models the part as installed (lip top at z = 0) and flips it 180° about X at the end, so the render comes out in print orientation (lip top on the bed at z = 0, bumps on -Y). Every dimension above is a named parameter at the top of the file.
+- `wireless-charger-insert-r65.stl` is rendered from it: `openscad -o wireless-charger-insert-r65.stl wireless-charger-insert-r65.scad` (about 40 seconds in OpenSCAD 2021.01; the engraving needs DejaVu Sans Bold installed). `wireless-charger-insert-r65.3mf` holds the same mesh placed at X 110, Y 110, with no print settings.
+- r65 was first designed with a Python script (manifold3d) that is not in the repository. The SCAD reproduces that mesh: across the whole surface the two differ by 0.002 mm on average and under 0.01 mm at the 99th percentile, apart from the engraved letter outlines (up to 0.14 mm), and the volume differs by 0.04%.
 
 ## Material Requirements
 
