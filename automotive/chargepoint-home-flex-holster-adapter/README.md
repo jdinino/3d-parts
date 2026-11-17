@@ -51,7 +51,7 @@ The stem follows the NACS connector nose in Tesla's TS-0023666 §5.1; the cup fo
 
 ## Print Settings
 
-The validated profile ships as [`holster-adapter-r16.3mf`](https://github.com/jdinino/3d-parts/releases/download/holster-adapter-r16/holster-adapter-r16.3mf) — a PrusaSlicer project with the layer height, walls, infill, seam and support settings below embedded on the object. It was fit-tested in 3D-Fuel Pro PCTG with PrusaSlicer's `3D-Fuel Pro PCTG` filament profile, which sets the temperatures and cooling; printer, nozzle and brim come from your own presets. The table below summarizes it.
+The validated profile ships as [`holster-adapter-r16.3mf`](https://github.com/jdinino/3d-parts/releases/download/holster-adapter-r16/holster-adapter-r16.3mf) — a PrusaSlicer project with the layer height, walls, infill, seam and support settings below embedded on the object. It was fit-tested in 3D-Fuel Pro PCTG with PrusaSlicer's generic `3D-Fuel Pro PCTG` filament profile (the one PrusaSlicer lists for non-Prusa printers; Prusa printers get their own versions of it, at 260°C), which sets the temperatures and cooling below; printer, nozzle and brim come from your own presets. The table below summarizes it.
 
 ### Adapter - PCTG
 
@@ -67,13 +67,13 @@ The validated profile ships as [`holster-adapter-r16.3mf`](https://github.com/jd
 | Seam | | Aligned |
 | Brim | | Filament dependent (the first layer is a 3.2 mm wide ring) |
 | Orientation | ✓ | **Stem tip on the bed, cup opening up** |
-| Supports | ✓ | **On, everywhere (not build plate only); snug, 0.2 mm contact, 75% XY** |
+| Supports | ✓ | **On, everywhere (not build plate only); overhang threshold 45° (48° or less); snug, 0.2 mm contact, 75% XY** |
 | Don't Support Bridges | ✓ | **Off** |
 
 **Required settings, and why:**
 
 - **Orientation** — printed stem-down, no surface leans more than 40° from vertical except the latch catch face. Any other orientation puts supports on the stem's fit surfaces and inside the bore.
-- **Supports everywhere** — the one support goes under the flat latch catch face inside the cup and stands on the support ledge below it, not on the bed. "Support on build plate only" leaves the catch face unsupported.
+- **Supports everywhere** — the one support goes under the flat latch catch face inside the cup and stands on the support ledge below it, not on the bed. "Support on build plate only" leaves the catch face unsupported. The overhang threshold has to stay at 48° or less: the flare and the undersides of the key boss and the ledge slope at 50° from horizontal, and from 49° up PrusaSlicer supports them too, under the flare and inside the cup (0, PrusaSlicer's automatic setting, also works).
 - **Don't Support Bridges off** — the catch face spans the 11.4 mm slot between two cheeks, so PrusaSlicer treats it as a bridge; with this ticked (the default in stock profiles) it puts no support there. A sagging catch face lets the TeslaTap's latch slip.
 
 ### Material Notes
