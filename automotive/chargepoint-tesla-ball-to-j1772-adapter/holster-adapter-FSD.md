@@ -81,12 +81,13 @@ What the trials showed: with the tooth latched there is under 3 mm of room betwe
 
 ### Part Markings
 
-`V16` (the design version; repository revision r16) sunk 0.5 mm into the +Y (latch-ramp) side of the internal funnel, 5.5 mm tall, read looking into the cup from the rim. Name and dimension markings are omitted: the outside of the stem is the holster fit surface and the cup carries the latch features, so no marking was added that would change the fit-tested part.
+`r16` sunk 0.5 mm into the +Y (latch-ramp) side of the internal funnel, 5.5 mm tall (Liberation Sans Bold, which ships with OpenSCAD), read looking into the cup from the rim. Name and dimension markings are omitted: the outside of the stem is the holster fit surface and the cup carries the latch features, so no marking was added that would change the fit-tested part. (The fit-tested print carried the prototype marking `V16` in the same place; only the lettering differs.)
 
 ### Source Files
 
-- `holster-adapter-r16.3mf` is the PrusaSlicer project of the fit-tested r16 design: the mesh plus its embedded per-object print settings.
-- `holster-adapter-r16.scad` is the parametric source, and `holster-adapter-r16.stl` is its OpenSCAD 2021.01 render (about 4 minutes in CGAL). The render was checked against the 3MF's mesh: the two differ by 2.3 mm³ in 40,829 mm³; away from the `V16` lettering the surfaces are within 0.007 mm of each other, and the lettering differs by up to 0.26 mm (font rendering). The STL is watertight, with every edge shared by exactly two triangles.
+- `holster-adapter-r16.scad` is the parametric source, and `holster-adapter-r16.stl` is its OpenSCAD 2021.01 render (about 4 minutes in CGAL). The STL is watertight, with every edge shared by exactly two triangles; its volume is 40,836 mm³.
+- `holster-adapter-r16.3mf` is a PrusaSlicer project holding the same mesh as the STL, placed with the plug axis at X 110, Y 110 (the centre of a 220 × 220 bed), with the validated per-object print settings embedded: layer height, perimeters, infill, seam and supports. Printer, nozzle, filament, temperatures, cooling and brim come from your own presets.
+- The fit-tested print was made from an earlier export of r16 that carried the prototype marking `V16`. Away from the lettering, that mesh is within 0.005 mm of the released STL's surface.
 
 ## Material Requirements
 

@@ -84,7 +84,8 @@ cheek_run = 1.0;            // cheeks keep full height this far behind the catch
 floor_gap = 4.5;            // keyway bottom above the top of the shoulder cone
 
 // ---- marking -------------------------------------------------------------
-mark_text  = "V16";         // design version V16 = repository revision r16
+mark_text  = "r16";         // revision (CONTRIBUTING.md: revision first)
+mark_font  = "Liberation Sans:style=Bold";   // bundled with OpenSCAD, so every install renders the same letters
 mark_h     = 5.5;           // text height
 mark_depth = 0.5;           // sunk into the +Y side of the funnel (read looking into the cup)
 
@@ -246,7 +247,7 @@ module mark() {
     intersection() {
         translate([0, 0, z_f0 - 2]) linear_extrude(z_f1 - z_f0 + 4)
             translate([0, cy]) resize([0, mark_h], auto = true)
-                text(mark_text, font = "DejaVu Sans:style=Bold", halign = "center", valign = "center");
+                text(mark_text, font = mark_font, halign = "center", valign = "center");
         union() {
             translate([0, 0, -drop]) funnel();
             translate([0, 0, z_f1 - drop - 0.01]) cylinder(h = drop + 0.02, r = bore_r, $fn = 180);

@@ -51,7 +51,7 @@ The stem follows the NACS connector nose in Tesla's TS-0023666 §5.1; the cup fo
 
 ## Print Settings
 
-The validated profile ships as [`holster-adapter-r16.3mf`](https://github.com/jdinino/3d-parts/releases/download/holster-adapter-r16/holster-adapter-r16.3mf) — a PrusaSlicer project with the settings below embedded on the object (printer, nozzle and filament come from your own presets; fit-tested in PCTG). The table below summarizes it.
+The validated profile ships as [`holster-adapter-r16.3mf`](https://github.com/jdinino/3d-parts/releases/download/holster-adapter-r16/holster-adapter-r16.3mf) — a PrusaSlicer project with the layer height, walls, infill, seam and support settings below embedded on the object (printer, nozzle, filament, temperatures, cooling and brim come from your own presets; fit-tested in PCTG). The table below summarizes it.
 
 ### Adapter - PCTG
 
@@ -87,14 +87,14 @@ The validated profile ships as [`holster-adapter-r16.3mf`](https://github.com/jd
 | File | Description |
 |------|-------------|
 | `holster-adapter-r16.stl` | 3D printable model |
-| `holster-adapter-r16.3mf` | PrusaSlicer project — exact validated print profile |
+| `holster-adapter-r16.3mf` | PrusaSlicer project — validated object settings (layer height, walls, infill, seam, supports) |
 | `holster-adapter-r16.scad` | OpenSCAD parametric source |
 | `holster-adapter-FSD.md` | Functional Specification Document |
 | `render.html` | Interactive 3D preview |
 
 ## Installation
 
-1. Print the adapter in PCTG with the settings above (the 3MF sets them).
+1. Print the adapter in PCTG with the settings above (the 3MF sets the object settings; temperatures, cooling and brim come from your PCTG filament preset).
 2. Remove the support from under the latch catch, inside the slot on the cup's latch ramp, and check that the catch face is clean and flat.
 3. Push the stem into the ChargePoint's NACS holster with the latch ramp on top (the Tesla-shaped stem only fits one way up) until the holster's latch clicks into the stem's pocket.
 4. With the TeslaTap on the charging handle, push its J1772 end into the cup until its latch drops over the catch. Take it out with the TeslaTap's latch release, as you would at a car.
