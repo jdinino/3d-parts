@@ -7,6 +7,7 @@
 | Part | Brand | Part Numbers | Material | Status |
 |------|-------|-------------|----------|--------|
 | [Home Flex Holster Adapter](chargepoint-home-flex-holster-adapter/) | ChargePoint, TeslaTap | CPH50 | PCTG | Tested |
+| [Bolt EV Wireless Charger Insert](chevrolet-bolt-ev-wireless-charger-insert/) | Chevrolet | Bolt EV | TPU 95A | Untested |
 | [D-Ring Shackle Protector](d-ring-shackle-protector/) | — | N/A | TPU 95A | Untested |
 | [V-Rod Airbox Mounting Bushing](harley-davidson-v-rod-airbox-bushing/) | Harley-Davidson | 11519, 11519-A | TPU 95A | Tested |
 | [V-Rod Clutch Bleeder Tool](harley-davidson-v-rod-clutch-bleeder/) | Harley-Davidson | 36757-01B, 36757-01K | PLA | Tested |
