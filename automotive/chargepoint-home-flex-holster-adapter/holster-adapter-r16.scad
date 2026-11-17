@@ -1,5 +1,5 @@
 // ============================================================
-//  CHARGEPOINT TESLA BALL TO J1772 ADAPTER
+//  CHARGEPOINT HOME FLEX HOLSTER ADAPTER
 //  Docks a Tesla (NACS) charging handle that wears a TeslaTap
 //  (Tesla -> J1772 adapter) in a ChargePoint Home Flex NACS holster.
 //    stem : Tesla-shaped nose that clicks into the holster

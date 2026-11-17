@@ -1,4 +1,4 @@
-# ChargePoint Tesla Ball to J1772 Adapter Full Specifications Document
+# ChargePoint Home Flex Holster Adapter Full Specifications Document
 
 ## Overview
 

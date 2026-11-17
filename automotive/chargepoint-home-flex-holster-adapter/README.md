@@ -1,4 +1,4 @@
-# ChargePoint Tesla Ball to J1772 Adapter
+# ChargePoint Home Flex Holster Adapter
 
 <p align="center">
   <b>If this part saved you money, consider buying me a thank you!</b><br><br>
@@ -10,7 +10,7 @@
 Dock adapter that lets a ChargePoint Home Flex's NACS (Tesla) handle hang in its holster with a TeslaTap (NACS → J1772 adapter) still on it: a Tesla-shaped stem clicks into the holster ball, and the TeslaTap plugs into and latches on a J1772 inlet cup at the other end.
 
 <h2 align="center"><a href="https://github.com/jdinino/3d-parts/releases/download/holster-adapter-r16/holster-adapter-r16.stl">Download the Adapter</a></h2>
-<h3 align="center"><a href="holster-adapter-r16.stl">View 3D Model</a> | <a href="https://jdinino.github.io/3d-parts/automotive/chargepoint-tesla-ball-to-j1772-adapter/render.html">Interactive Viewer</a></h3>
+<h3 align="center"><a href="holster-adapter-r16.stl">View 3D Model</a> | <a href="https://jdinino.github.io/3d-parts/automotive/chargepoint-home-flex-holster-adapter/render.html">Interactive Viewer</a></h3>
 
 <p align="center">
   <img src="https://img.shields.io/badge/Material-PCTG-brightgreen" alt="Material: PCTG">
@@ -129,10 +129,10 @@ Issues and improvements welcome. Please include:
 
 ## Keywords
 
-`chargepoint` `home flex` `cph50` `nacs` `tesla` `j1772` `teslatap` `tesla to j1772` `holster` `holster ball` `holster insert` `ev charger` `charging handle` `cable dock` `pctg` `3d print` `replacement part`
+`chargepoint` `home flex` `cph50` `nacs` `tesla` `j1772` `teslatap` `tesla to j1772` `holster` `holster ball` `holster adapter` `tesla ball` `holster insert` `ev charger` `charging handle` `cable dock` `pctg` `3d print` `replacement part`
 
 ---
 
 <p align="center">
-  <img src="https://api.visitorbadge.io/api/visitors?path=https%3A%2F%2Fgithub.com%2Fjdinino%2F3d-parts%2Ftree%2Fmain%2Fautomotive%2Fchargepoint-tesla-ball-to-j1772-adapter&label=Views&countColor=%23263759" alt="Views" />
+  <img src="https://api.visitorbadge.io/api/visitors?path=https%3A%2F%2Fgithub.com%2Fjdinino%2F3d-parts%2Ftree%2Fmain%2Fautomotive%2Fchargepoint-home-flex-holster-adapter&label=Views&countColor=%23263759" alt="Views" />
 </p>
