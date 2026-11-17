@@ -51,7 +51,7 @@ The stem follows the NACS connector nose in Tesla's TS-0023666 §5.1; the cup fo
 
 ## Print Settings
 
-The validated profile ships as [`holster-adapter-r16.3mf`](https://github.com/jdinino/3d-parts/releases/download/holster-adapter-r16/holster-adapter-r16.3mf) — a PrusaSlicer project with the layer height, walls, infill, seam and support settings below embedded on the object (printer, nozzle, filament, temperatures, cooling and brim come from your own presets; fit-tested in PCTG). The table below summarizes it.
+The validated profile ships as [`holster-adapter-r16.3mf`](https://github.com/jdinino/3d-parts/releases/download/holster-adapter-r16/holster-adapter-r16.3mf) — a PrusaSlicer project with the layer height, walls, infill, seam and support settings below embedded on the object. It was fit-tested in 3D-Fuel Pro PCTG with PrusaSlicer's `3D-Fuel Pro PCTG` filament profile, which sets the temperatures and cooling; printer, nozzle and brim come from your own presets. The table below summarizes it.
 
 ### Adapter - PCTG
 
@@ -61,7 +61,11 @@ The validated profile ships as [`holster-adapter-r16.3mf`](https://github.com/jd
 | Wall Count | | 4 |
 | Infill | | 15% |
 | Seam | | Aligned |
-| Nozzle / Bed Temp, Cooling | | Your PCTG filament preset |
+| Filament | | 3D-Fuel Pro PCTG (PrusaSlicer profile `3D-Fuel Pro PCTG`) |
+| Print Speed | | Your print preset; the filament profile caps flow at 8 mm³/s |
+| Nozzle Temp | | 255°C |
+| Bed Temp | | 80°C |
+| Cooling | | 0-40% (fan always on), off for first 3 layers, 80% on bridges |
 | Brim | | Filament dependent (the first layer is a 3.2 mm wide ring) |
 | Orientation | ✓ | **Stem tip on the bed, cup opening up** |
 | Supports | ✓ | **On, everywhere (not build plate only); snug, 0.2 mm contact, 75% XY** |
@@ -77,7 +81,7 @@ The validated profile ships as [`holster-adapter-r16.3mf`](https://github.com/jd
 
 | Part | Material | Status | Notes |
 |------|----------|--------|-------|
-| Adapter | PCTG | **Recommended** | Tested |
+| Adapter | PCTG | **Recommended** | Tested in 3D-Fuel Pro PCTG |
 | Adapter | PETG | Untested | Similar stiffness; expected to fit the same |
 | Adapter | TPU | Not recommended | The part holds by rigid edges; fit allowances are sized for a rigid material |
 | Adapter | PLA | Not recommended | Softens in a hot garage or in sun |
@@ -94,7 +98,7 @@ The validated profile ships as [`holster-adapter-r16.3mf`](https://github.com/jd
 
 ## Installation
 
-1. Print the adapter in PCTG with the settings above (the 3MF sets the object settings; temperatures, cooling and brim come from your PCTG filament preset).
+1. Print the adapter in PCTG with the settings above (the 3MF sets the object settings; select the `3D-Fuel Pro PCTG` filament profile for the temperatures and cooling).
 2. Remove the support from under the latch catch, inside the slot on the cup's latch ramp, and check that the catch face is clean and flat.
 3. Push the stem into the ChargePoint's NACS holster with the latch ramp on top (the Tesla-shaped stem only fits one way up) until the holster's latch clicks into the stem's pocket.
 4. With the TeslaTap on the charging handle, push its J1772 end into the cup until its latch drops over the catch. Take it out with the TeslaTap's latch release, as you would at a car.
